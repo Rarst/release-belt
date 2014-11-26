@@ -25,7 +25,7 @@ It will serve following Composer repository at `/packages.json`:
                     "type": "zip"
                 },
                 "type": "wordpress-plugin",
-                "requires": {
+                "require": {
                     "composer/installers": "~1.0"
                 }
             },
@@ -37,7 +37,7 @@ It will serve following Composer repository at `/packages.json`:
                     "type": "zip"
                 },
                 "type": "wordpress-plugin",
-                "requires": {
+                "require": {
                     "composer/installers": "~1.0"
                 }
             }
