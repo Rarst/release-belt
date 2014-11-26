@@ -17,6 +17,7 @@ It will serve following Composer repository at `/packages.json`:
 ```json
 {
     "packages": {
+		"yoast/wordpress-seo": {
             "1.6": {
                 "name": "yoast/wordpress-seo",
                 "version": "1.6",
