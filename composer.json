@@ -1,0 +1,25 @@
+{
+    "name": "rarst/release-belt",
+    "description": "Composer repository for ZIPs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Savchenko",
+            "email": "contact@rarst.net"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Rarst/release-belt/issues"
+    },
+    "require": {
+        "ext-fileinfo": "*",
+        "silex/silex": "~1.2",
+        "symfony/finder": "~2.5",
+        "league/fractal": "0.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rarst\\ReleaseBelt\\": "php/"
+        }
+    }
+}
