@@ -31,7 +31,7 @@ class ReleaseTransformer extends TransformerAbstract
         }
 
         if (in_array($release->type, [ 'wordpress-plugin', 'wordpress-theme', 'wordpress-muplugin' ])) {
-            $package['requires'] = [
+            $package['require'] = [
                 'composer/installers' => '~1.0'
             ];
         }
