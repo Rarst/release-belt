@@ -15,7 +15,7 @@
         "ext-fileinfo": "*",
         "silex/silex": "~1.2",
         "symfony/finder": "~2.5",
-        "league/fractal": "0.10"
+        "league/fractal": "~0.10"
     },
     "autoload": {
         "psr-4": {
