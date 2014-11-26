@@ -1,4 +1,4 @@
-# Release Belt — Composer repository for ZIPs
+# Release Belt — Composer repo for ZIPs
 
 Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow.
 
