@@ -2,7 +2,7 @@
 
 Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow.
 
-Given following folder tree:
+Given the following folder tree:
 
 ```
 releases
@@ -12,7 +12,7 @@ releases
 			wordpress-seo.1.7.zip
 ```
 
-It will serve following Composer repository at `/packages.json`:
+It will serve the following Composer repository at `/packages.json`:
 
 ```json
 {
@@ -57,25 +57,25 @@ composer create-project rarst/release-belt:dev-master
 
 Place release ZIPs into `/releases/[type]/[vendor]/`.
 
-Configure web server to serve `index.php`, for example with following `.htaccess`:
+Configure a web server to serve `index.php`, for example with the following `.htaccess`:
 
 ```
 FallbackResource /index.php
 ```  
 
-Release Belt DOES NOT have authentication implemented yet. Secure it via your web server if you dare to put it into the wild in current state. 
+Release Belt DOES NOT have authentication implemented yet. Secure it via your web server if you dare to put it into the wild in its current state. 
 
 ## F.A.Q.
 
 ### Why not Packagist/Satis?
 
-Composer infrastructure is awesome, but it expects vendors, willing to play nice with it.
+Composer infrastructure is awesome, but it expects vendors that are willing to play nice with it.
 
-Release Belt is solution for unwilling vendors and it was faster and easier to build a prototype from scratch. 
+Release Belt is a solution for unwilling vendors and it was faster and easier to build a prototype from scratch. 
 
 ### Why not artifacts?
 
-Composer artifacts require `composer.json` in them. This is for releases that don't even have that little.
+Composer artifacts require `composer.json` in them. This is for releases that don't even have that.
 
 ### But is it web scale?
 
