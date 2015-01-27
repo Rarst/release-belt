@@ -63,7 +63,11 @@ Configure a web server to serve `index.php`, for example with the following `.ht
 FallbackResource /index.php
 ```  
 
-When using the built in webserver of PHP >=5.4.0 you can use `php -S localhost:8000 php/router.php`
+When using the built in webserver of PHP >=5.4.0 you can use
+
+```
+php -S localhost:8000 php/router.php
+```
 
 Release Belt DOES NOT have authentication implemented yet. Secure it via your web server if you dare to put it into the wild in its current state. 
 
