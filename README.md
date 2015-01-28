@@ -63,7 +63,7 @@ Configure a web server to serve `index.php`, for example with the following `.ht
 FallbackResource /index.php
 ```
 
-When using the built in webserver of PHP >=5.4.0 you can use
+When using the built in webserver of PHP >=5.4.0 you can use:
 
 ```
 php -S localhost:8000 index.php
