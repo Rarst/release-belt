@@ -5,7 +5,7 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class Release
 {
-    const VERSION_REGEX = '|((?:\d+\.*){1,3})|';
+    const VERSION_REGEX = '|\.((?:\d+\.*){1,3})|';
 
     /** @var SplFileInfo $file */
     protected $file;
