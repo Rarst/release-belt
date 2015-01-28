@@ -5,7 +5,9 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class Release
 {
-    const VERSION_REGEX = '|((?:\d+\.*){1,3})|';
+    const SEPARATORS = '.-_';
+
+    const VERSION_REGEX = '|(?P<package>.*?)(?P<version>(?:\d+\.*){1,4})\.zip|';
 
     /** @var SplFileInfo $file */
     protected $file;
@@ -25,9 +27,10 @@ class Release
         $this->filename = $file->getFilename();
 
         list( $this->type, $this->vendor ) = explode('/', $this->path);
-        list( $package, $version ) = preg_split(self::VERSION_REGEX, $this->filename, 2, PREG_SPLIT_DELIM_CAPTURE);
-
-        $this->package = trim($package, '-.');
-        $this->version = trim($version, '-.');
+        preg_match(self::VERSION_REGEX, $this->filename, $matches);
+        $package       = rtrim($matches['package'], self::SEPARATORS);
+        $version       = $matches['version'];
+        $this->package = trim($package);
+        $this->version = trim($version);
     }
 }
