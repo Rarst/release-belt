@@ -1,6 +1,6 @@
 # Release Belt — Composer repo for ZIPs
 
-Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow.
+Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and the zip files with version number are uploaded Release Belt does the rest.
 
 Given the following folder tree:
 
@@ -12,7 +12,7 @@ releases
 			wordpress-seo.1.7.zip
 ```
 
-It will serve the following Composer repository at `/packages.json`:
+It will serve the following Composer repository at `/packages.json` automagically:
 
 ```json
 {
@@ -70,6 +70,24 @@ php -S localhost:8000 index.php
 ```
 
 Release Belt DOES NOT have authentication implemented yet. Secure it via your web server if you dare to put it into the wild in its current state. 
+
+## Use
+
+Once Release Belt is installed you can define the repository and plugin in the `composer.json` of your project
+
+```json
+{
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "http://example.com/"
+		}
+	],
+	"require": {
+		"yoast/wordpress-seo": "*"
+	}
+}
+```
 
 ## F.A.Q.
 
