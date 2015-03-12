@@ -1,6 +1,6 @@
 # Release Belt — Composer repo for ZIPs
 
-Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and the zip files with version number are uploaded Release Belt does the rest.
+Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
 
 Given the following folder tree:
 
