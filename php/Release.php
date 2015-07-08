@@ -21,16 +21,21 @@ class Release
 
     public function __construct(SplFileInfo $file)
     {
-        $this->file = $file;
-
+        $this->file     = $file;
         $this->path     = str_replace('\\', '/', $file->getRelativePath());
         $this->filename = $file->getFilename();
-
         list( $this->type, $this->vendor ) = explode('/', $this->path);
-        preg_match(self::VERSION_REGEX, $this->filename, $matches);
-        $package       = rtrim($matches['package'], self::SEPARATORS);
-        $version       = $matches['version'];
-        $this->package = trim($package);
-        $this->version = trim($version);
+        $matches       = $this->parseFilename($this->filename);
+        $this->package = $matches['package'];
+        $this->version = $matches['version'];
+    }
+
+    protected function parseFilename($filename)
+    {
+        preg_match(self::VERSION_REGEX, $filename, $matches);
+        $package = trim(rtrim($matches['package'], self::SEPARATORS));
+        $version = trim(ltrim($matches['version'], 'v'));
+
+        return compact('package', 'version');
     }
 }
