@@ -7,7 +7,7 @@ class Release
 {
     const SEPARATORS = '.-_';
 
-    const VERSION_REGEX = '|(?P<package>.*?)(?P<version>(?:\d+\.*){1,4})\.zip|';
+    const VERSION_REGEX = '|(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4})\.zip|';
 
     /** @var SplFileInfo $file */
     protected $file;
