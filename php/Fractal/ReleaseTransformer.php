@@ -9,6 +9,9 @@ class ReleaseTransformer extends TransformerAbstract
     /** @var string $host */
     protected $host;
 
+    /** @var string $protocol */
+    protected $protocol;
+
     /**
      * @param Release $release
      *
@@ -20,8 +23,7 @@ class ReleaseTransformer extends TransformerAbstract
             'name'    => $release->vendor . '/' . $release->package,
             'version' => $release->version,
             'dist'    => [
-                // TODO https detection
-                'url'  => 'http://' . $this->host . '/' . $release->vendor . '/' . $release->filename,
+                'url'  => $this->protocol  . $this->host . '/' . $release->vendor . '/' . $release->filename,
                 'type' => 'zip',
             ],
         ];
@@ -43,4 +45,14 @@ class ReleaseTransformer extends TransformerAbstract
     {
         $this->host = $host;
     }
+
+    public function setProtocol($scheme,$port)
+    {
+        if ('http' == $scheme && $port == 80) {
+            $this->protocol = 'http://';
+        } elseif('https' == $scheme && $port == 443) {
+            $this->protocol = 'https://';
+        }
+    }
+
 }

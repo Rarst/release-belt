@@ -40,6 +40,7 @@ class Application extends \Silex\Application
             $request     = $app['request'];
             $transformer = new ReleaseTransformer();
             $transformer->setHost($request->getHttpHost());
+            $transformer->setProtocol($request->getScheme(),$request->getPort());
 
             return $transformer;
         };
