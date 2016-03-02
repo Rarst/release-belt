@@ -6,8 +6,8 @@ use Rarst\ReleaseBelt\Release;
 
 class ReleaseTransformer extends TransformerAbstract
 {
-    /** @var string $host */
-    protected $host;
+    /** @var string $SchemeAndHttpHost */
+    protected $SchemeAndHttpHost;
 
     /**
      * @param Release $release
@@ -20,8 +20,7 @@ class ReleaseTransformer extends TransformerAbstract
             'name'    => $release->vendor . '/' . $release->package,
             'version' => $release->version,
             'dist'    => [
-                // TODO https detection
-                'url'  => 'http://' . $this->host . '/' . $release->vendor . '/' . $release->filename,
+                'url'  => $this->SchemeAndHttpHost . '/' . $release->vendor . '/' . $release->filename,
                 'type' => 'zip',
             ],
         ];
@@ -39,8 +38,9 @@ class ReleaseTransformer extends TransformerAbstract
         return $package;
     }
 
-    public function setHost($host)
+    public function setSchemeAndHttpHost($SchemeAndHttpHost)
     {
-        $this->host = $host;
+        $this->SchemeAndHttpHost = $SchemeAndHttpHost;
     }
+
 }

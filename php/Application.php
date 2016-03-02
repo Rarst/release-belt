@@ -39,7 +39,7 @@ class Application extends \Silex\Application
             /** @var Request $request */
             $request     = $app['request'];
             $transformer = new ReleaseTransformer();
-            $transformer->setHost($request->getHttpHost());
+            $transformer->setSchemeAndHttpHost($request->getSchemeAndHttpHost());
 
             return $transformer;
         };
