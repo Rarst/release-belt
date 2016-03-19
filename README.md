@@ -63,6 +63,18 @@ Configure a web server to serve `index.php`, for example with the following `.ht
 FallbackResource /index.php
 ```
 
+If you are forcing HTTPS with something like 
+```
+RewriteEngine On 
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+```
+
+then you should also add
+```
+DirectoryIndex index.php
+```
+
 When using the built in webserver of PHP >=5.4.0 you can use:
 
 ```
