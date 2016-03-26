@@ -3,11 +3,13 @@ namespace Rarst\ReleaseBelt\Fractal;
 
 use League\Fractal\TransformerAbstract;
 use Rarst\ReleaseBelt\Release;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ReleaseTransformer extends TransformerAbstract
 {
-    /** @var string $host */
-    protected $host;
+
+    /** @var UrlGeneratorInterface $urlGenerator */
+    protected $urlGenerator;
 
     /**
      * @param Release $release
@@ -20,8 +22,11 @@ class ReleaseTransformer extends TransformerAbstract
             'name'    => $release->vendor . '/' . $release->package,
             'version' => $release->version,
             'dist'    => [
-                // TODO https detection
-                'url'  => 'http://' . $this->host . '/' . $release->vendor . '/' . $release->filename,
+                'url'  => $this->urlGenerator->generate(
+                    'file',
+                    [ 'vendor' => $release->vendor, 'file' => $release->filename ],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
                 'type' => 'zip',
             ],
         ];
@@ -39,8 +44,13 @@ class ReleaseTransformer extends TransformerAbstract
         return $package;
     }
 
-    public function setHost($host)
+    /**
+     * Set UrlGenerator to use for file links in output.
+     *
+     * @param UrlGeneratorInterface $urlGenerator
+     */
+    public function setUrlGenerator(UrlGeneratorInterface $urlGenerator)
     {
-        $this->host = $host;
+        $this->urlGenerator = $urlGenerator;
     }
 }

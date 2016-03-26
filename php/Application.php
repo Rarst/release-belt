@@ -4,8 +4,8 @@ namespace Rarst\ReleaseBelt;
 use League\Fractal\Manager;
 use Rarst\ReleaseBelt\Fractal\PackageSerializer;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
+use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\Request;
 
 class Application extends \Silex\Application
 {
@@ -14,6 +14,8 @@ class Application extends \Silex\Application
         parent::__construct();
 
         $app = $this;
+
+        $app->register(new UrlGeneratorServiceProvider());
 
         $this['release.dir'] = __DIR__ . '/../releases';
 
@@ -36,10 +38,8 @@ class Application extends \Silex\Application
         };
 
         $this['transformer'] = function () use ($app) {
-            /** @var Request $request */
-            $request     = $app['request'];
             $transformer = new ReleaseTransformer();
-            $transformer->setHost($request->getHttpHost());
+            $transformer->setUrlGenerator($app['url_generator']);
 
             return $transformer;
         };
@@ -48,7 +48,8 @@ class Application extends \Silex\Application
 
         $this->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller::getJson');
 
-        $this->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller::getFile');
+        $this->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller::getFile')
+            ->bind('file');
 
         foreach ($values as $key => $value) {
             $this[$key] = $value;
