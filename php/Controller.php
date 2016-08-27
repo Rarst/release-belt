@@ -14,7 +14,7 @@ class Controller
     {
         $array = $this->getData($app);
         /** @var Request $request */
-        $request              = $app['request'];
+        $request              = $app['request_stack']->getCurrentRequest();
         $boilerplate          = new \stdClass();
         $boilerplate->require = [];
         $list                 = '';

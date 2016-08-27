@@ -13,7 +13,7 @@
     },
     "require": {
         "ext-fileinfo": "*",
-        "silex/silex": "~1.2",
+        "silex/silex": "^2.0.3",
         "symfony/finder": "~2.5",
         "league/fractal": "~0.10"
     },
