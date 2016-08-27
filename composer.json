@@ -14,7 +14,7 @@
     "require": {
         "ext-fileinfo": "*",
         "silex/silex": "^2.0.3",
-        "symfony/finder": "~2.5",
+        "symfony/finder": "^3.0.0",
         "league/fractal": "~0.10"
     },
     "autoload": {
