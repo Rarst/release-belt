@@ -7,7 +7,11 @@ class Release
 {
     const SEPARATORS = '.-_';
 
-    const VERSION_REGEX = '|(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4})\.zip|';
+    // From https://github.com/composer/semver/blob/master/src/VersionParser.php
+    const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)((?:[.-]?\d+)*+)?)?([.-]?dev)?';
+
+    const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}' . self::MODIFIER_REGEX . ')\.zip/';
+
 
     /** @var SplFileInfo $file */
     protected $file;

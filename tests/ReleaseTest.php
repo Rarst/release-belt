@@ -36,7 +36,7 @@ class ReleaseTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [ 'backupbuddy-4.1.2.2.zip', 'backupbuddy', '4.1.2.2' ],
-//            [ 'contact-form-7.4.1.zip', 'contact-form', '4.1' ],
+//            [ 'contact-form-7.4.1.zip', 'contact-form', '4.1' ], 7 indistinguishable from part of version
             [ 'facetwp-1.8.6.zip', 'facetwp', '1.8.6' ],
             [ 'ga-ecommerce-3.0.2.zip', 'ga-ecommerce', '3.0.2' ],
             [ 'google-analytics-premium-1.1.8.zip', 'google-analytics-premium', '1.1.8' ],
@@ -52,6 +52,10 @@ class ReleaseTest extends \PHPUnit_Framework_TestCase
             [ 'wp-retina-2x.2.4.0.zip', 'wp-retina-2x', '2.4.0' ],
             [ 'wp-lightbox-2.zip', 'wp-lightbox', '2' ],
             [ 'wpml-translation-management.1.9.9.zip', 'wpml-translation-management', '1.9.9' ],
+            [ 'polylang-2.0.zip', 'polylang', '2.0' ],
+            [ 'polylang-2.0-beta2.zip', 'polylang', '2.0-beta2' ],
+            [ 'polylang-2.0-beta.1.zip', 'polylang', '2.0-beta.1' ],
+//            [ 'polylang-2.0-rc.1.zip', 'polylang', '2.0-rc.1' ], no support for numeric RCs in regex
         ];
     }
 }
