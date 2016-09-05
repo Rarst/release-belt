@@ -28,15 +28,26 @@ class Release
         $this->file     = $file;
         $this->path     = str_replace('\\', '/', $file->getRelativePath());
         $this->filename = $file->getFilename();
-        list( $this->type, $this->vendor ) = explode('/', $this->path);
-        $matches       = $this->parseFilename($this->filename);
-        $this->package = $matches['package'];
-        $this->version = $matches['version'];
+        $this->package  = $file->getBasename('.zip');
+        $this->version  = 'dev-unknown';
+        list($this->type, $this->vendor) = explode('/', $this->path);
+
+        $matches = $this->parseFilename($this->filename);
+
+        if (! empty($matches)) {
+            $this->package = $matches['package'];
+            $this->version = $matches['version'];
+        }
     }
 
     protected function parseFilename($filename)
     {
-        preg_match(self::VERSION_REGEX, $filename, $matches);
+        $matched = preg_match(self::VERSION_REGEX, $filename, $matches);
+
+        if (empty($matched)) {
+            return [];
+        }
+
         $package = trim(rtrim($matches['package'], self::SEPARATORS));
         $version = trim(ltrim($matches['version'], 'v'));
 
