@@ -15,11 +15,18 @@
         "ext-fileinfo": "*",
         "silex/silex": "^2.0.3",
         "symfony/finder": "^3.0.0",
-        "league/fractal": "~0.10"
+        "league/fractal": "~0.10",
+        "mustache/silex-provider": "dev-silex-v2"
     },
     "autoload": {
         "psr-4": {
             "Rarst\\ReleaseBelt\\": "php/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Rarst/mustache-silex-provider"
+        }
+    ]
 }

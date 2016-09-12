@@ -2,17 +2,25 @@
 namespace Rarst\ReleaseBelt;
 
 use League\Fractal\Manager;
+use Mustache\Silex\Application\MustacheTrait;
+use Mustache\Silex\Provider\MustacheServiceProvider;
 use Rarst\ReleaseBelt\Fractal\PackageSerializer;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
 use Symfony\Component\Finder\Finder;
 
 class Application extends \Silex\Application
 {
+    use MustacheTrait;
+
     public function __construct(array $values = [ ])
     {
         parent::__construct();
 
         $app = $this;
+
+        $app->register(new MustacheServiceProvider, [
+            'mustache.path'    => __DIR__ . '/../mustache',
+        ]);
 
         $this['release.dir'] = __DIR__ . '/../releases';
 

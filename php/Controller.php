@@ -17,26 +17,15 @@ class Controller
         $request              = $app['request_stack']->getCurrentRequest();
         $boilerplate          = new \stdClass();
         $boilerplate->require = [];
-        $list                 = '';
+        $packages             = [];
 
         foreach ($array['packages'] as $name => $versions) {
 
             uksort($versions, 'version_compare');
             end($versions);
-            $version                     = key($versions);
-            $boilerplate->require[$name] = "^{$version}";
+            $boilerplate->require[$name] = '^' . key($versions);
 
-            foreach ($versions as $version => $data) {
-                if (empty($data['type'])) {
-                    $data['type'] = '';
-                }
-                $list .= "<tr>
-    <td>{$name}</td>
-    <td>{$version}</td>
-    <td>{$data['type']}</td>
-    <td><a href='{$data['dist']['url']}'>{$data['dist']['url']}</a></td>
-</tr>\n";
-            }
+            $packages = array_merge($packages, array_values($versions));
         }
 
         $boilerplate->repositories = [
@@ -46,47 +35,11 @@ class Controller
             ])
         ];
 
-        return '<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<body>
-<div class="container">
-    <div class="page-header">
-        <h1>Release Belt <small>' . $request->getHost() . '</small></h1>
-    </div>
-    
-    <h2>Boilerplate</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <pre>' . json_encode($boilerplate, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . '</pre>
-        </div>
-    </div>
-    
-    <h2>Packages</h2>
-    
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Package</th>
-            <th>Version</th>
-            <th>Type</th>
-            <th>URL</th>
-        </tr>
-    </thead>
-       <tbody>' . $list . '</tbody>
-    </table>
-    
-    <hr />
-    <p class="text-center">
-        Created with <a href="https://github.com/Rarst/release-belt">Release Belt</a> — Composer repo for ZIPs.
-    </p>
-</div>
-</body>
-</html>';
+        return $app->render('index', [
+            'host'        => $request->getHost(),
+            'boilerplate' => json_encode($boilerplate, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
+            'packages'    => $packages,
+        ]);
     }
 
     public function getJson(Application $app)

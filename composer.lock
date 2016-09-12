@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2e31b1deccad49487abedc56b3a193c",
-    "content-hash": "828ebc7e6748ce5bd8c0a48ef1720f7a",
+    "hash": "b58d54fa6f608eeb9d7f60bd96980c39",
+    "content-hash": "344386b150697d54a6c7b7e4708301af",
     "packages": [
         {
             "name": "league/fractal",
-            "version": "0.13.0",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "3caeefbad51bce7a06947321938128512f42346c"
+                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/3caeefbad51bce7a06947321938128512f42346c",
-                "reference": "3caeefbad51bce7a06947321938128512f42346c",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/56ad8933fbb40328ca3321c84143b2c16186eebf",
+                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,100 @@
                 "league",
                 "rest"
             ],
-            "time": "2015-10-07 14:48:58"
+            "time": "2016-07-21 09:56:14"
+        },
+        {
+            "name": "mustache/mustache",
+            "version": "v2.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/mustache.php.git",
+                "reference": "a3f6d55996dd28b58f3a909d474189a3c1aa693f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/a3f6d55996dd28b58f3a909d474189a3c1aa693f",
+                "reference": "a3f6d55996dd28b58f3a909d474189a3c1aa693f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.11",
+                "phpunit/phpunit": "~3.7|~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache implementation in PHP.",
+            "homepage": "https://github.com/bobthecow/mustache.php",
+            "keywords": [
+                "mustache",
+                "templating"
+            ],
+            "time": "2016-07-31 06:18:27"
+        },
+        {
+            "name": "mustache/silex-provider",
+            "version": "dev-silex-v2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Rarst/mustache-silex-provider.git",
+                "reference": "04703db1493ec03cd7a1973ec8acf9b32a0bb760"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Rarst/mustache-silex-provider/zipball/04703db1493ec03cd7a1973ec8acf9b32a0bb760",
+                "reference": "04703db1493ec03cd7a1973ec8acf9b32a0bb760",
+                "shasum": ""
+            },
+            "require": {
+                "mustache/mustache": "~2.1",
+                "php": ">=5.3.3",
+                "silex/silex": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache service provider for Silex.",
+            "homepage": "https://github.com/bobthecow/mustache-silex-provider",
+            "keywords": [
+                "mustache",
+                "silex",
+                "templating"
+            ],
+            "support": {
+                "source": "https://github.com/Rarst/mustache-silex-provider/tree/silex-v2"
+            },
+            "time": "2016-08-31 19:01:25"
         },
         {
             "name": "pimple/pimple",
@@ -678,7 +771,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mustache/silex-provider": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
