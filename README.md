@@ -1,15 +1,14 @@
 # Release Belt — Composer repo for ZIPs
 
-Release Belt is a prototype Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
+Release Belt is a Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
 
 Given the following folder tree:
 
 ```
 releases
 	wordpress-plugin
-		yoast
-			wordpress-seo.1.6.zip
-			wordpress-seo.1.7.zip
+		rarst
+			plugin.1.0.zip
 ```
 
 It will serve the following Composer repository at `/packages.json` automagically:
@@ -17,24 +16,12 @@ It will serve the following Composer repository at `/packages.json` automagicall
 ```json
 {
     "packages": {
-		"yoast/wordpress-seo": {
-            "1.6": {
-                "name": "yoast/wordpress-seo",
-                "version": "1.6",
+        "rarst/plugin": {
+            "1.0": {
+                "name": "rarst/plugin",
+                "version": "1.0",
                 "dist": {
-                    "url": "http://example.com/yoast/wordpress-seo.1.6.zip",
-                    "type": "zip"
-                },
-                "type": "wordpress-plugin",
-                "require": {
-                    "composer/installers": "~1.0"
-                }
-            },
-            "1.7": {
-                "name": "yoast/wordpress-seo",
-                "version": "1.7",
-                "dist": {
-                    "url": "http://example.com/yoast/wordpress-seo.1.7.zip",
+                    "url": "http://example.com/rarst/plugin.1.0.zip",
                     "type": "zip"
                 },
                 "type": "wordpress-plugin",
@@ -47,7 +34,7 @@ It will serve the following Composer repository at `/packages.json` automagicall
 }
 ```
 
-## Installation (basic as–is usage for now)
+## Installation
 
 Create the project:
 
@@ -69,25 +56,54 @@ When using the built in webserver of PHP >=5.4.0 you can use:
 php -S localhost:8000 index.php
 ```
 
-Release Belt DOES NOT have authentication implemented yet. Secure it via your web server if you dare to put it into the wild in its current state. 
-
 ## Use
 
-Once Release Belt is installed you can define the repository and plugin in the `composer.json` of your project
+Once Release Belt is installed you can add the repository to the `composer.json` of your projects.
 
-```json
-{
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "http://example.com/"
-		}
-	],
-	"require": {
-		"yoast/wordpress-seo": "*"
-	}
-}
+Release Belt home page will automatically generate some `composer.json` boilerplate for you to use.
+
+### Configuration
+
+You can configure Release Belt by creating `config.php` file, which returns array of options to override.
+
+For example:
+
+```php
+<?php
+
+// config.php
+
+return [
+    'debug' => true,  
+];
 ```
+
+### Authentication
+
+Release Belt implements HTTP authentication to password protect your repository. You can configure it by adding `http.users` array to configuration, which holds `'login' => 'password hash'` pairs.
+
+For example:
+
+```php
+<?php
+
+// config.php
+
+return [
+    'http.users' => [
+        'composer' => '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a',
+    ],
+];
+```
+
+There is an `encodePassword.php` command line helper included for hashing passwords:
+
+```bash
+>php encodePassword.php foo
+$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a
+```
+
+If authentication is enabled, Release Belt home page will automatically generate `auth.json` boilerplate for you to use.
 
 ## F.A.Q.
 
@@ -95,7 +111,7 @@ Once Release Belt is installed you can define the repository and plugin in the `
 
 Composer infrastructure is awesome, but it expects vendors that are willing to play nice with it.
 
-Release Belt is a solution for unwilling vendors and it was faster and easier to build a prototype from scratch. 
+Release Belt is a solution for unwilling vendors and it was faster and easier to build a dedicated solution from scratch. 
 
 ### Why not artifacts?
 
@@ -104,3 +120,7 @@ Composer artifacts require `composer.json` in them. This is for releases that do
 ### But is it web scale?
 
 No.
+
+# License
+
+MIT
