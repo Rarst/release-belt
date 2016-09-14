@@ -4,8 +4,10 @@ use Rarst\ReleaseBelt\Application;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$app = new Application([
-//    'debug' => true,
-]);
+$configPath = __DIR__.'/config.php';
+
+$app = new Application(
+    file_exists($configPath) ? require $configPath : []
+);
 
 $app->run();
