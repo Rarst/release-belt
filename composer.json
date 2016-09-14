@@ -16,7 +16,8 @@
         "silex/silex": "^2.0.3",
         "symfony/finder": "^3.0.0",
         "league/fractal": "~0.10",
-        "mustache/silex-provider": "dev-silex-v2"
+        "mustache/silex-provider": "dev-silex-v2",
+        "symfony/security": "^3.1.4"
     },
     "autoload": {
         "psr-4": {

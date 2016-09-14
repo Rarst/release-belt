@@ -6,6 +6,7 @@ use Mustache\Silex\Application\MustacheTrait;
 use Mustache\Silex\Provider\MustacheServiceProvider;
 use Rarst\ReleaseBelt\Fractal\PackageSerializer;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
+use Silex\Provider\SecurityServiceProvider;
 use Symfony\Component\Finder\Finder;
 
 class Application extends \Silex\Application
@@ -21,6 +22,8 @@ class Application extends \Silex\Application
         $app->register(new MustacheServiceProvider, [
             'mustache.path'    => __DIR__ . '/../mustache',
         ]);
+
+        $app['http.users'] = [];
 
         $this['release.dir'] = __DIR__ . '/../releases';
 
@@ -58,6 +61,25 @@ class Application extends \Silex\Application
 
         foreach ($values as $key => $value) {
             $this[$key] = $value;
+        }
+
+        if (! empty($app['http.users'])) {
+
+            $users = [];
+
+            foreach ($app['http.users'] as $login => $hash) {
+                $users[$login] = ['ROLE_COMPOSER', $hash];
+            }
+
+            $app->register(new SecurityServiceProvider(), [
+                'security.firewalls' => [
+                    'composer' => [
+                        'pattern' => '^.*$',
+                        'http'    => true,
+                        'users'   => $users,
+                    ]
+                ]
+            ]);
         }
     }
 }
