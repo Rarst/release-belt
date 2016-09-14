@@ -15,30 +15,47 @@ class Controller
         $array = $this->getData($app);
         /** @var Request $request */
         $request              = $app['request_stack']->getCurrentRequest();
-        $boilerplate          = new \stdClass();
-        $boilerplate->require = [];
+        $composer          = new \stdClass();
+        $composer->require = [];
         $packages             = [];
 
         foreach ($array['packages'] as $name => $versions) {
 
             uksort($versions, 'version_compare');
             end($versions);
-            $boilerplate->require[$name] = '^' . key($versions);
+            $composer->require[$name] = '^' . key($versions);
 
             $packages = array_merge($packages, array_values($versions));
         }
 
-        $boilerplate->repositories = [
+        $repositoryURL          = $request->getSchemeAndHttpHost();
+
+        $composer->repositories = [
             (object)([
                 'type' => 'composer',
-                'url'  => $request->getSchemeAndHttpHost(),
+                'url'  => $repositoryURL,
             ])
         ];
 
+        $auth = false;
+
+        if (! empty($app['http.users'])) {
+
+            $auth = [
+                'http-basic' => [
+                    $repositoryURL => [
+                        'username' => $request->getUser(),
+                        'password' => 'FILL IN PASSWORD',
+                    ],
+                ],
+            ];
+        }
+
         return $app->render('index', [
-            'host'        => $request->getHost(),
-            'boilerplate' => json_encode($boilerplate, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
-            'packages'    => $packages,
+            'host'     => $request->getHost(),
+            'composer' => json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
+            'packages' => $packages,
+            'auth'     => $auth ? json_encode($auth, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) : false,
         ]);
     }
 

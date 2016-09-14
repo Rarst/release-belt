@@ -18,7 +18,24 @@
 
             <h2>Boilerplate</h2>
 
-            <pre>{{boilerplate}}</pre>
+            <p>
+                <code>composer.json</code>
+                <a href="https://getcomposer.org/doc/05-repositories.md" class="pull-right" aria-label="Composer repository documentation" title="Composer repository documentation">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </a>
+            </p>
+            <pre>{{composer}}</pre>
+
+            {{#auth}}
+            <hr />
+            <p>
+                <code>auth.json</code>
+                <a href="https://getcomposer.org/doc/articles/http-basic-authentication.md" class="pull-right" aria-label="Composer HTTP authentication documentation" title="Composer HTTP authentication documentation">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </a>
+            </p>
+            <pre>{{auth}}</pre>
+            {{/auth}}
         </div>
         <div class="col-md-6">
 
