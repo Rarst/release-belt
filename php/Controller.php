@@ -28,13 +28,11 @@ class Controller
             $packages = array_merge($packages, array_values($versions));
         }
 
-        $repositoryURL          = $request->getSchemeAndHttpHost();
-
         $composer->repositories = [
-            (object)([
+            (object)[
                 'type' => 'composer',
-                'url'  => $repositoryURL,
-            ])
+                'url'  => $request->getSchemeAndHttpHost(),
+            ]
         ];
 
         $auth = false;
@@ -43,7 +41,7 @@ class Controller
 
             $auth = [
                 'http-basic' => [
-                    $repositoryURL => [
+                    $request->getHttpHost() => [
                         'username' => $request->getUser(),
                         'password' => 'FILL IN PASSWORD',
                     ],
