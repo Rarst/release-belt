@@ -93,6 +93,12 @@ return [
     'http.users' => [
         'composer' => '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a',
     ],
+    'http.whitelist' => [
+        '127.0.0.1',
+        '::1',
+        '192.168.1.0/24',
+        'fe80::/10'
+    ]
 ];
 ```
 
@@ -104,6 +110,8 @@ $2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a
 ```
 
 If authentication is enabled, Release Belt home page will automatically generate `auth.json` boilerplate for you to use.
+
+As seen in the example above, Release Belt optionally supports the ability to exempt a specific IP addresses or a range of IP addresses (specified with an IP/netmask) from having to authenticate. This is configured with a `http.whitelist` array.
 
 ## F.A.Q.
 
