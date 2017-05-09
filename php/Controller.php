@@ -15,8 +15,8 @@ class Controller
         $array = $this->getData($app);
         /** @var Request $request */
         $request              = $app['request_stack']->getCurrentRequest();
-        $composer          = new \stdClass();
-        $composer->require = [];
+        $composer             = new \stdClass();
+        $composer->require    = [];
         $packages             = [];
 
         foreach ($array['packages'] as $name => $versions) {
@@ -25,8 +25,12 @@ class Controller
             end($versions);
             $composer->require[$name] = '^' . key($versions);
 
-            $packages = array_merge($packages, array_values($versions));
+            $packages[$name]['name']      = $name;
+            $packages[$name]['type']      = $versions[key($versions)]['type'];
+            $packages[$name]['versions']  = array_values($versions);
         }
+
+        $packages = array_values($packages);
 
         $composer->repositories = [
             (object)[
