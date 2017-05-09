@@ -8,6 +8,7 @@ use Rarst\ReleaseBelt\Fractal\PackageSerializer;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
 use Silex\Provider\SecurityServiceProvider;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\RequestMatcher;
 
 class Application extends \Silex\Application
 {
@@ -24,6 +25,8 @@ class Application extends \Silex\Application
         ]);
 
         $app['http.users'] = [];
+
+        $app['http.whitelist'] = [];
 
         $this['release.dir'] = __DIR__ . '/../releases';
 
@@ -63,22 +66,33 @@ class Application extends \Silex\Application
             $this[$key] = $value;
         }
 
-        if (! empty($app['http.users'])) {
+        if (! empty($app['http.users']) || ! empty($app['http.whitelist'])) {
 
-            $users = [];
+            if (! empty($app['http.users'])) {
+                $users = [];
 
-            foreach ($app['http.users'] as $login => $hash) {
-                $users[$login] = ['ROLE_COMPOSER', $hash];
+                foreach ($app['http.users'] as $login => $hash) {
+                    $users[$login] = ['ROLE_COMPOSER', $hash];
+                }
+
+                $firewalls['composer'] = [
+                    'pattern' => '^.*$',
+                    'http'    => true,
+                    'users'   => $users,
+                ];
             }
 
+            if (! empty($app['http.whitelist'])) {
+              $firewalls['ip_whitelist'] = [
+                  'pattern' => new RequestMatcher('^.*$', null, null, $app['http.whitelist'])
+              ];
+            }
+
+            // Ensures that 'ip_whitelist' is sorted to the top of the array as order is important
+            krsort($firewalls);
+
             $app->register(new SecurityServiceProvider(), [
-                'security.firewalls' => [
-                    'composer' => [
-                        'pattern' => '^.*$',
-                        'http'    => true,
-                        'users'   => $users,
-                    ]
-                ]
+                  'security.firewalls' => $firewalls
             ]);
         }
     }
