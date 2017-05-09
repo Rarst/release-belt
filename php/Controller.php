@@ -23,10 +23,15 @@ class Controller
 
             uksort($versions, 'version_compare');
             end($versions);
-            $composer->require[$name] = '^' . key($versions);
+            $latestVersion            = key($versions);
+            $composer->require[$name] = '^'.$latestVersion;
 
-            $packages[$name]['name']      = $name;
-            $packages[$name]['type']      = $versions[key($versions)]['type'];
+            $packages[$name]['name'] = $name;
+
+            if (! empty($versions[$latestVersion]['type'])) {
+                $packages[$name]['type'] = $versions[$latestVersion]['type'];
+            }
+
             $packages[$name]['versions']  = array_values($versions);
         }
 
