@@ -42,7 +42,7 @@ It will serve the following Composer repository at `/packages.json` automagicall
 Create the project:
 
 ```
-composer create-project rarst/release-belt:dev-master
+composer create-project rarst/release-belt
 ```
 
 Place release ZIPs into `/releases/[type]/[vendor]/`.
