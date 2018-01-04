@@ -39,20 +39,34 @@ It will serve the following Composer repository at `/packages.json` automagicall
 
 ## Installation
 
-Create the project:
+### 1. Create the project:
 
 ```
 composer create-project rarst/release-belt
 ```
 
-Place release ZIPs into `/releases/[type]/[vendor]/`.
+### 2. Place release ZIPs into `/releases/[type]/[vendor]/`. 
+`[type]` could be e.g. "symfony-bundle", "wordpress-plugin or "typo3-cms-extension".
 
-Configure a web server to serve `index.php`, for example with the following `.htaccess`:
+### 3. Configure a web server to serve `index.php`
+
+For example with the following `.htaccess`:
 
 ```
 FallbackResource /index.php
 ```
 
+If your server does not support FallbackResource, you can use mod_rewrite in your `.htaccess` with this code:
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+```
+Make sure, that the folder, which contains the `index.php` has FTP-Permissions `755`
+
+### 4. Test if `index.php` and `packages.json` is shown
 When using the built in webserver of PHP >=5.4.0 you can use:
 
 ```
