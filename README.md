@@ -46,7 +46,7 @@ composer create-project rarst/release-belt
 ```
 
 ### 2. Place release ZIPs into `/releases/[type]/[vendor]/`. 
-`[type]` could be e.g. "symfony-bundle", "wordpress-plugin or "typo3-cms-extension".
+`[type]` could be e.g. "library", "wordpress-plugin", and "wordpress-theme"
 
 ### 3. Configure a web server to serve `index.php`
 
@@ -59,14 +59,16 @@ FallbackResource /index.php
 If your server does not support FallbackResource, you can use mod_rewrite in your `.htaccess` with this code:
 
 ```
+<IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
+</IfModule>
 ```
-Make sure, that the folder, which contains the `index.php` has FTP-Permissions `755`
 
-### 4. Test if `index.php` and `packages.json` is shown
+Visit `index.php` and `packages.json` in a web browser to check if it is working
+
 When using the built in webserver of PHP >=5.4.0 you can use:
 
 ```
@@ -137,6 +139,13 @@ Composer artifacts require `composer.json` in them. This is for releases that do
 ### But is it web scale?
 
 No.
+
+## Troubleshooting
+
+### When I visit packages.json in a browser I get a 404 message
+* Make sure, that you went through the installation procedure (see above)
+* Maybe you need to change the FTP-Permissions of the folder which contains `index.php` 
+
 
 # License
 
