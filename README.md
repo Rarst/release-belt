@@ -140,12 +140,6 @@ Composer artifacts require `composer.json` in them. This is for releases that do
 
 No.
 
-## Troubleshooting
-
-### When I visit packages.json in a browser I get a 404 message
-* Make sure, that you went through the installation procedure (see above)
-* Maybe you need to change the FTP-Permissions of the folder which contains `index.php` 
-
 
 # License
 
