@@ -2,6 +2,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
+[![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
 
 Release Belt is a Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
 
@@ -102,7 +103,7 @@ return [
 There is an `encodePassword.php` command line helper included for hashing passwords:
 
 ```bash
->php encodePassword.php foo
+>php bin/encodePassword.php foo
 $2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a
 ```
 

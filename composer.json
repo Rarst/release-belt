@@ -21,7 +21,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Rarst\\ReleaseBelt\\": "php/"
+            "Rarst\\ReleaseBelt\\": "src/"
         }
+    },
+    "require-dev": {
+        "pds/skeleton": "^1.0"
     }
 }

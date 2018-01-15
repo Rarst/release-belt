@@ -3,9 +3,9 @@
 use Rarst\ReleaseBelt\Application;
 use Silex\Provider\SecurityServiceProvider;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$configPath = __DIR__.'/config.php';
+$configPath = __DIR__.'/../config.php';
 
 $app = new Application(
     file_exists($configPath) ? require $configPath : []
@@ -16,7 +16,6 @@ if (empty($app['security.default_encoder'])) {
 }
 
 if (! empty($argv[1])) {
-
     $encoder = $app['security.default_encoder'];
     echo  $encoder->encodePassword($argv[1], '');
 }

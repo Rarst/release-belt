@@ -20,7 +20,7 @@ class Application extends \Silex\Application
         $app = $this;
 
         $app->register(new MustacheServiceProvider, [
-            'mustache.path'    => __DIR__ . '/../mustache',
+            'mustache.path'    => __DIR__ . '/mustache',
         ]);
 
         $app['http.users'] = [];

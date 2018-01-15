@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+- directory structure for PDS skeleton.
+
 ## 0.1 - 2018-01-02
 
 ### Added
