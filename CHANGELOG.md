@@ -6,8 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- `public` directory for use as web root.
+
 ### Changed
 - directory structure for PDS skeleton.
+
+### Deprecated
+- use of package root as web root.
 
 ## 0.1 - 2018-01-02
 
