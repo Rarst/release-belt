@@ -40,19 +40,35 @@ It will serve the following Composer repository at `/packages.json` automagicall
 
 ## Installation
 
-Create the project:
+### 1. Create the project:
 
 ```
 composer create-project rarst/release-belt
 ```
 
-Place release ZIPs into `/releases/[type]/[vendor]/`.
+### 2. Place release ZIPs into `/releases/[type]/[vendor]/`. 
+`[type]` could be e.g. "library", "wordpress-plugin", and "wordpress-theme"
 
-Configure a web server to serve `index.php`, for example with the following `.htaccess`:
+### 3. Configure a web server to serve `index.php`
+
+For example with the following `.htaccess`:
 
 ```
 FallbackResource /index.php
 ```
+
+If your server does not support FallbackResource, you can use mod_rewrite in your `.htaccess` with this code:
+
+```
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+```
+
+Visit `index.php` and `packages.json` in a web browser to check if it is working
 
 When using the built in webserver of PHP >=5.4.0 you can use:
 
@@ -124,6 +140,7 @@ Composer artifacts require `composer.json` in them. This is for releases that do
 ### But is it web scale?
 
 No.
+
 
 # License
 
