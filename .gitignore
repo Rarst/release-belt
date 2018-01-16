@@ -1,5 +1,6 @@
 /vendor
 /.htaccess
+/config/config.php
 /config.php
 /clover.xml
 /RoboFile.php

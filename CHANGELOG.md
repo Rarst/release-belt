@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - directory structure for PDS skeleton.
+- moved config file location to the new `config` directory and provided example config file.
 
 ### Deprecated
 - use of package root as web root.

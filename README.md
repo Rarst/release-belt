@@ -84,37 +84,13 @@ Release Belt home page will automatically generate some `composer.json` boilerpl
 
 ### Configuration
 
-You can configure Release Belt by creating `config.php` file, which returns array of options to override.
+You can configure Release Belt by creating `config/config.php` file, which returns array of options to override.
 
-For example:
+See [`config/configExample.php`](config/configExample.php) for the annotated example and default settings.
 
-```php
-<?php
-
-// config.php
-
-return [
-    'debug' => true,  
-];
-```
-
-### Authentication
+#### Authentication
 
 Release Belt implements HTTP authentication to password protect your repository. You can configure it by adding `http.users` array to configuration, which holds `'login' => 'password hash'` pairs.
-
-For example:
-
-```php
-<?php
-
-// config.php
-
-return [
-    'http.users' => [
-        'composer' => '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a',
-    ],
-];
-```
 
 There is an `encodePassword.php` command line helper included for hashing passwords:
 
