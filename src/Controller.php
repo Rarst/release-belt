@@ -20,7 +20,6 @@ class Controller
         $packages             = [];
 
         foreach ($array['packages'] as $name => $versions) {
-
             uksort($versions, 'version_compare');
             end($versions);
             $latestVersion            = key($versions);
@@ -47,7 +46,6 @@ class Controller
         $auth = false;
 
         if (! empty($app['http.users'])) {
-
             $auth = [
                 'http-basic' => [
                     $request->getHttpHost() => [
@@ -88,6 +86,11 @@ class Controller
         return new Response('Package file not found.', Response::HTTP_NOT_FOUND);
     }
 
+    /**
+     * @param Application $app
+     *
+     * @return array[]
+     */
     protected function getData(Application $app)
     {
         /** @var ReleaseParser $parser */
