@@ -9,10 +9,7 @@ Release Belt is a Composer repository, which serves to quickly integrate third p
 Given the following folder tree:
 
 ```
-releases
-	wordpress-plugin
-		rarst
-			plugin.1.0.zip
+releases/wordpress-plugin/rarst/plugin.1.0.zip
 ```
 
 It will serve the following Composer repository at `/packages.json` automagically:
@@ -40,39 +37,66 @@ It will serve the following Composer repository at `/packages.json` automagicall
 
 ## Installation
 
-### 1. Create the project:
+### 1. Create the project
 
-```
+To create a standalone copy of the project:
+
+```bash
 composer create-project rarst/release-belt
 ```
 
-### 2. Place release ZIPs into `/releases/[type]/[vendor]/`. 
-`[type]` could be e.g. "library", "wordpress-plugin", and "wordpress-theme"
+To keep up with updates more conveniently you can use a Git checkout instead:
 
-### 3. Configure a web server to serve `index.php`
-
-For example with the following `.htaccess`:
-
+```bash
+git clone https://github.com/Rarst/release-belt
+cd release-belt
+composer install --no-dev
 ```
+
+Fetch latest changes and update dependencies with:
+
+```bash
+git pull
+composer install --no-dev
+```
+
+### 2. Place release ZIPs into `releases/` directory
+
+The directory structure should be: `releases/[type]/[vendor name]/[release zip file]`.
+
+`[type]` could be e.g. `library`, `wordpress-plugin`, and `wordpress-theme`.
+
+### 3. Configure a web server
+
+`public/` directory should be used as web root and `index.php` in it as the file to handle requests.
+
+Visit home page and `/packages.json` in a web browser to check if it is working.
+
+#### Apache
+
+On a typical Apache server this can be done with the following `.htaccess`:
+
+```apacheconfig
 FallbackResource /index.php
 ```
 
-If your server does not support FallbackResource, you can use mod_rewrite in your `.htaccess` with this code:
+Or with mod_rewrite version:
 
-```
+```apacheconfig
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
 </IfModule>
 ```
 
-Visit `index.php` and `packages.json` in a web browser to check if it is working
 
-When using the built in webserver of PHP >=5.4.0 you can use:
+#### PHP
 
-```
+When using the built–in PHP web server you can use:
+
+```bash
 php -S localhost:8000 index.php
 ```
 
