@@ -5,8 +5,8 @@ use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Scope;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class Controller
 {
@@ -78,14 +78,14 @@ class Controller
         /** @var Finder $finder */
         $finder = $app['finder'];
 
-        $finder->path($vendor)->name($file);
+        $iterator = $finder->path($vendor)->name($file)->getIterator();
+        $iterator->rewind();
 
-        /** @var SplFileInfo $file */
-        foreach ($finder as $file) {
-            return $app->sendFile($file->getRealPath());
+        if ($iterator->valid()) {
+            return $app->sendFile($iterator->current()->getRealPath());
         }
 
-        return null;
+        return new Response('Package file not found.', Response::HTTP_NOT_FOUND);
     }
 
     protected function getData(Application $app)
