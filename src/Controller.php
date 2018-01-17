@@ -79,11 +79,14 @@ class Controller
         $iterator = $finder->path($vendor)->name($file)->getIterator();
         $iterator->rewind();
 
-        if ($iterator->valid()) {
-            return $app->sendFile($iterator->current()->getRealPath());
+        if (! $iterator->valid()) {
+            return new Response('Package file not found.', Response::HTTP_NOT_FOUND);
         }
 
-        return new Response('Package file not found.', Response::HTTP_NOT_FOUND);
+        $sendFile = $iterator->current();
+        $app->logDownload($sendFile);
+
+        return $app->sendFile($sendFile->getRealPath());
     }
 
     /**

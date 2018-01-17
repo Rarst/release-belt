@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - `public` directory for use as web root.
+- log of downloads.
 
 ### Changed
 - directory structure for PDS skeleton.

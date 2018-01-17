@@ -7,10 +7,20 @@
 
 return [
     // Enable to put the application into the debug mode with extended error messages.
-    'debug'       => false,
+    'debug'                 => false,
 
     // Customize path to the directory containing release ZIP files.
-    'release.dir' => __DIR__.'/../releases',
+    'release.dir'           => __DIR__.'/../releases',
+
+    // Enable log of downloads.
+    'downloads.log.enabled' => false,
+
+    // Path to downloads log.
+    'downloads.log.path'    => __DIR__.'/../releases/downloads.log',
+
+    // Format of download log entries.
+    'downloads.log.format'  =>
+        "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n",
 
     // Provide login => password hash pairs to enable HTTP authentication. See bin/encodePassword.php helper.
     // 'http.users' => [
