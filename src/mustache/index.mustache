@@ -18,30 +18,39 @@
 
             <h2 class="mb-3">Boilerplate</h2>
 
-            <p>
-                <code class="bg-light rounded p-1">composer.json</code>
-                <a href="https://getcomposer.org/doc/05-repositories.md" class="float-right" aria-label="Composer repository documentation" title="Composer repository documentation">
-                    ❓
-                </a>
-            </p>
+            <h3 class="float-left">
+                <code>composer.json</code>
+            </h3>
+            <span class="clearfix">
+                <a href="https://getcomposer.org/doc/05-repositories.md" class="h4 text-info pt-1 m-0 float-right"
+                   aria-label="Composer repository documentation" title="Composer repository documentation">❓</a>
+            </span>
             <pre class="bg-light rounded p-3"><code>{{composer}}</code></pre>
 
-            {{#auth}}
-            <hr />
+            <h3 class="p-1 float-left">Command line</h3>
+            <span class="clearfix">
+                <a href="https://getcomposer.org/doc/03-cli.md#config" class="h4 text-info pt-1 m-0 float-right"
+                   aria-label="Composer config command documentation"
+                   title="Composer config command documentation">❓</a>
+            </span>
+            <pre class="bg-light rounded p-3"><code>{{cli}}</code></pre>
 
-            <p>
-                <code class="bg-light rounded p-1">auth.json</code>
-                <a href="https://getcomposer.org/doc/articles/http-basic-authentication.md" class="float-right" aria-label="Composer HTTP authentication documentation" title="Composer HTTP authentication documentation">
-                    ❓
-                </a>
-            </p>
-            <pre class="bg-light rounded p-3">{{auth}}</pre>
+            {{#auth}}
+                <h3 class="float-left">
+                    <code>auth.json</code>
+                </h3>
+                <span class="clearfix">
+                    <a href="https://getcomposer.org/doc/articles/http-basic-authentication.md"
+                       class="h4 text-info pt-1 m-0 float-right" aria-label="Composer HTTP authentication documentation"
+                       title="Composer HTTP authentication documentation">❓</a>
+                </span>
+                <pre class="bg-light rounded p-3">{{auth}}</pre>
             {{/auth}}
         </div>
 
         <div class="col-md-6">
 
-            <h2 class="mb-3">Packages</h2>
+            <h2 class="mb-3">Packages<small><a href="{{jsonUrl}}" class="text-muted">.json</a></small></h2>
 
             <table class="table table-sm">
                 <thead>

@@ -80,7 +80,8 @@ class Application extends \Silex\Application
 
         $this->get('/', 'Rarst\\ReleaseBelt\\Controller::getHtml');
 
-        $this->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller::getJson');
+        $this->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller::getJson')
+            ->bind('json');
 
         $this->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller::getFile')
             ->bind('file');

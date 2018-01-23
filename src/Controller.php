@@ -36,11 +36,14 @@ class Controller
 
         $packages = array_values($packages);
 
-        $composer->repositories = [
-            (object)[
+        $host              = $request->getHost();
+        $schemeAndHttpHost = $request->getSchemeAndHttpHost();
+
+        $composer->repositories = (object)[
+            $host => [
                 'type' => 'composer',
-                'url'  => $request->getSchemeAndHttpHost(),
-            ]
+                'url'  => $schemeAndHttpHost,
+            ],
         ];
 
         $auth = false;
@@ -57,10 +60,12 @@ class Controller
         }
 
         return $app->render('index', [
-            'host'     => $request->getHost(),
+            'host'     => $host,
             'composer' => json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
-            'packages' => $packages,
+            'cli'      => "composer config repo.{$host} composer {$schemeAndHttpHost}",
             'auth'     => $auth ? json_encode($auth, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) : false,
+            'packages' => $packages,
+            'jsonUrl'  => $app['url_generator']->generate('json'),
         ]);
     }
 
