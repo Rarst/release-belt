@@ -12,6 +12,12 @@ return [
     // Customize path to the directory containing release ZIP files.
     'release.dir'           => __DIR__.'/../releases',
 
+    // General error log, defaults to `error_log` PHP setting.
+    // 'monolog.log'           => null,
+
+    // Error logging level, defaults to ERROR or DEBUG if enabled as above.
+    // 'monolog.level'         => 'ERROR',
+
     // Enable log of downloads.
     'downloads.log.enabled' => false,
 

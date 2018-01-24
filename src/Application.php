@@ -59,7 +59,12 @@ class Application extends \Silex\Application
             return $transformer;
         };
 
-        $app->register(new MonologServiceProvider());
+        $app->register(new MonologServiceProvider(), [
+            'monolog.logfile' => (ini_get('log_errors') && ini_get('error_log'))
+                ? ini_get('error_log')
+                : null,
+            'monolog.level' => empty($values['debug']) ? 'ERROR' : 'DEBUG',
+        ]);
 
         $this['downloads.log.enabled'] = false;
         $this['downloads.log.path']    = __DIR__.'/../releases/downloads.log';
