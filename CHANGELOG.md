@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - home page markup to Bootstrap 4.
 
+### Fixed
+- path to the new config location in password helper.
+
 ## 0.2 - 2018-01-17
 
 ### Added

@@ -116,7 +116,7 @@ See [`config/configExample.php`](config/configExample.php) for the annotated exa
 
 Release Belt implements HTTP authentication to password protect your repository. You can configure it by adding `http.users` array to configuration, which holds `'login' => 'password hash'` pairs.
 
-There is an `encodePassword.php` command line helper included for hashing passwords:
+There is an `bin/encodePassword.php` command line helper included for hashing passwords:
 
 ```bash
 >php bin/encodePassword.php foo
