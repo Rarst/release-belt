@@ -47,12 +47,13 @@ class Controller
         ];
 
         $auth = false;
+        $user = $request->getUser();
 
-        if (! empty($app['http.users'])) {
+        if (null !== $user) {
             $auth = [
                 'http-basic' => [
                     $request->getHttpHost() => [
-                        'username' => $request->getUser(),
+                        'username' => $user,
                         'password' => 'FILL IN PASSWORD',
                     ],
                 ],
