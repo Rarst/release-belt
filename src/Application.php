@@ -53,8 +53,10 @@ class Application extends \Silex\Application
         };
 
         $this['transformer'] = function () use ($app) {
-            $transformer = new ReleaseTransformer();
-            $transformer->setUrlGenerator($app['url_generator']);
+            $transformer = new ReleaseTransformer(
+                $app['url_generator'],
+                require __DIR__.'/../config/installerTypes.php'
+            );
 
             return $transformer;
         };
