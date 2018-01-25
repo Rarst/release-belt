@@ -64,7 +64,10 @@ composer install --no-dev
 
 The directory structure should be: `releases/[type]/[vendor name]/[release zip file]`.
 
-`[type]` could be e.g. `library`, `wordpress-plugin`, and `wordpress-theme`.
+A `[type]` could be:
+- a [native Composer type](https://getcomposer.org/doc/04-schema.md#type) (e.g. `library` for the default);
+- any type [`composer/installers` supports](https://github.com/composer/installers) (e.g. `wordpress-plugin`);
+- or completely arbitrary.
 
 ### 3. Configure a web server
 
