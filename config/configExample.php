@@ -28,8 +28,17 @@ return [
     // 'downloads.log.format'  =>
     //    "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n",
 
-    // Provide login => password hash pairs to enable HTTP authentication. See bin/encodePassword.php helper.
-    // 'http.users'            => [
-    //     'composer' => '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a', // foo
+    //'users'                    => [
+          // User login.
+    //    'composer' => [
+              // Provide password hash for HTTP authentication. See bin/encodePassword.php helper.
+    //        'hash'     => '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a', // foo
+
+              // Array of allowed package path matches.
+    //        'allow'    => ['foo'],
+
+              // Array of disallowed package path matches.
+    //        'disallow' => ['bar'],
+    //    ],
     // ],
 ];

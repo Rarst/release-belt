@@ -30,14 +30,41 @@ class Application extends \Silex\Application
             'mustache.path'    => __DIR__ . '/mustache',
         ]);
 
+        /** @deprecated 0.3:1.0 Deprecated in favor of `users`. */
         $app['http.users'] = [];
+
+        $app['users'] = [];
 
         $this['release.dir'] = __DIR__ . '/../releases';
 
-        $this['finder'] = function () {
+        $this['finder'] = function () use ($app) {
 
             $finder = new Finder();
-            return $finder->files()->in($this['release.dir']);
+            $finder->files()->in($this['release.dir']);
+
+            if (empty($app['security.firewalls']) || empty($app['users'])) {
+                return $finder;
+            }
+
+            /** @var array[][] $users */
+            $users   = $app['users'];
+            /** @var Request $request */
+            $request = $this['request_stack']->getCurrentRequest();
+            $user    = $request->getUser();
+
+            if (! empty($users[$user]['allow'])) {
+                foreach ($users[$user]['allow'] as $path) {
+                    $finder->path($path);
+                }
+            }
+
+            if (! empty($users[$user]['disallow'])) {
+                foreach ($users[$user]['disallow'] as $path) {
+                    $finder->notPath($path);
+                }
+            }
+
+            return $finder;
         };
 
         $this['parser'] = function () use ($app) {
@@ -97,11 +124,19 @@ class Application extends \Silex\Application
             $this[$key] = $value;
         }
 
-        if (! empty($app['http.users'])) {
+        if (! empty($app['http.users']) || ! empty($app['users'])) {
+            if (!empty($app['http.users'])) {
+                trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
+            }
+
             $users = [];
 
             foreach ($app['http.users'] as $login => $hash) {
                 $users[$login] = ['ROLE_COMPOSER', $hash];
+            }
+
+            foreach ($app['users'] as $login => $data) {
+                $users[$login] = ['ROLE_COMPOSER', $data['hash']];
             }
 
             $app->register(new SecurityServiceProvider(), [

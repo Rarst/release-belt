@@ -11,12 +11,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - site favicon, image from [Bytesize](https://danklammer.com/bytesize-icons/).
 - default error log configuration detection from PHP settings.
 - support for all `composer/installer` types (^1.5).
+- `users` configuration option with permission control by package path.
 
 ### Changed
 - home page markup to Bootstrap 4.
 
 ### Fixed
 - path to the new config location in password helper.
+
+### Deprecated
+- `http.users` configuration option in favor of `users`.
 
 ## 0.2 - 2018-01-17
 
