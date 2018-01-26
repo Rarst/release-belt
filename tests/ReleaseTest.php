@@ -3,10 +3,10 @@
 namespace Rarst\ReleaseBelt;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Finder\SplFileInfo;
 
 class ReleaseTest extends TestCase
 {
-
     /**
      * @dataProvider filenameProvider
      *
@@ -16,7 +16,7 @@ class ReleaseTest extends TestCase
      */
     public function testParseFilename($filename, $package, $version)
     {
-        $splFileInfoMock = $this->getMockBuilder('Symfony\Component\Finder\SplFileInfo')
+        $splFileInfoMock = $this->getMockBuilder(SplFileInfo::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -37,6 +37,7 @@ class ReleaseTest extends TestCase
     public function filenameProvider()
     {
         return [
+            ['invalid', null, 'dev-unknown'],
             [ 'backupbuddy-4.1.2.2.zip', 'backupbuddy', '4.1.2.2' ],
 //            [ 'contact-form-7.4.1.zip', 'contact-form', '4.1' ], 7 indistinguishable from part of version
             [ 'facetwp-1.8.6.zip', 'facetwp', '1.8.6' ],

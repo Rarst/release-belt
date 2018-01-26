@@ -56,6 +56,7 @@ class ReleaseTransformer extends TransformerAbstract
      * Set UrlGenerator to use for file links in output.
      *
      * @deprecated 0.3:1.0 Deprecated in favor of constructor.
+     * @codeCoverageIgnore
      *
      * @param UrlGeneratorInterface $urlGenerator
      */
