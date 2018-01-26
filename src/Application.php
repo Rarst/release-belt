@@ -1,175 +1,65 @@
 <?php
+
 namespace Rarst\ReleaseBelt;
 
-use League\Fractal\Manager;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Formatter\LineFormatter;
 use Mustache\Silex\Application\MustacheTrait;
 use Mustache\Silex\Provider\MustacheServiceProvider;
-use Rarst\ReleaseBelt\Fractal\PackageSerializer;
-use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
+use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
+use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
+use Rarst\ReleaseBelt\Provider\FractalProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Application\MonologTrait;
 use Silex\Provider\SecurityServiceProvider;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
-use Symfony\Component\HttpFoundation\Request;
 
 class Application extends \Silex\Application
 {
-    use MustacheTrait, MonologTrait;
+    use MustacheTrait, MonologTrait, DownloadsLogTrait;
 
-    public function __construct(array $values = [ ])
+    public function __construct(array $values = [])
     {
         parent::__construct();
 
         $app = $this;
 
-        $app->register(new MustacheServiceProvider, [
-            'mustache.path'    => __DIR__ . '/mustache',
-        ]);
-
         /** @deprecated 0.3:1.0 Deprecated in favor of `users`. */
-        $app['http.users'] = [];
-
-        $app['users'] = [];
-
-        $this['release.dir'] = __DIR__ . '/../releases';
-
-        $this['finder'] = function () use ($app) {
-
+        $app['http.users']  = [];
+        $app['users']       = [];
+        $app['release.dir'] = __DIR__.'/../releases';
+        $app['finder']      = function () {
             $finder = new Finder();
             $finder->files()->in($this['release.dir']);
 
-            if (empty($app['security.firewalls']) || empty($app['users'])) {
-                return $finder;
-            }
-
-            /** @var array[][] $users */
-            $users   = $app['users'];
-            /** @var Request $request */
-            $request = $this['request_stack']->getCurrentRequest();
-            $user    = $request->getUser();
-
-            if (! empty($users[$user]['allow'])) {
-                foreach ($users[$user]['allow'] as $path) {
-                    $finder->path($path);
-                }
-            }
-
-            if (! empty($users[$user]['disallow'])) {
-                foreach ($users[$user]['disallow'] as $path) {
-                    $finder->notPath($path);
-                }
-            }
-
             return $finder;
         };
-
-        $this['parser'] = function () use ($app) {
-
+        $app['parser']      = function () use ($app) {
             return new ReleaseParser($app['finder']);
         };
 
-        $this['fractal'] = function () {
-            $fractal = new Manager();
-            $fractal->setSerializer(new PackageSerializer());
-
-            return $fractal;
-        };
-
-        $this['transformer'] = function () use ($app) {
-            $transformer = new ReleaseTransformer(
-                $app['url_generator'],
-                require __DIR__.'/../config/installerTypes.php'
-            );
-
-            return $transformer;
-        };
-
+        $app->register(new MustacheServiceProvider, [
+            'mustache.path' => __DIR__.'/mustache',
+        ]);
+        $app->register(new FractalProvider());
         $app->register(new MonologServiceProvider(), [
             'monolog.logfile' => (ini_get('log_errors') && ini_get('error_log'))
                 ? ini_get('error_log')
                 : null,
-            'monolog.level' => empty($values['debug']) ? 'ERROR' : 'DEBUG',
+            'monolog.level'   => empty($values['debug']) ? 'ERROR' : 'DEBUG',
         ]);
+        $app->register(new DownloadsLogProvider());
+        $app->register(new AuthenticationProvider());
+        $app->register(new SecurityServiceProvider());
 
-        $this['downloads.log.enabled'] = false;
-        $this['downloads.log.path']    = __DIR__.'/../releases/downloads.log';
-        $this['downloads.log.format']  =
-            "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n";
+        $app->get('/', 'Rarst\\ReleaseBelt\\Controller::getHtml');
 
-        $this['downloads.log'] = function () use ($app) {
-            /** @var Logger $log */
-            $log       = new $app['monolog.logger.class']('downloads');
-            $handler   = new StreamHandler($app['downloads.log.path']);
-            $formatter = new LineFormatter($app['downloads.log.format'], DATE_RFC3339);
-
-            $handler->setFormatter($formatter);
-            $log->pushHandler($handler);
-
-            return $log;
-        };
-
-        $this->get('/', 'Rarst\\ReleaseBelt\\Controller::getHtml');
-
-        $this->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller::getJson')
+        $app->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller::getJson')
             ->bind('json');
 
-        $this->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller::getFile')
+        $app->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller::getFile')
             ->bind('file');
 
         foreach ($values as $key => $value) {
             $this[$key] = $value;
         }
-
-        if (! empty($app['http.users']) || ! empty($app['users'])) {
-            if (!empty($app['http.users'])) {
-                trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
-            }
-
-            $users = [];
-
-            foreach ($app['http.users'] as $login => $hash) {
-                $users[$login] = ['ROLE_COMPOSER', $hash];
-            }
-
-            foreach ($app['users'] as $login => $data) {
-                $users[$login] = ['ROLE_COMPOSER', $data['hash']];
-            }
-
-            $app->register(new SecurityServiceProvider(), [
-                'security.firewalls' => [
-                    'composer' => [
-                        'pattern' => '^.*$',
-                        'http'    => true,
-                        'users'   => $users,
-                    ]
-                ]
-            ]);
-        }
-    }
-
-    public function logDownload(SplFileInfo $file)
-    {
-        if (! $this['downloads.log.enabled']) {
-            return false;
-        }
-
-        /** @var Request $request */
-        $request = $this['request_stack']->getCurrentRequest();
-        $release = new Release($file);
-
-        $package = "{$release->vendor}/{$release->package}";
-        $context = [
-            'user'    => $request->getUser() ?: 'anonymous',
-            'ip'      => $request->getClientIp(),
-            'vendor'  => $release->vendor,
-            'package' => $release->package,
-            'version' => $release->version,
-        ];
-
-        return $this['downloads.log']->info($package, $context);
     }
 }
