@@ -73,35 +73,9 @@ A `[type]` could be:
 
 `public/` directory should be used as web root and `index.php` in it as the file to handle requests.
 
+Please refer to [webserver configuration](https://silex.symfony.com/doc/2.0/web_servers.html) in Silex documentation and/or your web hosting’s resources for setup specifics.
+
 Visit home page and `/packages.json` in a web browser to check if it is working.
-
-#### Apache
-
-On a typical Apache server this can be done with the following `.htaccess`:
-
-```apacheconfig
-FallbackResource /index.php
-```
-
-Or with mod_rewrite version:
-
-```apacheconfig
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /index.php [L]
-</IfModule>
-```
-
-
-#### PHP
-
-When using the built–in PHP web server you can use:
-
-```bash
-php -S localhost:8000 index.php
-```
 
 ## Use
 
