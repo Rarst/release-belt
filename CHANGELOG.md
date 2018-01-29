@@ -9,13 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - command line boilerplate to home page.
 - site favicon, image from [Bytesize](https://danklammer.com/bytesize-icons/).
-- default error log configuration detection from PHP settings.
 - support for all `composer/installer` types (^1.5).
 - `users` configuration option with permission control by package path.
 - Composer script for updates.
 
 ### Changed
 - home page markup to Bootstrap 4.
+- downloads log configuration for simpler.
 
 ### Fixed
 - path to the new config location in password helper.

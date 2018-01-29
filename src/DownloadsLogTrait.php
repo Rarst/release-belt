@@ -9,7 +9,7 @@ trait DownloadsLogTrait
 {
     public function logDownload(SplFileInfo $file)
     {
-        if ( ! $this['downloads.log.enabled']) {
+        if ( ! $this['downloads.logfile']) {
             return false;
         }
 

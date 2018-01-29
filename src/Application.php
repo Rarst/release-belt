@@ -45,12 +45,7 @@ class Application extends \Silex\Application
         $app->register(new MustacheServiceProvider, [
             'mustache.path' => __DIR__.'/mustache',
         ]);
-        $app->register(new MonologServiceProvider(), [
-            'monolog.logfile' => (ini_get('log_errors') && ini_get('error_log'))
-                ? ini_get('error_log')
-                : null,
-            'monolog.level'   => empty($values['debug']) ? 'ERROR' : 'DEBUG',
-        ]);
+        $app->register(new MonologServiceProvider());
         $app->register(new SecurityServiceProvider());
 
         $app->get('/', 'Rarst\\ReleaseBelt\\Controller::getHtml');
