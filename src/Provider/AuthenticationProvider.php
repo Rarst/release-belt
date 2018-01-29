@@ -14,12 +14,25 @@ class AuthenticationProvider implements ServiceProviderInterface, BootableProvid
     public function register(Container $app)
     {
         $app['security.firewalls'] = [];
+    }
+
+    public function boot(Application $app)
+    {
+        $userHashes = $this->getUserHashes($app);
+
+        if (empty($userHashes)) {
+            return;
+        }
+
+        $app['security.firewalls'] = [
+            'composer' => [
+                'pattern' => '^.*$',
+                'http'    => true,
+                'users'   => $userHashes,
+            ],
+        ];
 
         $app->extend('finder', function (Finder $finder, Application $app) {
-
-            if (empty($app['security.firewalls']) || empty($app['users'])) {
-                return $finder;
-            }
 
             /** @var array[][] $users */
             $users = $app['users'];
@@ -27,31 +40,15 @@ class AuthenticationProvider implements ServiceProviderInterface, BootableProvid
             $request = $app['request_stack']->getCurrentRequest();
             $user    = $request->getUser();
 
-            if (! empty($users[$user]['allow'])) {
-                foreach ($users[$user]['allow'] as $path) {
-                    $finder->path($path);
-                }
-            }
-
-            if (! empty($users[$user]['disallow'])) {
-                foreach ($users[$user]['disallow'] as $path) {
-                    $finder->notPath($path);
-                }
-            }
-
-            return $finder;
+            return $this->applyPermissions($finder, $this->getPermissions($users, $user));
         });
     }
 
-    public function boot(Application $app)
+    protected function getUserHashes(Application $app)
     {
-        if (empty($app['http.users']) && empty($app['users'])) {
-            return;
-        }
-
         $users = [];
 
-        if (! empty($app['http.users'])) {
+        if ( ! empty($app['http.users'])) {
             trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
 
             foreach ($app['http.users'] as $login => $hash) {
@@ -63,12 +60,28 @@ class AuthenticationProvider implements ServiceProviderInterface, BootableProvid
             $users[$login] = ['ROLE_COMPOSER', $data['hash']];
         }
 
-        $app['security.firewalls'] = [
-            'composer' => [
-                'pattern' => '^.*$',
-                'http'    => true,
-                'users'   => $users,
-            ],
+        return $users;
+    }
+
+    protected function getPermissions(array $users, $user)
+    {
+        return [
+            // TODO use ?? when bumped requirements to PHP 7.
+            'allow'    => empty($users[$user]['allow']) ? [] : $users[$user]['allow'],
+            'disallow' => empty($users[$user]['disallow']) ? [] : $users[$user]['disallow'],
         ];
+    }
+
+    protected function applyPermissions(Finder $finder, array $permissions)
+    {
+        foreach ($permissions['allow'] as $path) {
+            $finder->path($path);
+        }
+
+        foreach ($permissions['disallow'] as $path) {
+            $finder->notPath($path);
+        }
+
+        return $finder;
     }
 }
