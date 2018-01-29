@@ -25,25 +25,25 @@
                    aria-label="Composer repository documentation"
                    title="Composer repository documentation"><strong>?</strong></a>
             </div>
-            <pre class="bg-light rounded p-3"><code>{{composer}}</code></pre>
+            <pre class="bg-light rounded p-3"><code>{{>composer.json}}</code></pre>
 
             <div class="d-flex justify-content-between">
                 <h3>Command line</h3>
                 <a href="https://getcomposer.org/doc/03-cli.md#config" class="h3 text-info"
                    aria-label="Composer config command documentation"
-                   title="Composer config command documentation"><strong>?</strong></a>
+                title="Composer config command documentation"><strong>?</strong></a>
             </div>
-            <pre class="bg-light rounded p-3"><code>{{cli}}</code></pre>
+            <pre class="bg-light rounded p-3"><code>composer config repo.{{host}} composer {{schemeAndHttpHost}}</code></pre>
 
-            {{#auth}}
+            {{#user}}
                 <div class="d-flex justify-content-between">
                     <h3><code>auth.json</code></h3>
                     <a href="https://getcomposer.org/doc/articles/http-basic-authentication.md"
                        class="h3 text-info" aria-label="Composer HTTP authentication documentation"
                        title="Composer HTTP authentication documentation"><strong>?</strong></a>
                 </div>
-                <pre class="bg-light rounded p-3"><code>{{auth}}</code></pre>
-            {{/auth}}
+                <pre class="bg-light rounded p-3"><code>{{>auth.json}}</code></pre>
+            {{/user}}
         </div>
 
         <div class="col-md-6">

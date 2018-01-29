@@ -1,0 +1,13 @@
+{
+    "require": {
+    {{#packages}}
+        "{{name}}": "^{{latest}}"
+    {{/packages}}
+    },
+    "repositories": {
+        "{{host}}": {
+            "type": "composer",
+            "url": "{{schemeAndHttpHost}}"
+        }
+    }
+}

@@ -7,6 +7,7 @@ use Mustache\Silex\Provider\MustacheServiceProvider;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
 use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
 use Rarst\ReleaseBelt\Provider\FractalProvider;
+use Rarst\ReleaseBelt\Provider\ModelProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Application\MonologTrait;
 use Silex\Provider\SecurityServiceProvider;
@@ -36,18 +37,20 @@ class Application extends \Silex\Application
             return new ReleaseParser($app['finder']);
         };
 
+        $app->register(new ModelProvider());
+        $app->register(new FractalProvider());
+        $app->register(new DownloadsLogProvider());
+        $app->register(new AuthenticationProvider());
+
         $app->register(new MustacheServiceProvider, [
             'mustache.path' => __DIR__.'/mustache',
         ]);
-        $app->register(new FractalProvider());
         $app->register(new MonologServiceProvider(), [
             'monolog.logfile' => (ini_get('log_errors') && ini_get('error_log'))
                 ? ini_get('error_log')
                 : null,
             'monolog.level'   => empty($values['debug']) ? 'ERROR' : 'DEBUG',
         ]);
-        $app->register(new DownloadsLogProvider());
-        $app->register(new AuthenticationProvider());
         $app->register(new SecurityServiceProvider());
 
         $app->get('/', 'Rarst\\ReleaseBelt\\Controller::getHtml');

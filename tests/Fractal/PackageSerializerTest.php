@@ -1,6 +1,6 @@
 <?php
 
-namespace Rarst\ReleaseBelt;
+namespace Rarst\ReleaseBelt\Tests\Fractal;
 
 use PHPUnit\Framework\TestCase;
 use Rarst\ReleaseBelt\Fractal\PackageSerializer;

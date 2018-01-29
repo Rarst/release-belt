@@ -1,9 +1,10 @@
 <?php
 
-namespace Rarst\ReleaseBelt;
+namespace Rarst\ReleaseBelt\Tests\Fractal;
 
 use PHPUnit\Framework\TestCase;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
+use Rarst\ReleaseBelt\Release;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class ReleaseTransformerTest extends TestCase
