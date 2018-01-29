@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - default error log configuration detection from PHP settings.
 - support for all `composer/installer` types (^1.5).
 - `users` configuration option with permission control by package path.
+- Composer script for updates.
 
 ### Changed
 - home page markup to Bootstrap 4.

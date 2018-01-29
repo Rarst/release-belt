@@ -27,5 +27,15 @@
     },
     "require-dev": {
         "pds/skeleton": "^1.0"
+    },
+    "scripts": {
+        "belt-update": [
+            "git fetch --tags",
+            "@php bin/checkoutLatestTag.php",
+            "@composer install --no-dev --optimize-autoloader"
+        ]
+    },
+    "scripts-descriptions": {
+        "belt-update": "Performs update to the latest Release Belt version."
     }
 }
