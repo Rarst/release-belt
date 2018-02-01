@@ -2,6 +2,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/rarst/release-belt/version)](https://packagist.org/packages/rarst/release-belt)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
 
 Release Belt is a Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
@@ -27,7 +28,7 @@ It will serve the following Composer repository at `/packages.json` automagicall
                 },
                 "type": "wordpress-plugin",
                 "require": {
-                    "composer/installers": "~1.0"
+                    "composer/installers": "^1.5"
                 }
             }
         }
@@ -37,27 +38,24 @@ It will serve the following Composer repository at `/packages.json` automagicall
 
 ## Installation
 
-### 1. Create the project
+### 1. Install the project
 
-To create a standalone copy of the project:
+Release Belt is a `project` type Composer package. It is recommended to use Git checkout to keep up with updates more easily.
 
-```bash
-composer create-project rarst/release-belt
-```
+There is a helper Composer script provided that tries to fetch latest stable version and performs Composer install. 
 
-To keep up with updates more conveniently you can use a Git checkout instead:
+### Install
 
 ```bash
 git clone https://github.com/Rarst/release-belt
 cd release-belt
-composer install --no-dev
+composer belt-update
 ```
 
-Fetch latest changes and update dependencies with:
+### Update
 
 ```bash
-git pull
-composer install --no-dev
+composer belt-update
 ```
 
 ### 2. Place release ZIPs into `releases/` directory
@@ -93,7 +91,7 @@ See [`config/configExample.php`](config/configExample.php) for the annotated exa
 
 Release Belt implements HTTP authentication to password protect your repository and control access to specific packages. You can configure it via `users` configuration option.
 
-There is an `bin/encodePassword.php` command line helper included for hashing passwords:
+There is a `bin/encodePassword.php` command line helper included for hashing passwords:
 
 ```bash
 >php bin/encodePassword.php foo
