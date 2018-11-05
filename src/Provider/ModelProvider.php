@@ -14,7 +14,7 @@ class ModelProvider implements ServiceProviderInterface
         $app['model.index'] = function () use ($app) {
             return new IndexModel(
                 $app['data']['packages'],
-                $app['request_stack']->getCurrentRequest(),
+                $app['request'],
                 $app['url_generator']
             );
         };

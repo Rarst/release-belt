@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Model;
 
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
 use Rarst\ReleaseBelt\UrlGeneratorInterface;
 
 class IndexModel
@@ -13,19 +14,21 @@ class IndexModel
 
     protected $urlGenerator;
 
-    public function __construct(array $packages, Request $request, UrlGeneratorInterface $urlGenerator)
+    public function __construct(array $packages, ServerRequestInterface $request, UrlGeneratorInterface $urlGenerator)
     {
         $this->packages     = $packages;
         $this->request      = $request;
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function getContext()
+    public function getContext() : array
     {
+        $uri = $this->request->getUri();
+
         return [
-            'host'              => $this->request->getHost(),
-            'schemeAndHttpHost' => $this->request->getSchemeAndHttpHost(),
-            'user'              => $this->request->getUser(),
+            'host'              => $uri->getHost(),
+            'schemeAndHttpHost' => $uri->withPath(''),
+            'user'              => $uri->getUserInfo(),
             'packages'          => $this->getPackages(),
             'jsonUrl'           => $this->urlGenerator->getUrl('json'),
         ];
