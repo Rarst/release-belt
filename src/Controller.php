@@ -1,6 +1,7 @@
 <?php
 namespace Rarst\ReleaseBelt;
 
+use Slim\Container;
 use Rarst\ReleaseBelt\Model\FileModel;
 use Rarst\ReleaseBelt\Model\IndexModel;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
@@ -8,12 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Controller
 {
-    public function getHtml(Application $app)
+    protected $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+    public function getHtml()
     {
         /** @var IndexModel $indexModel */
-        $indexModel = $app['model.index'];
+        $indexModel = $this->container['model.index'];
 
-        return $app->render('index', $indexModel->getContext());
+        return $this->container->view->fetch('index', $indexModel->getContext());
     }
 
     public function getJson(Application $app)
