@@ -47,6 +47,9 @@ class Application extends App
         $container['parser']      = function () use ($container) {
             return new ReleaseParser($container['finder']);
         };
+        $container['url_generator'] = function () use ($container) {
+            return new UrlGenerator($container->router);
+        };
 
         $container->register(new ModelProvider());
         $container->register(new FractalProvider());

@@ -3,7 +3,7 @@
 namespace Rarst\ReleaseBelt\Model;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Rarst\ReleaseBelt\UrlGeneratorInterface;
 
 class IndexModel
 {
@@ -27,7 +27,7 @@ class IndexModel
             'schemeAndHttpHost' => $this->request->getSchemeAndHttpHost(),
             'user'              => $this->request->getUser(),
             'packages'          => $this->getPackages(),
-            'jsonUrl'           => $this->urlGenerator->generate('json'),
+            'jsonUrl'           => $this->urlGenerator->getUrl('json'),
         ];
     }
 
