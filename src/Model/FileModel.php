@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Model;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class FileModel
 {
@@ -16,18 +16,22 @@ class FileModel
     }
 
     /**
+     * Returns the file info object for the vendor and file name provided.
+     *
+     * If the file isn't located the returned object would not have isReadable() status.
+     *
      * @param string $vendor
      * @param string $file
      *
      * @return SplFileInfo
      */
-    public function getFile($vendor, $file)
+    public function getFile(string $vendor, string $file): SplFileInfo
     {
         $iterator = $this->finder->path($vendor)->name($file)->getIterator();
         $iterator->rewind();
 
         if (! $iterator->valid()) {
-            throw new FileNotFoundException("{$vendor}/{$file}");
+            return new SplFileInfo('', '', '');
         }
 
         return $iterator->current();
