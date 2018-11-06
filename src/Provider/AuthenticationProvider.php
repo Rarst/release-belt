@@ -1,78 +1,70 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
 
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
-use Silex\Api\BootableProviderInterface;
-use Silex\Application;
+use Slim\App;
+use Slim\Container;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\Request;
+use Tuupola\Middleware\HttpBasicAuthentication;
 
-class AuthenticationProvider implements ServiceProviderInterface, BootableProviderInterface
+class AuthenticationProvider
 {
-    public function register(Container $app)
+    public function boot(App $app): void
     {
-        $app['security.firewalls'] = [];
-    }
-
-    public function boot(Application $app)
-    {
-        $userHashes = $this->getUserHashes($app);
+        /** @var Container $container */
+        $container       = $app->getContainer();
+        $userHashes = $this->getUserHashes($container);
 
         if (empty($userHashes)) {
             return;
         }
 
-        $app['security.firewalls'] = [
-            'composer' => [
-                'pattern' => '^.*$',
-                'http'    => true,
-                'users'   => $userHashes,
-            ],
-        ];
+        $app->add(new HttpBasicAuthentication([
+            'secure' => false,
+            'users'  => $userHashes,
+        ]));
 
-        $app->extend('finder', function (Finder $finder, Application $app) {
+        $container->extend('finder', function (Finder $finder, Container $container) {
 
             /** @var array[][] $users */
-            $users = $app['users'];
-            /** @var Request $request */
-            $request = $app['request_stack']->getCurrentRequest();
-            $user    = $request->getUser();
+            $users = $container['users'];
+            [$user] = explode(':', $container->request->getUri()->getUserInfo());
 
             return $this->applyPermissions($finder, $this->getPermissions($users, $user));
         });
     }
 
-    protected function getUserHashes(Application $app)
+    protected function getUserHashes(Container $app): array
     {
         $users = [];
 
-        if ( ! empty($app['http.users'])) {
+        if (! empty($app['http.users'])) {
             trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
 
             foreach ($app['http.users'] as $login => $hash) {
-                $users[$login] = ['ROLE_COMPOSER', $hash];
+                $users[$login] = $hash;
             }
         }
 
         foreach ($app['users'] as $login => $data) {
-            $users[$login] = ['ROLE_COMPOSER', $data['hash']];
+            if (! empty($data['hash'])) {
+                $users[$login] = $data['hash'];
+            }
         }
 
         return $users;
     }
 
-    protected function getPermissions(array $users, $user)
+    protected function getPermissions(array $users, $user): array
     {
         return [
-            // TODO use ?? when bumped requirements to PHP 7.
-            'allow'    => empty($users[$user]['allow']) ? [] : $users[$user]['allow'],
-            'disallow' => empty($users[$user]['disallow']) ? [] : $users[$user]['disallow'],
+            'allow'    => $users[$user]['allow'] ?? [],
+            'disallow' => $users[$user]['disallow'] ?? [],
         ];
     }
 
-    protected function applyPermissions(Finder $finder, array $permissions)
+    protected function applyPermissions(Finder $finder, array $permissions): Finder
     {
         foreach ($permissions['allow'] as $path) {
             $finder->path($path);

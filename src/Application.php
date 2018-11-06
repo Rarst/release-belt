@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt;
 
@@ -65,9 +66,7 @@ class Application extends App
         $container->register(new ControllerProvider());
         $container->register(new FractalProvider());
         $container->register(new DownloadsLogProvider());
-//        $app->register(new AuthenticationProvider());
 //        $app->register(new MonologServiceProvider());
-//        $app->register(new SecurityServiceProvider());
 
         $this->get('/', 'controller.index');
         $this->get('/packages.json', 'controller.json')->setName('json');
@@ -76,5 +75,9 @@ class Application extends App
         foreach ($values as $key => $value) {
             $container[$key] = $value;
         }
+
+        // This is leftover from Silex for now, since Slim doesn’t have bootable service providers.
+        $authentication = new AuthenticationProvider();
+        $authentication->boot($this);
     }
 }

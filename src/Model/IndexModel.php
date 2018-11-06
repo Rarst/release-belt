@@ -24,11 +24,12 @@ class IndexModel
     public function getContext() : array
     {
         $uri = $this->request->getUri();
+        [$user] = explode(':', $uri->getUserInfo());
 
         return [
             'host'              => $uri->getHost(),
-            'schemeAndHttpHost' => $uri->withPath(''),
-            'user'              => $uri->getUserInfo(),
+            'schemeAndHttpHost' => $uri->withUserInfo(''),
+            'user'              => $user,
             'packages'          => $this->getPackages(),
             'jsonUrl'           => $this->urlGenerator->getUrl('json'),
         ];
