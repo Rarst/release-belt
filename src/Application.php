@@ -4,6 +4,7 @@ namespace Rarst\ReleaseBelt;
 
 use Mustache_Loader_FilesystemLoader;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
+use Rarst\ReleaseBelt\Provider\ControllerProvider;
 use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
 use Rarst\ReleaseBelt\Provider\FractalProvider;
 use Rarst\ReleaseBelt\Provider\ModelProvider;
@@ -61,19 +62,16 @@ class Application extends App
         };
 
         $container->register(new ModelProvider());
+        $container->register(new ControllerProvider());
         $container->register(new FractalProvider());
         $container->register(new DownloadsLogProvider());
 //        $app->register(new AuthenticationProvider());
 //        $app->register(new MonologServiceProvider());
 //        $app->register(new SecurityServiceProvider());
 
-        $this->get('/', 'Rarst\\ReleaseBelt\\Controller:getHtml');
-
-        $this->get('/packages.json', 'Rarst\\ReleaseBelt\\Controller:getJson')
-            ->setName('json');
-
-        $this->get('/{vendor}/{file}', 'Rarst\\ReleaseBelt\\Controller:getFile')
-            ->setName('file');
+        $this->get('/', 'controller.index');
+        $this->get('/packages.json', 'controller.json')->setName('json');
+        $this->get('/{vendor}/{file}', 'controller.file')->setName('file');
 
         foreach ($values as $key => $value) {
             $container[$key] = $value;
