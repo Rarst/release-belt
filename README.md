@@ -71,7 +71,7 @@ A `[type]` could be:
 
 `public/` directory should be used as web root and `index.php` in it as the file to handle requests.
 
-Please refer to [webserver configuration](https://silex.symfony.com/doc/2.0/web_servers.html) in Silex documentation and/or your web hosting’s resources for setup specifics.
+Please refer to [webserver configuration](https://www.slimframework.com/docs/v3/start/web-servers.html) in Slim documentation and/or your web hosting’s resources for setup specifics.
 
 Visit home page and `/packages.json` in a web browser to check if it is working.
 
