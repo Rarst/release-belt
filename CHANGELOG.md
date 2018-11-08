@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - framework dependencies to Slim from Silex.
+- minimum required PHP version to 7.1.3. 
 
 ### Removed
 

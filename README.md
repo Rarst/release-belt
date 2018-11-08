@@ -3,6 +3,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/rarst/release-belt/version)](https://packagist.org/packages/rarst/release-belt)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/rarst/release-belt.svg)](https://packagist.org/packages/rarst/laps)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
 
 Release Belt is a Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
