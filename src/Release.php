@@ -7,13 +7,12 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class Release
 {
-    const SEPARATORS = '.-_';
+    protected const SEPARATORS = '.-_';
 
     // From https://github.com/composer/semver/blob/master/src/VersionParser.php
-    const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)((?:[.-]?\d+)*+)?)?([.-]?dev)?';
+    public const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)((?:[.-]?\d+)*+)?)?([.-]?dev)?';
 
-    const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}' . self::MODIFIER_REGEX . ')\.zip/';
-
+    public const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}'.self::MODIFIER_REGEX.')\.zip/';
 
     /** @var SplFileInfo $file */
     protected $file;
@@ -32,7 +31,7 @@ class Release
         $this->filename = $file->getFilename();
         $this->package  = $file->getBasename('.zip');
         $this->version  = 'dev-unknown';
-        list($this->type, $this->vendor) = explode('/', $this->path);
+        [$this->type, $this->vendor] = explode('/', $this->path);
 
         $matches = $this->parseFilename($this->filename);
 

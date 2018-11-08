@@ -51,7 +51,7 @@ class Application extends App
             return new ReleaseParser($container['finder']);
         };
         $container['url_generator'] = function () use ($container) {
-            return new UrlGenerator($container->router);
+            return new UrlGenerator($container['router']);
         };
         $container['view'] = function () {
             $view = new Mustache([

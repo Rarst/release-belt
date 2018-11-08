@@ -29,7 +29,7 @@ class AuthenticationProvider
 
             /** @var array[][] $users */
             $users = $container['users'];
-            [$user] = explode(':', $container->request->getUri()->getUserInfo());
+            [$user] = explode(':', $container['request']->getUri()->getUserInfo());
 
             return $this->applyPermissions($finder, $this->getPermissions($users, $user));
         });

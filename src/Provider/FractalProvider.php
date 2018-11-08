@@ -5,7 +5,6 @@ namespace Rarst\ReleaseBelt\Provider;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
-use League\Fractal\Scope;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Rarst\ReleaseBelt\Fractal\PackageSerializer;

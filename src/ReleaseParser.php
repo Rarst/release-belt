@@ -30,7 +30,6 @@ class ReleaseParser
 
         /** @var SplFileInfo $file */
         foreach ($this->finder as $file) {
-
             $releases[] = new Release($file);
         }
 

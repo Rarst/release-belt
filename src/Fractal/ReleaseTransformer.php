@@ -41,7 +41,7 @@ class ReleaseTransformer extends TransformerAbstract
             $package['type'] = $release->type;
         }
 
-        if (in_array($release->type, $this->installerTypes, true)) {
+        if (\in_array($release->type, $this->installerTypes, true)) {
             $package['require'] = [
                 'composer/installers' => '^1.5',
             ];
