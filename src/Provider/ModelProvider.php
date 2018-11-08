@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
 
@@ -9,12 +10,12 @@ use Rarst\ReleaseBelt\Model\IndexModel;
 
 class ModelProvider implements ServiceProviderInterface
 {
-    public function register(Container $app)
+    public function register(Container $app): void
     {
         $app['model.index'] = function () use ($app) {
             return new IndexModel(
                 $app['data']['packages'],
-                $app['request'],
+                $app['request']->getUri(),
                 $app['url_generator']
             );
         };
