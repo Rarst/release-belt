@@ -1,15 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\UriInterface;
 use Rarst\ReleaseBelt\Model\IndexModel;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGenerator;
+use Rarst\ReleaseBelt\UrlGenerator;
 
 class IndexModelTest extends TestCase
 {
-    public function testGetContext()
+    public function testGetContext(): void
     {
         $packages = [
             'package1' => [
@@ -25,15 +26,19 @@ class IndexModelTest extends TestCase
             ],
         ];
 
-        $requestDummy = $this->getMockBuilder(Request::class)
+        $uriDummy = $this->getMockBuilder(UriInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        $uriDummy->expects($this->once())
+            ->method('getUserInfo')
+            ->willReturn('user:password');
 
         $urlGeneratorDummy = $this->getMockBuilder(UrlGenerator::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $indexModel = new IndexModel($packages, $requestDummy, $urlGeneratorDummy);
+        $indexModel = new IndexModel($packages, $uriDummy, $urlGeneratorDummy);
         $context    = $indexModel->getContext();
 
         $this->assertArraySubset([

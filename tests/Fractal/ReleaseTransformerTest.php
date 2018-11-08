@@ -1,15 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Tests\Fractal;
 
 use PHPUnit\Framework\TestCase;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
 use Rarst\ReleaseBelt\Release;
-use Symfony\Component\Routing\Generator\UrlGenerator;
+use Rarst\ReleaseBelt\UrlGenerator;
 
 class ReleaseTransformerTest extends TestCase
 {
-    public function testTransform()
+    public function testTransform(): void
     {
         $vendor   = 'vendor';
         $package  = 'package';
@@ -23,8 +24,8 @@ class ReleaseTransformerTest extends TestCase
             ->getMock();
 
         $urlGeneratorMock->expects($this->once())
-            ->method('generate')
-            ->with('file', ['vendor' => $vendor, 'file' => $filename])
+            ->method('getFileUrl')
+            ->with($vendor, $filename)
             ->willReturn($url);
 
         $releaseMock = $this->getMockBuilder(Release::class)

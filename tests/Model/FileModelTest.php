@@ -1,17 +1,23 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Rarst\ReleaseBelt\Model\FileModel;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class FileModelTest extends TestCase
 {
-    public function testGetFile()
+    public function testGetFile(): void
     {
         $vendor  = 'vendor';
         $package = 'package-1.0.zip';
+
+        $fileInfoMock = $this->getMockBuilder(SplFileInfo::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $finderMock = $this->getMockBuilder(Finder::class)
             ->disableOriginalConstructor()
@@ -36,7 +42,7 @@ class FileModelTest extends TestCase
 
         $iteratorMock->expects($this->once())
             ->method('current')
-            ->willReturn("{$vendor}/{$package}");
+            ->willReturn($fileInfoMock);
 
         $finderMock->expects($this->once())
             ->method('getIterator')
@@ -46,6 +52,6 @@ class FileModelTest extends TestCase
 
         $file = $fileModel->getFile($vendor, $package);
 
-        $this->assertEquals("{$vendor}/{$package}", $file);
+        $this->assertEquals($fileInfoMock, $file);
     }
 }
