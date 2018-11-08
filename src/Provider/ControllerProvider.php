@@ -22,7 +22,7 @@ class ControllerProvider implements ServiceProviderInterface
         };
 
         $container['controller.file'] = function () use ($container) {
-            return new FileController($container['model.file']);
+            return new FileController($container['model.file'], $container['downloads.log']);
         };
     }
 }

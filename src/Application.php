@@ -9,6 +9,7 @@ use Rarst\ReleaseBelt\Provider\ControllerProvider;
 use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
 use Rarst\ReleaseBelt\Provider\FractalProvider;
 use Rarst\ReleaseBelt\Provider\ModelProvider;
+use RKA\Middleware\IpAddress;
 use Slim\App;
 use Slim\Container;
 use Slim\Views\Mustache;
@@ -16,8 +17,6 @@ use Symfony\Component\Finder\Finder;
 
 class Application extends App
 {
-    use DownloadsLogTrait;
-
     /**
      * Main application constructor.
      *
@@ -66,11 +65,12 @@ class Application extends App
         $container->register(new ControllerProvider());
         $container->register(new FractalProvider());
         $container->register(new DownloadsLogProvider());
-//        $app->register(new MonologServiceProvider());
 
         $this->get('/', 'controller.index');
         $this->get('/packages.json', 'controller.json')->setName('json');
         $this->get('/{vendor}/{file}', 'controller.file')->setName('file');
+
+        $this->add(new IpAddress());
 
         foreach ($values as $key => $value) {
             $container[$key] = $value;

@@ -18,7 +18,8 @@
         "monolog/monolog": "^1.23",
         "slim/slim": "^3.11",
         "danjam/slim-mustache-view": "^1.1",
-        "tuupola/slim-basic-auth": "^3.2.1"
+        "tuupola/slim-basic-auth": "^3.2.1",
+        "akrabat/ip-address-middleware": "^1.0.1"
     },
     "autoload": {
         "psr-4": {
