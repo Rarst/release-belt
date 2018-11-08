@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
 
@@ -13,7 +14,7 @@ use Rarst\ReleaseBelt\ReleaseParser;
 
 class FractalProvider implements ServiceProviderInterface
 {
-    public function register(Container $app)
+    public function register(Container $app): void
     {
         $app['fractal'] = function () {
             $fractal = new Manager();

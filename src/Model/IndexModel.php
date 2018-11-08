@@ -34,12 +34,12 @@ class IndexModel
         ];
     }
 
-    protected function getPackages()
+    protected function getPackages(): array
     {
         return array_map([$this, 'transformPackage'], array_keys($this->packages), $this->packages);
     }
 
-    protected function transformPackage($name, $versions)
+    protected function transformPackage($name, $versions): array
     {
         uksort($versions, 'version_compare');
         $versions = array_reverse($versions);

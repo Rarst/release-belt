@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Rarst\ReleaseBelt;
 
 use Symfony\Component\Finder\SplFileInfo;
@@ -40,7 +42,7 @@ class Release
         }
     }
 
-    protected function parseFilename($filename)
+    protected function parseFilename($filename): array
     {
         $matched = preg_match(self::VERSION_REGEX, $filename, $matches);
 

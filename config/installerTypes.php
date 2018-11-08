@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Supported types from https://github.com/composer/installers

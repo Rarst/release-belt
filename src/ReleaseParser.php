@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Rarst\ReleaseBelt;
 
 use Symfony\Component\Finder\Finder;
@@ -20,7 +22,7 @@ class ReleaseParser
     /**
      * @return array
      */
-    public function getReleases()
+    public function getReleases(): array
     {
         $releases = [ ];
 

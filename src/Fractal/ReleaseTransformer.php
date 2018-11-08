@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Rarst\ReleaseBelt\Fractal;
 
 use League\Fractal\TransformerAbstract;
@@ -24,7 +26,7 @@ class ReleaseTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Release $release)
+    public function transform(Release $release): array
     {
         $package = [
             'name'    => $release->vendor . '/' . $release->package,

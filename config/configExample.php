@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * This is an annotated example of a configuration file with default settings (or notes what they are).
  *

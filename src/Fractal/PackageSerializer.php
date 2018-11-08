@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Rarst\ReleaseBelt\Fractal;
 
 use League\Fractal\Serializer\ArraySerializer;
@@ -12,7 +14,7 @@ class PackageSerializer extends ArraySerializer
      *
      * @return array
      */
-    public function collection($resourceKey, array $data)
+    public function collection($resourceKey, array $data): array
     {
         $packages = [ ];
 
