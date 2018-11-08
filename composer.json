@@ -12,7 +12,6 @@
         "issues": "https://github.com/Rarst/release-belt/issues"
     },
     "require": {
-        "ext-fileinfo": "*",
         "symfony/finder": "^4.1.6",
         "league/fractal": "~0.10",
         "monolog/monolog": "^1.23",

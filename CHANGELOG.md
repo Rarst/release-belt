@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - framework dependencies to Slim from Silex.
 
+### Removed
+
+- unnecessary FileInfo extension dependency.
+
 ## 0.3 - 2018-02-01
 
 ### Added
