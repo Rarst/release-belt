@@ -1,4 +1,5 @@
 /vendor
+/public/.htaccess
 /.htaccess
 /config/config.php
 /config.php
