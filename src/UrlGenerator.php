@@ -22,7 +22,7 @@ class UrlGenerator implements UrlGeneratorInterface
 
     public function getUrl(string $name, array $data = []): string
     {
-        return (string)$this->url->withPath($this->router->pathFor($name, $data));
+        return (string)$this->url->withPath($this->router->pathFor($name, $data))->withUserInfo('');
     }
 
     public function getFileUrl(string $vendor, string $file): string

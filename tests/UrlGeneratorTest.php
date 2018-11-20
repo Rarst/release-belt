@@ -28,6 +28,15 @@ class UrlGeneratorTest extends TestCase
         $urlMock->expects($this->once())
             ->method('withPath')
             ->with('/vendor/file.zip')
+            ->willReturn($urlMock);
+
+        $urlMock->expects($this->once())
+            ->method('withUserInfo')
+            ->with('')
+            ->willReturn($urlMock);
+
+        $urlMock->expects($this->once())
+            ->method('__toString')
             ->willReturn('https://example.com/vendor/file.zip');
 
         $urlGenerator = new UrlGenerator($routerMock, $urlMock);

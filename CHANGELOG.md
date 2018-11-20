@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.4.2 - 2018-11-20
+
+### Fixed
+
+- leaking of credentials in URLs when logged in.
+
 ## 0.4.1 - 2018-11-14
 
 ### Fixed
