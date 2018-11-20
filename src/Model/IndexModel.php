@@ -27,7 +27,7 @@ class IndexModel
 
         return [
             'host'              => $this->uri->getHost(),
-            'schemeAndHttpHost' => $this->uri->withUserInfo(''),
+            'schemeAndHttpHost' => $this->urlGenerator->getUrl('index'),
             'user'              => $user,
             'packages'          => $this->getPackages(),
             'jsonUrl'           => $this->urlGenerator->getUrl('json'),

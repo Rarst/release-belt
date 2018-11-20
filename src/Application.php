@@ -66,7 +66,7 @@ class Application extends App
         $container->register(new FractalProvider());
         $container->register(new DownloadsLogProvider());
 
-        $this->get('/', 'controller.index');
+        $this->get('/', 'controller.index')->setName('index');
         $this->get('/packages.json', 'controller.json')->setName('json');
         $this->get('/{vendor}/{file}', 'controller.file')->setName('file');
 
