@@ -6,7 +6,7 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rarst/release-belt.svg)](https://packagist.org/packages/rarst/laps)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
 
-Release Belt is a Composer repository, which serves to quickly integrate third party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respected version number, Release Belt does the rest.
+Release Belt is a Composer repository, which serves to quickly integrate third–party non–Composer releases into Composer workflow. Once Release Belt is installed and you upload your zip files with their respective version number, Release Belt does the rest.
 
 Given the following folder tree:
 
@@ -45,7 +45,7 @@ Release Belt is a `project` type Composer package. It is recommended to use Git 
 
 There is a helper Composer script provided that tries to fetch latest stable version and performs Composer install. 
 
-### Install
+#### Install
 
 ```bash
 git clone https://github.com/Rarst/release-belt
@@ -53,7 +53,7 @@ cd release-belt
 composer belt-update
 ```
 
-### Update
+#### Update
 
 ```bash
 composer belt-update
@@ -70,9 +70,9 @@ A `[type]` could be:
 
 ### 3. Configure a web server
 
-`public/` directory should be used as web root and `index.php` in it as the file to handle requests.
+The `public/` directory should be used as web root and `index.php` in it as the file to handle requests.
 
-Please refer to [webserver configuration](https://www.slimframework.com/docs/v3/start/web-servers.html) in Slim documentation and/or your web hosting’s resources for setup specifics.
+Please refer to [web server configuration](https://www.slimframework.com/docs/v3/start/web-servers.html) in Slim documentation and/or your web hosting’s resources for setup specifics.
 
 Visit home page and `/packages.json` in a web browser to check if it is working.
 
@@ -84,7 +84,7 @@ Release Belt home page will automatically generate some `composer.json` boilerpl
 
 ### Configuration
 
-You can configure Release Belt by creating `config/config.php` file, which returns array of options to override.
+You can configure Release Belt by creating a `config/config.php` file, which returns an array of options to override.
 
 See [`config/configExample.php`](config/configExample.php) for the annotated example.
 
@@ -116,7 +116,6 @@ Composer artifacts require `composer.json` in them. This is for releases that do
 ### But is it web scale?
 
 No.
-
 
 # License
 
