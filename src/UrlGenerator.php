@@ -17,12 +17,12 @@ class UrlGenerator implements UrlGeneratorInterface
     public function __construct(RouterInterface $router, UriInterface $url)
     {
         $this->router = $router;
-        $this->url    = $url;
+        $this->url    = $url->withUserInfo('');
     }
 
     public function getUrl(string $name, array $data = []): string
     {
-        return (string)$this->url->withPath($this->router->pathFor($name, $data))->withUserInfo('');
+        return (string)$this->url->withPath($this->router->pathFor($name, $data));
     }
 
     public function getFileUrl(string $vendor, string $file): string
