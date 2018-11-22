@@ -71,9 +71,8 @@ class FileController
         $release = new Release($file);
 
         $package = "{$release->vendor}/{$release->package}";
-        [$user] = explode(':', $this->request->getUri()->getUserInfo());
         $context = [
-            'user'    => $user ?: 'anonymous',
+            'user'    => $this->request->getAttribute('username') ?: 'anonymous',
             'ip'      => $this->request->getAttribute('ip_address'),
             'vendor'  => $release->vendor,
             'package' => $release->package,

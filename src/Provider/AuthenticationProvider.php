@@ -33,11 +33,7 @@ class AuthenticationProvider
 
         $container->extend('finder', function (Finder $finder, Container $container) {
 
-            /** @var array[][] $users */
-            $users = $container['users'];
-            [$user] = explode(':', $container['request']->getUri()->getUserInfo());
-
-            return $this->applyPermissions($finder, $this->getPermissions($users, $user));
+            return $this->applyPermissions($finder, $this->getPermissions($container['users'], $container['username']));
         });
     }
 

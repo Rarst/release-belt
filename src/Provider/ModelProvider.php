@@ -22,7 +22,8 @@ class ModelProvider implements ServiceProviderInterface
             return new IndexModel(
                 $app['data']['packages'],
                 $app['request']->getUri(),
-                $app['url_generator']
+                $app['url_generator'],
+                $app['username']
             );
         };
 

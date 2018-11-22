@@ -17,16 +17,23 @@ class IndexModel
 
     protected $urlGenerator;
 
+    protected $username;
+
     /**
      * IndexModel constructor.
      *
      * @param array[] $packages
      */
-    public function __construct(array $packages, UriInterface $uri, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        array $packages,
+        UriInterface $uri,
+        UrlGeneratorInterface $urlGenerator,
+        string $username = ''
+    ) {
         $this->packages     = $packages;
         $this->uri          = $uri;
         $this->urlGenerator = $urlGenerator;
+        $this->username     = $username;
     }
 
     /**
@@ -34,12 +41,10 @@ class IndexModel
      */
     public function getContext(): array
     {
-        [$user] = explode(':', $this->uri->getUserInfo());
-
         return [
             'host'              => $this->uri->getHost(),
             'schemeAndHttpHost' => $this->urlGenerator->getUrl('index'),
-            'user'              => $user,
+            'user'              => $this->username,
             'packages'          => $this->getPackages(),
             'jsonUrl'           => $this->urlGenerator->getUrl('json'),
         ];

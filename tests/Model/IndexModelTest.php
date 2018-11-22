@@ -30,10 +30,6 @@ class IndexModelTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $uriDummy->expects($this->once())
-            ->method('getUserInfo')
-            ->willReturn('user:password');
-
         $urlGeneratorDummy = $this->getMockBuilder(UrlGenerator::class)
             ->disableOriginalConstructor()
             ->getMock();

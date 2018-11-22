@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Rarst\ReleaseBelt;
 
 use Mustache_Loader_FilesystemLoader;
+use Psr\Http\Message\ServerRequestInterface;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
 use Rarst\ReleaseBelt\Provider\ControllerProvider;
 use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
@@ -53,6 +54,9 @@ class Application extends App
         $container['parser']      = function () use ($container) {
             return new ReleaseParser($container['finder']);
         };
+        $container['username'] = function () use ($container) {
+            return $container['environment']->get('PHP_AUTH_USER', '');
+        };
         $container['url_generator'] = function () use ($container) {
             return new UrlGenerator($container['router'], $container['request']->getUri());
         };
@@ -63,6 +67,10 @@ class Application extends App
 
             return $view;
         };
+
+        $container->extend('request', function (ServerRequestInterface $request) use ($container) {
+            return $request->withAttribute('username', $container['username']);
+        });
 
         $container->register(new ModelProvider());
         $container->register(new ControllerProvider());
