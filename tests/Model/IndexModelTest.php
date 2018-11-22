@@ -34,7 +34,7 @@ class IndexModelTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $indexModel = new IndexModel($packages, $uriDummy, $urlGeneratorDummy);
+        $indexModel = new IndexModel($packages, $urlGeneratorDummy);
         $context    = $indexModel->getContext();
 
         $this->assertArraySubset([

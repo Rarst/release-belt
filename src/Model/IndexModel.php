@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Model;
 
-use Psr\Http\Message\UriInterface;
 use Rarst\ReleaseBelt\UrlGeneratorInterface;
 
 /**
@@ -12,8 +11,6 @@ use Rarst\ReleaseBelt\UrlGeneratorInterface;
 class IndexModel
 {
     protected $packages;
-
-    protected $uri;
 
     protected $urlGenerator;
 
@@ -24,14 +21,9 @@ class IndexModel
      *
      * @param array[] $packages
      */
-    public function __construct(
-        array $packages,
-        UriInterface $uri,
-        UrlGeneratorInterface $urlGenerator,
-        string $username = ''
-    ) {
+    public function __construct(array $packages, UrlGeneratorInterface $urlGenerator, string $username = '')
+    {
         $this->packages     = $packages;
-        $this->uri          = $uri;
         $this->urlGenerator = $urlGenerator;
         $this->username     = $username;
     }
@@ -41,9 +33,11 @@ class IndexModel
      */
     public function getContext(): array
     {
+        $url = $this->urlGenerator->getUrl('index');
+
         return [
-            'host'              => $this->uri->getHost(),
-            'schemeAndHttpHost' => $this->urlGenerator->getUrl('index'),
+            'host'              => parse_url($url, PHP_URL_HOST),
+            'schemeAndHttpHost' => $url,
             'user'              => $this->username,
             'packages'          => $this->getPackages(),
             'jsonUrl'           => $this->urlGenerator->getUrl('json'),
