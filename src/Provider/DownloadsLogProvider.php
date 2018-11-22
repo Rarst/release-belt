@@ -10,8 +10,14 @@ use Monolog\Logger;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
+/**
+ * Implements log of downloads.
+ */
 class DownloadsLogProvider implements ServiceProviderInterface
 {
+    /**
+     * Registers and configures log service.
+     */
     public function register(Container $app): void
     {
         $app['monolog.logger.class'] = Logger::class;

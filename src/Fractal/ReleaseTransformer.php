@@ -7,6 +7,9 @@ use League\Fractal\TransformerAbstract;
 use Rarst\ReleaseBelt\UrlGeneratorInterface;
 use Rarst\ReleaseBelt\Release;
 
+/**
+ * Prepares release data for the repository format.
+ */
 class ReleaseTransformer extends TransformerAbstract
 {
     /** @var UrlGeneratorInterface $urlGenerator */
@@ -15,6 +18,9 @@ class ReleaseTransformer extends TransformerAbstract
     /** @var array $installerTypes */
     protected $installerTypes;
 
+    /**
+     * ReleaseTransformer constructor.
+     */
     public function __construct(UrlGeneratorInterface $urlGenerator, array $installerTypes = [])
     {
         $this->urlGenerator   = $urlGenerator;
@@ -22,9 +28,9 @@ class ReleaseTransformer extends TransformerAbstract
     }
 
     /**
-     * @param Release $release
+     * Formats release data into the repository representation.
      *
-     * @return array
+     * Adds Composer installers dependency for the recognized package types.
      */
     public function transform(Release $release): array
     {

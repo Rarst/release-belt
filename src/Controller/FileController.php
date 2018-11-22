@@ -12,6 +12,9 @@ use Slim\Exception\NotFoundException;
 use Slim\Http\Stream;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Handles the route for file downloads and log access.
+ */
 class FileController
 {
     protected $model;
@@ -24,12 +27,22 @@ class FileController
     /** @var ResponseInterface $response */
     protected $response;
 
+    /**
+     * FileController constructor.
+     */
     public function __construct(FileModel $model, LoggerInterface $logger)
     {
         $this->model = $model;
         $this->logger = $logger;
     }
 
+    /**
+     * Looks up the file and sends download response.
+     *
+     * @throws NotFoundException
+     *
+     * @param string[] $args Route arguments parsed from the URL.
+     */
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,
@@ -50,6 +63,9 @@ class FileController
         return $this->sendFile($sendFile);
     }
 
+    /**
+     * Logs the file download.
+     */
     protected function logFile(SplFileInfo $file): void
     {
         $release = new Release($file);
@@ -67,6 +83,9 @@ class FileController
         $this->logger->info($package, $context);
     }
 
+    /**
+     * Returns streamed file download response.
+     */
     protected function sendFile(SplFileInfo $file): ResponseInterface
     {
         $fileStream = fopen($file->getRealPath(), 'rb');

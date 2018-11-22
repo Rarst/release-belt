@@ -6,6 +6,9 @@ namespace Rarst\ReleaseBelt\Model;
 use Psr\Http\Message\UriInterface;
 use Rarst\ReleaseBelt\UrlGeneratorInterface;
 
+/**
+ * Provides data context for the index page.
+ */
 class IndexModel
 {
     protected $packages;
@@ -14,6 +17,11 @@ class IndexModel
 
     protected $urlGenerator;
 
+    /**
+     * IndexModel constructor.
+     *
+     * @param array[] $packages
+     */
     public function __construct(array $packages, UriInterface $uri, UrlGeneratorInterface $urlGenerator)
     {
         $this->packages     = $packages;
@@ -21,7 +29,10 @@ class IndexModel
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function getContext() : array
+    /**
+     * Builds context to be passed into template for render.
+     */
+    public function getContext(): array
     {
         [$user] = explode(':', $this->uri->getUserInfo());
 
@@ -34,12 +45,20 @@ class IndexModel
         ];
     }
 
+    /**
+     * Processes a set of packages data for display.
+     */
     protected function getPackages(): array
     {
         return array_map([$this, 'transformPackage'], array_keys($this->packages), $this->packages);
     }
 
-    protected function transformPackage($name, $versions): array
+    /**
+     * Prepares the data of an individual package for display.
+     *
+     * @param array[] $versions
+     */
+    protected function transformPackage(string $name, array $versions): array
     {
         uksort($versions, 'version_compare');
         $versions = array_reverse($versions);

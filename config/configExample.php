@@ -17,10 +17,6 @@ return [
     // Path to downloads log, defaults to null for disabled.
     // 'downloads.logfile'    => __DIR__.'/../releases/downloads.log',
 
-    // Format of download log entries.
-    // 'downloads.log.format'  =>
-    //    "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n",
-
     //'users'                    => [
           // User login.
     //    'composer' => [

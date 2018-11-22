@@ -11,8 +11,14 @@ use Rarst\ReleaseBelt\Fractal\PackageSerializer;
 use Rarst\ReleaseBelt\Fractal\ReleaseTransformer;
 use Rarst\ReleaseBelt\ReleaseParser;
 
+/**
+ * Implements processing and serializing of release data with Fractal.
+ */
 class FractalProvider implements ServiceProviderInterface
 {
+    /**
+     * Registers services on the container.
+     */
     public function register(Container $app): void
     {
         $app['fractal'] = function () {

@@ -8,8 +8,14 @@ use Pimple\ServiceProviderInterface;
 use Rarst\ReleaseBelt\Model\FileModel;
 use Rarst\ReleaseBelt\Model\IndexModel;
 
+/**
+ * Implements data–handling models.
+ */
 class ModelProvider implements ServiceProviderInterface
 {
+    /**
+     * Registers model services on the container.
+     */
     public function register(Container $app): void
     {
         $app['model.index'] = function () use ($app) {

@@ -5,6 +5,9 @@ namespace Rarst\ReleaseBelt;
 
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Release instance, based on a file data.
+ */
 class Release
 {
     protected const SEPARATORS = '.-_';
@@ -24,6 +27,9 @@ class Release
     public $package;
     public $version;
 
+    /**
+     * Release constructor.
+     */
     public function __construct(SplFileInfo $file)
     {
         $this->file     = $file;
@@ -41,7 +47,10 @@ class Release
         }
     }
 
-    protected function parseFilename($filename): array
+    /**
+     * Parses package and version information out of a file name.
+     */
+    protected function parseFilename(string $filename): array
     {
         $matched = preg_match(self::VERSION_REGEX, $filename, $matches);
 

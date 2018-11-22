@@ -15,6 +15,9 @@ use Slim\Container;
 use Slim\Views\Mustache;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * Main application class and entry point.
+ */
 class Application extends App
 {
     /**

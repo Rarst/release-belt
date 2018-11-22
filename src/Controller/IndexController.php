@@ -8,18 +8,27 @@ use Psr\Http\Message\ServerRequestInterface;
 use Rarst\ReleaseBelt\Model\IndexModel;
 use Slim\Views\Mustache;
 
+/**
+ * Handles index route.
+ */
 class IndexController
 {
     protected $view;
 
     protected $model;
 
+    /**
+     * IndexController constructor.
+     */
     public function __construct(Mustache $view, IndexModel $model)
     {
         $this->view  = $view;
         $this->model = $model;
     }
 
+    /**
+     * Renders model context with mustache template.
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         return $this->view->render($response, 'index', $this->model->getContext());

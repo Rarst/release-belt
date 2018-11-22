@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt;
 
+/**
+ * Declares a way to generate absolute URLs to the app routes.
+ */
 interface UrlGeneratorInterface
 {
     /**

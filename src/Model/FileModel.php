@@ -6,10 +6,16 @@ namespace Rarst\ReleaseBelt\Model;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Implements file lookup.
+ */
 class FileModel
 {
     protected $finder;
 
+    /**
+     * FileModel constructor.
+     */
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
@@ -19,11 +25,6 @@ class FileModel
      * Returns the file info object for the vendor and file name provided.
      *
      * If the file isn't located the returned object would not have isReadable() status.
-     *
-     * @param string $vendor
-     * @param string $file
-     *
-     * @return SplFileInfo
      */
     public function getFile(string $vendor, string $file): SplFileInfo
     {

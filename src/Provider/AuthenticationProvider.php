@@ -8,8 +8,14 @@ use Slim\Container;
 use Symfony\Component\Finder\Finder;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
+/**
+ * Implements HTTP authentication.
+ */
 class AuthenticationProvider
 {
+    /**
+     * Does necessary registrations on the app instance.
+     */
     public function boot(App $app): void
     {
         /** @var Container $container */
@@ -35,6 +41,9 @@ class AuthenticationProvider
         });
     }
 
+    /**
+     * Retrieves a set of user names with password hashes from a container instance.
+     */
     protected function getUserHashes(Container $app): array
     {
         $users = [];
@@ -56,7 +65,12 @@ class AuthenticationProvider
         return $users;
     }
 
-    protected function getPermissions(array $users, $user): array
+    /**
+     * Retrieves package access permissions for a specific user.
+     *
+     * @param array[] $users
+     */
+    protected function getPermissions(array $users, string $user): array
     {
         return [
             'allow'    => $users[$user]['allow'] ?? [],
@@ -64,6 +78,11 @@ class AuthenticationProvider
         ];
     }
 
+    /**
+     * Applies access permissions on a Finder instance for package lookup..
+     *
+     * @param array[] $permissions
+     */
     protected function applyPermissions(Finder $finder, array $permissions): Finder
     {
         foreach ($permissions['allow'] as $path) {
