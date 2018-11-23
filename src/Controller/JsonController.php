@@ -14,14 +14,17 @@ class JsonController
 {
     protected $data;
 
+    private $debug;
+
     /**
      * JsonController constructor.
      *
      * @param array[] $data
      */
-    public function __construct(array $data)
+    public function __construct(array $data, bool $debug = false)
     {
-        $this->data = $data;
+        $this->data  = $data;
+        $this->debug = $debug;
     }
 
     /**
@@ -29,6 +32,6 @@ class JsonController
      */
     public function __invoke(ServerRequestInterface $request, Response $response): ResponseInterface
     {
-        return $response->withJson($this->data);
+        return $response->withJson($this->data, null, $this->debug ? JSON_PRETTY_PRINT : 0);
     }
 }

@@ -24,7 +24,7 @@ class ControllerProvider implements ServiceProviderInterface
         };
 
         $container['controller.json'] = function () use ($container) {
-            return new JsonController($container['data']);
+            return new JsonController($container['data'], $container['debug']);
         };
 
         $container['controller.file'] = function () use ($container) {

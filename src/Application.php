@@ -41,6 +41,7 @@ class Application extends App
         /** @var Container $container */
         $container = $this->getContainer();
 
+        $container['debug'] = false;
         /** @deprecated 0.3:1.0 Deprecated in favor of `users`. */
         $container['http.users']  = [];
         $container['users']       = [];
