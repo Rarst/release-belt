@@ -18,20 +18,20 @@ class DownloadsLogProvider implements ServiceProviderInterface
     /**
      * Registers and configures log service.
      */
-    public function register(Container $app): void
+    public function register(Container $container): void
     {
-        $app['monolog.logger.class'] = Logger::class;
-        $app['downloads.logfile']    = null;
-        $app['downloads.log.format'] =
+        $container['monolog.logger.class'] = Logger::class;
+        $container['downloads.logfile']    = null;
+        $container['downloads.log.format'] =
             "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n";
 
-        $app['downloads.log'] = function () use ($app) {
+        $container['downloads.log'] = function () use ($container) {
             /** @var Logger $log */
-            $log       = new $app['monolog.logger.class']('downloads');
-            $handler   = $app['downloads.logfile'] ?
-                new StreamHandler($app['downloads.logfile']) :
+            $log       = new $container['monolog.logger.class']('downloads');
+            $handler   = $container['downloads.logfile'] ?
+                new StreamHandler($container['downloads.logfile']) :
                 new NullHandler();
-            $formatter = new LineFormatter($app['downloads.log.format'], DATE_RFC3339);
+            $formatter = new LineFormatter($container['downloads.log.format'], DATE_RFC3339);
 
             $handler->setFormatter($formatter);
             $log->pushHandler($handler);

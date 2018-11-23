@@ -16,14 +16,14 @@ class ModelProvider implements ServiceProviderInterface
     /**
      * Registers model services on the container.
      */
-    public function register(Container $app): void
+    public function register(Container $container): void
     {
-        $app['model.index'] = function () use ($app) {
-            return new IndexModel($app['data']['packages'], $app['url_generator'], $app['username']);
+        $container['model.index'] = function () use ($container) {
+            return new IndexModel($container['data']['packages'], $container['url_generator'], $container['username']);
         };
 
-        $app['model.file'] = function () use ($app) {
-            return new FileModel($app['finder']);
+        $container['model.file'] = function () use ($container) {
+            return new FileModel($container['finder']);
         };
     }
 }

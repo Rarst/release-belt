@@ -40,19 +40,19 @@ class AuthenticationProvider
     /**
      * Retrieves a set of user names with password hashes from a container instance.
      */
-    protected function getUserHashes(Container $app): array
+    protected function getUserHashes(Container $container): array
     {
         $users = [];
 
-        if (! empty($app['http.users'])) {
+        if (! empty($container['http.users'])) {
             trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
 
-            foreach ($app['http.users'] as $login => $hash) {
+            foreach ($container['http.users'] as $login => $hash) {
                 $users[$login] = $hash;
             }
         }
 
-        foreach ($app['users'] as $login => $data) {
+        foreach ($container['users'] as $login => $data) {
             if (! empty($data['hash'])) {
                 $users[$login] = $data['hash'];
             }

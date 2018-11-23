@@ -19,38 +19,38 @@ class FractalProvider implements ServiceProviderInterface
     /**
      * Registers services on the container.
      */
-    public function register(Container $app): void
+    public function register(Container $container): void
     {
-        $app['fractal'] = function () {
+        $container['fractal'] = function () {
             $fractal = new Manager();
             $fractal->setSerializer(new PackageSerializer());
 
             return $fractal;
         };
 
-        $app['transformer'] = function () use ($app) {
+        $container['transformer'] = function () use ($container) {
             $transformer = new ReleaseTransformer(
-                $app['url_generator'],
+                $container['url_generator'],
                 require __DIR__.'/../../config/installerTypes.php'
             );
 
             return $transformer;
         };
 
-        $app['collection'] = function () use ($app) {
+        $container['collection'] = function () use ($container) {
             /** @var ReleaseParser $parser */
-            $parser   = $app['parser'];
+            $parser   = $container['parser'];
             $releases = $parser->getReleases();
 
-            return new Collection($releases, $app['transformer']);
+            return new Collection($releases, $container['transformer']);
         };
 
-        $app['data'] = function () use ($app) {
+        $container['data'] = function () use ($container) {
 
             /** @var Manager $fractal */
-            $fractal = $app['fractal'];
+            $fractal = $container['fractal'];
 
-            return $fractal->createData($app['collection'])->toArray();
+            return $fractal->createData($container['collection'])->toArray();
         };
     }
 }
