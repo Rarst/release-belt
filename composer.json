@@ -34,7 +34,8 @@
             "git fetch --tags",
             "@php bin/checkoutLatestTag.php",
             "@composer install --no-dev --optimize-autoloader"
-        ]
+        ],
+        "phan" : "phan --config-file=config/phan.php --allow-polyfill-parser"
     },
     "scripts-descriptions": {
         "belt-update": "Performs update to the latest Release Belt version."
