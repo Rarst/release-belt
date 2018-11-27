@@ -18,6 +18,9 @@ use Symfony\Component\Finder\Finder;
 
 /**
  * Main application class and entry point.
+ *
+ * @phan-suppress-next-line PhanParamSignatureMismatch
+ * @method Container getContainer()
  */
 class Application extends App
 {
@@ -38,7 +41,6 @@ class Application extends App
         }
 
         parent::__construct(['settings' => $settings]);
-        /** @var Container $container */
         $container = $this->getContainer();
 
         $container['debug'] = false;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
 
-use Slim\App;
+use Rarst\ReleaseBelt\Application;
 use Slim\Container;
 use Symfony\Component\Finder\Finder;
 use Tuupola\Middleware\HttpBasicAuthentication;
@@ -16,10 +16,9 @@ class AuthenticationProvider
     /**
      * Does necessary registrations on the app instance.
      */
-    public function boot(App $app): void
+    public function boot(Application $app): void
     {
-        /** @var Container $container */
-        $container       = $app->getContainer();
+        $container  = $app->getContainer();
         $userHashes = $this->getUserHashes($container);
 
         if (empty($userHashes)) {
