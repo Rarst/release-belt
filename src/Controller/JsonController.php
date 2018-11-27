@@ -29,6 +29,9 @@ class JsonController
 
     /**
      * Returns JSON response with packages data.
+     *
+     * @suppress PhanTypeMismatchArgument
+     * @suppress PhanUnusedPublicMethodParameter
      */
     public function __invoke(ServerRequestInterface $request, Response $response): ResponseInterface
     {

@@ -29,7 +29,7 @@ class Application extends App
      *
      * Belt is hardwired to use Pimple since Silex times, so overriding Slim’s container object is not supported.
      *
-     * @param array $values
+     * @suppress PhanUndeclaredFunctionInCallable
      */
     public function __construct(array $values = [])
     {

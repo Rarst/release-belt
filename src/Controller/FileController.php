@@ -84,6 +84,9 @@ class FileController
 
     /**
      * Returns streamed file download response.
+     *
+     * @suppress PhanPossiblyFalseTypeArgument
+     * @suppress PhanPossiblyFalseTypeArgumentInternal
      */
     protected function sendFile(SplFileInfo $file): ResponseInterface
     {
