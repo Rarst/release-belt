@@ -81,11 +81,11 @@ class AuthenticationProvider
     protected function applyPermissions(Finder $finder, array $permissions): Finder
     {
         foreach ($permissions['allow'] as $path) {
-            $finder->path($path);
+            $finder->path((string)$path);
         }
 
         foreach ($permissions['disallow'] as $path) {
-            $finder->notPath($path);
+            $finder->notPath((string)$path);
         }
 
         return $finder;
