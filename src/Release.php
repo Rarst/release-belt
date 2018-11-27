@@ -58,9 +58,9 @@ class Release
             return [];
         }
 
-        $package = trim(rtrim($matches['package'], self::SEPARATORS));
-        $version = trim(ltrim($matches['version'], 'v'));
-
-        return compact('package', 'version');
+        return [
+            'package' => trim(rtrim($matches['package'], self::SEPARATORS)),
+            'version' => trim(ltrim($matches['version'], 'v')),
+        ];
     }
 }
