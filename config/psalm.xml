@@ -33,6 +33,7 @@
             <errorLevel type="suppress">
                 <file name="src/Application.php" />
                 <file name="src/Fractal/ReleaseTransformer.php" />
+                <file name="src/Provider/AuthenticationProvider.php" />
                 <directory name="src/Controller" />
             </errorLevel>
         </PropertyNotSetInConstructor>

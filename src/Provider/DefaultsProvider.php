@@ -37,12 +37,6 @@ class DefaultsProvider implements ServiceProviderInterface
         $container['parser']        = function () use ($container) {
             return new ReleaseParser($container['finder']);
         };
-        $container['username']      = function () use ($container) {
-            /** @var Environment $environment */
-            $environment = $container['environment'];
-
-            return $environment->get('PHP_AUTH_USER', '');
-        };
         $container['url_generator'] = function () use ($container) {
             /** @var Request $request */
             $request = $container['request'];
