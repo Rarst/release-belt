@@ -12,8 +12,10 @@ use Slim\Http\Response;
  */
 class JsonController
 {
+    /** @var array|array[] */
     protected $data;
 
+    /** @var bool */
     private $debug;
 
     /**

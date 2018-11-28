@@ -13,18 +13,31 @@ class Release
     protected const SEPARATORS = '.-_';
 
     // From https://github.com/composer/semver/blob/master/src/VersionParser.php
+    /** @var string */
     public const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)((?:[.-]?\d+)*+)?)?([.-]?dev)?';
 
+    /** @var string */
     public const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}'.self::MODIFIER_REGEX.')\.zip/';
 
     /** @var SplFileInfo $file */
     protected $file;
 
+    /** @var string */
     public $path;
+
+    /** @var string */
     public $filename;
+
+    /** @var string */
     public $type;
+
+    /** @var string */
     public $vendor;
+
+    /** @var string */
     public $package;
+
+    /** @var string */
     public $version;
 
     /**
@@ -42,8 +55,8 @@ class Release
         $matches = $this->parseFilename($this->filename);
 
         if (! empty($matches)) {
-            $this->package = $matches['package'];
-            $this->version = $matches['version'];
+            $this->package = (string) $matches['package'];
+            $this->version = (string) $matches['version'];
         }
     }
 

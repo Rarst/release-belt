@@ -13,8 +13,10 @@ use Slim\Views\Mustache;
  */
 class IndexController
 {
+    /** @var Mustache */
     protected $view;
 
+    /** @var IndexModel */
     protected $model;
 
     /**

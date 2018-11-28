@@ -11,6 +11,7 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class FileModel
 {
+    /** @var Finder */
     protected $finder;
 
     /**
@@ -30,6 +31,7 @@ class FileModel
      */
     public function getFile(string $vendor, string $file): SplFileInfo
     {
+        /** @var \Iterator $iterator */
         $iterator = $this->finder->path($vendor)->name($file)->getIterator();
         $iterator->rewind();
 
@@ -37,6 +39,7 @@ class FileModel
             return new SplFileInfo('', '', '');
         }
 
+        /** @var SplFileInfo */
         return $iterator->current();
     }
 }

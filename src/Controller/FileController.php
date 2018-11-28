@@ -17,8 +17,10 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class FileController
 {
+    /** @var FileModel */
     protected $model;
 
+    /** @var LoggerInterface */
     protected $logger;
 
     /** @var ServerRequestInterface $request */

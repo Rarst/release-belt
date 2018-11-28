@@ -10,10 +10,13 @@ use Rarst\ReleaseBelt\UrlGeneratorInterface;
  */
 class IndexModel
 {
+    /** @var array[] */
     protected $packages;
 
+    /** @var UrlGeneratorInterface */
     protected $urlGenerator;
 
+    /** @var string */
     protected $username;
 
     /**
@@ -56,8 +59,6 @@ class IndexModel
 
     /**
      * Prepares the data of an individual package for display.
-     *
-     * @param array[] $versions
      */
     protected function transformPackage(string $name, array $versions): array
     {

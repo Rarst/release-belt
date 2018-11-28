@@ -13,6 +13,8 @@ use Rarst\ReleaseBelt\Provider\ModelProvider;
 use RKA\Middleware\IpAddress;
 use Slim\App;
 use Slim\Container;
+use Slim\Http\Environment;
+use Slim\Http\Request;
 use Slim\Views\Mustache;
 use Symfony\Component\Finder\Finder;
 
@@ -41,6 +43,7 @@ class Application extends App
         }
 
         parent::__construct(['settings' => $settings]);
+        /** @var Container $container */
         $container = $this->getContainer();
 
         $container['debug'] = false;
@@ -58,10 +61,14 @@ class Application extends App
             return new ReleaseParser($container['finder']);
         };
         $container['username'] = function () use ($container) {
-            return $container['environment']->get('PHP_AUTH_USER', '');
+            /** @var Environment $environment */
+            $environment = $container['environment'];
+            return $environment->get('PHP_AUTH_USER', '');
         };
         $container['url_generator'] = function () use ($container) {
-            return new UrlGenerator($container['router'], $container['request']->getUri());
+            /** @var Request $request */
+            $request = $container['request'];
+            return new UrlGenerator($container['router'], $request->getUri());
         };
         $container['view'] = function () {
             $view = new Mustache([
