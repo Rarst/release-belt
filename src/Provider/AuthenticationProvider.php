@@ -40,31 +40,32 @@ class AuthenticationProvider
             return;
         }
 
-        $authentication = $this;
-
         $app->add(new HttpBasicAuthentication([
             'secure' => false,
             'users'  => $userHashes,
-            'before' => function (ServerRequestInterface $request, array $arguments) use ($authentication)
-            : ServerRequestInterface {
-                return $authentication->before($request, $arguments);
-            },
+            'before' => $this->before(),
         ]));
     }
 
     /**
-     * Registers username attribute on request and applies permissions.
+     * Returns a closure to use in authentication middleware.
+     *
+     * The closure add username attribute to request and applies permissions.
      */
-    private function before(ServerRequestInterface $request, array $arguments): ServerRequestInterface
+    private function before(): \Closure
     {
-        $username = $arguments['user'] ?? '';
+        $auth = $this; // We need this because middleware binds the closure to its own object.
 
-        $this->applyPermissions(
-            $this->container['finder'],
-            $this->getPermissions($this->container['users'], $username)
-        );
+        return function (ServerRequestInterface $request, array $arguments) use ($auth) : ServerRequestInterface {
+            $username = $arguments['user'] ?? '';
 
-        return $request->withAttribute('username', $username);
+            $auth->applyPermissions(
+                $auth->container['finder'],
+                $auth->getPermissions($auth->container['users'], $username)
+            );
+
+            return $request->withAttribute('username', $username);
+        };
     }
 
     /**
