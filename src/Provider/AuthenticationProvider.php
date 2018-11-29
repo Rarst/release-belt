@@ -69,25 +69,22 @@ class AuthenticationProvider
     }
 
     /**
-     * Retrieves a set of user names with password hashes from a container instance.
+     * Retrieves a set of user names with password hashes.
      */
     protected function getUserHashes(): array
     {
-        $users = [];
+        /** @var string[] $users */
+        $users = $this->container['http.users'] ?? [];
 
-        if (! empty($this->container['http.users'])) {
+        if ($users) {
             trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
-
-            $users = $this->container['http.users'];
         }
 
         foreach ($this->container['users'] as $login => $data) {
-            if (! empty($data['hash'])) {
-                $users[$login] = $data['hash'];
-            }
+            $users[$login] = $data['hash'] ?? '';
         }
 
-        return $users;
+        return array_filter($users);
     }
 
     /**
