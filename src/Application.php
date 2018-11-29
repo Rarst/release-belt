@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt;
 
-use Psr\Http\Message\ServerRequestInterface;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
 use Rarst\ReleaseBelt\Provider\ControllerProvider;
 use Rarst\ReleaseBelt\Provider\DefaultsProvider;
@@ -31,14 +30,9 @@ class Application extends App
      */
     public function __construct(array $values = [])
     {
-        $settings = [];
+        parent::__construct(['settings' => $values['settings'] ?? []]);
+        unset($values['settings']);
 
-        if (isset($values['settings'])) { // These are handled/used early by Slim’s internal registrations.
-            $settings = $values['settings'];
-            unset($values['settings']);
-        }
-
-        parent::__construct(['settings' => $settings]);
         /** @var Container $container */
         $container = $this->getContainer();
 
