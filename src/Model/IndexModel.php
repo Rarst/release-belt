@@ -54,7 +54,16 @@ class IndexModel
      */
     protected function getPackages(): array
     {
-        return array_map([$this, 'transformPackage'], array_keys($this->packages), $this->packages);
+        if (empty($this->packages)) {
+            return [];
+        }
+
+        $packages = array_map([$this, 'transformPackage'], array_keys($this->packages), $this->packages);
+
+        end($packages);
+        $packages[key($packages)]['last'] = true;
+
+        return $packages;
     }
 
     /**

@@ -1,7 +1,7 @@
 {
     "require": {
     {{#packages}}
-        "{{name}}": "^{{latest}}"
+        "{{name}}": "^{{latest}}"{{^last}},{{/last}}
     {{/packages}}
     },
     "repositories": {
