@@ -13,8 +13,6 @@ class PackageSerializer extends ArraySerializer
     /**
      * Serializes the data into the needed array structure.
      *
-     * @suppress PhanUnusedPublicMethodParameter
-     *
      * @param string $resourceKey
      * @param array  $data
      *

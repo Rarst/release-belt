@@ -49,8 +49,6 @@ class IndexModel
 
     /**
      * Processes a set of packages data for display.
-     *
-     * @suppress PhanPartialTypeMismatchArgument
      */
     protected function getPackages(): array
     {

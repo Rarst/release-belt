@@ -26,8 +26,6 @@ class FileModel
      * Returns the file info object for the vendor and file name provided.
      *
      * If the file isn't located the returned object would not have isReadable() status.
-     *
-     * @suppress PhanPossiblyNonClassMethodCall
      */
     public function getFile(string $vendor, string $file): SplFileInfo
     {

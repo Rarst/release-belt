@@ -30,8 +30,6 @@ class IndexController
 
     /**
      * Renders model context with mustache template.
-     *
-     * @suppress PhanUnusedPublicMethodParameter
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {

@@ -16,7 +16,6 @@ use Slim\Container;
 /**
  * Main application class and entry point.
  *
- * @phan-suppress-next-line PhanParamSignatureMismatch
  * @method Container getContainer()
  */
 class Application extends App
@@ -25,8 +24,6 @@ class Application extends App
      * Main application constructor.
      *
      * Belt is hardwired to use Pimple since Silex times, so overriding Slim’s container object is not supported.
-     *
-     * @suppress PhanUndeclaredFunctionInCallable
      */
     public function __construct(array $values = [])
     {
