@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.5 - 2019-11-21
+
+### Added
+- inline documentation
+- username as container service and request attribute
+- debug mode to output human-readable JSON
+- Psalm static analysis
+
+## Changed
+- default service definitions to dedicated provider
+
+## Fixed
+- missing commas in boilerplate
+
 ## 0.4.2 - 2018-11-20
 
 ### Fixed
