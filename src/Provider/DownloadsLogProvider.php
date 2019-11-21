@@ -26,7 +26,10 @@ class DownloadsLogProvider implements ServiceProviderInterface
             "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n";
 
         $container['downloads.log'] = function () use ($container) {
-            /** @var Logger $log */
+            /**
+             * @var Logger::class $container['monolog.logger.class']
+             * @var Logger $log
+             */
             $log       = new $container['monolog.logger.class']('downloads');
             $handler   = $container['downloads.logfile'] ?
                 new StreamHandler($container['downloads.logfile']) :

@@ -10,7 +10,7 @@ use Rarst\ReleaseBelt\UrlGeneratorInterface;
  */
 class IndexModel
 {
-    /** @var array[] */
+    /** @var array<string, array> */
     protected $packages;
 
     /** @var UrlGeneratorInterface */
@@ -22,7 +22,7 @@ class IndexModel
     /**
      * IndexModel constructor.
      *
-     * @param array[] $packages
+     * @param array<string, array> $packages
      */
     public function __construct(array $packages, UrlGeneratorInterface $urlGenerator, string $username = '')
     {
