@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cf5019cf85b2b7dcb7b0558ed25ccb6",
+    "content-hash": "7c05dd6d751c174995967bffa12c93f4",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -142,6 +142,46 @@
                 "view"
             ],
             "time": "2016-12-19T10:45:09+00:00"
+        },
+        {
+            "name": "frontpack/composer-assets-plugin",
+            "version": "v0.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/frontpack/composer-assets-plugin.git",
+                "reference": "c3fdc96fecdfff082e1efbd0b038442b38cc6edd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/frontpack/composer-assets-plugin/zipball/c3fdc96fecdfff082e1efbd0b038442b38cc6edd",
+                "reference": "c3fdc96fecdfff082e1efbd0b038442b38cc6edd",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.6.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Frontpack\\ComposerAssetsPlugin\\ComposerAssetsPlugin"
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Pecha",
+                    "homepage": "http://www.janpecha.cz/"
+                }
+            ],
+            "description": "Composer plugin for installing of assets.",
+            "time": "2020-08-08T12:55:01+00:00"
         },
         {
             "name": "league/fractal",
@@ -1020,6 +1060,57 @@
                 "psr-7"
             ],
             "time": "2018-10-15T12:48:00+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "8a628b943cf31ca0a002c08af661a95772480225"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/8a628b943cf31ca0a002c08af661a95772480225",
+                "reference": "8a628b943cf31ca0a002c08af661a95772480225",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "https://getbootstrap.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "web"
+            ],
+            "time": "2018-01-18T18:29:48+00:00"
         }
     ],
     "packages-dev": [
@@ -1063,5 +1154,6 @@
     "platform": {
         "php": ">=7.1.3"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
