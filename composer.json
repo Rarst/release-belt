@@ -21,7 +21,7 @@
         "tuupola/slim-basic-auth": "^3.2.1",
         "akrabat/ip-address-middleware": "^1.0.1",
         "frontpack/composer-assets-plugin": "^0.10.2",
-        "twbs/bootstrap": "4.0.0"
+        "twbs/bootstrap": "^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +42,7 @@
         "belt-update": "Performs update to the latest Release Belt version."
     },
     "extra": {
-        "assets-dir": "public/assets",
+        "assets-dir": "public/css",
         "assets-files": {
             "twbs/bootstrap": "dist/css/bootstrap.min.css"
         }

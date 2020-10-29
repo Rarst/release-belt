@@ -1,6 +1,6 @@
 /vendor
 /public/.htaccess
-/public/assets
+/public/css
 /.htaccess
 /config/config.php
 /config.php
