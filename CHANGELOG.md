@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## Changed
+- Support `composer/installers` 2.x, in addition to the 1.x.
+
 ## 0.5 - 2019-11-21
 
 ### Added
@@ -48,7 +51,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - command line boilerplate to home page.
 - site favicon, image from [Bytesize](https://danklammer.com/bytesize-icons/).
-- support for all `composer/installer` types (^1.5).
+- support for all `composer/installers` types (^1.5).
 - `users` configuration option with permission control by package path.
 - Composer script for updates.
 

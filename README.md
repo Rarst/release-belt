@@ -29,7 +29,7 @@ It will serve the following Composer repository at `/packages.json` automagicall
                 },
                 "type": "wordpress-plugin",
                 "require": {
-                    "composer/installers": "^1.5"
+                    "composer/installers": "^1.5 || ^2.0"
                 }
             }
         }

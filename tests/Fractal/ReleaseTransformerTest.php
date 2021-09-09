@@ -51,7 +51,7 @@ class ReleaseTransformerTest extends TestCase
             ],
             'type'    => $type,
             'require' => [
-                'composer/installers' => '^1.5',
+                'composer/installers' => '^1.5 || ^2.0',
             ],
         ], $transformResult);
     }
