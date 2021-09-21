@@ -26,10 +26,6 @@ class IndexModelTest extends TestCase
             ],
         ];
 
-        $uriDummy = $this->getMockBuilder(UriInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
         $urlGeneratorDummy = $this->getMockBuilder(UrlGenerator::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -37,24 +33,28 @@ class IndexModelTest extends TestCase
         $indexModel = new IndexModel($packages, $urlGeneratorDummy);
         $context    = $indexModel->getContext();
 
-        $this->assertArraySubset([
-            'packages' => [
-                [
-                    'name'     => 'package1',
-                    'latest'   => '2.0',
-                    'type'     => 'wordpress-plugin',
-                    'versions' => [[], []],
-                ],
-                [
-                    'name'     => 'package2',
-                    'latest'   => '1.1',
-                    'versions' => [
-                        [
-                            'foo' => 'bar',
-                        ],
+        $this->assertEquals([
+            [
+                'name'     => 'package1',
+                'latest'   => '2.0',
+                'type'     => 'wordpress-plugin',
+                'versions' => [
+                    [
+                        'type' => 'wordpress-plugin',
                     ],
+                    [],
                 ],
             ],
-        ], $context);
+            [
+                'name'     => 'package2',
+                'latest'   => '1.1',
+                'versions' => [
+                    [
+                        'foo' => 'bar',
+                    ],
+                ],
+                'last'     => true,
+            ],
+        ], $context['packages']);
     }
 }

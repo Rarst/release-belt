@@ -42,7 +42,7 @@ class ReleaseTransformerTest extends TestCase
 
         $transformResult = $releaseTransformer->transform($releaseMock);
 
-        $this->assertArraySubset([
+        $this->assertEquals([
             'name'    => "{$vendor}/{$package}",
             'version' => $version,
             'dist'    => [

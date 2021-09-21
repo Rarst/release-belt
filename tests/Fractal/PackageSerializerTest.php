@@ -27,13 +27,6 @@ class PackageSerializerTest extends TestCase
 
         $collection = $packageSerializer->collection('key', [$package, $package2]);
 
-        $this->assertArraySubset([
-            'packages' => [
-                $name => [
-                    $version  => $package,
-                    $version2 => $package2,
-                ],
-            ],
-        ], $collection);
+        $this->assertEquals([$version => $package, $version2 => $package2], $collection['packages'][$name]);
     }
 }
