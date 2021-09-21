@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## Changed
+## 0.6 - 2021-09-21
+
+### Changed
 - Bootstrap load as a local asset (was loaded from CDN)
 - tests to PHPUnit 9
 - composer/installers support to latest v1 and added v2
