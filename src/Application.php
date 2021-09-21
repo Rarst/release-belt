@@ -32,7 +32,6 @@ class Application extends App
         parent::__construct(['settings' => $values['settings'] ?? []]);
         unset($values['settings']);
 
-        /** @var Container $container */
         $container = $this->getContainer();
 
         $container->register(new DefaultsProvider());

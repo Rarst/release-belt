@@ -17,24 +17,28 @@ class DownloadsLogProvider implements ServiceProviderInterface
 {
     /**
      * Registers and configures log service.
+     *
+     * @psalm-suppress UnsafeInstantiation
      */
-    public function register(Container $container): void
+    public function register(Container $pimple): void
     {
-        $container['monolog.logger.class'] = Logger::class;
-        $container['downloads.logfile']    = null;
-        $container['downloads.log.format'] =
+        $pimple['monolog.logger.class'] = Logger::class;
+        $pimple['downloads.logfile']    = null;
+        $pimple['downloads.log.format'] =
             "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n";
 
-        $container['downloads.log'] = function () use ($container) {
+        $pimple['downloads.log'] = function () use ($pimple) {
             /**
+             * @var class-string<Logger> $loggerClass
              * @var Logger::class $container['monolog.logger.class']
-             * @var Logger $log
+             * @var Logger               $log
              */
-            $log       = new $container['monolog.logger.class']('downloads');
-            $handler   = $container['downloads.logfile'] ?
-                new StreamHandler($container['downloads.logfile']) :
+            $loggerClass = $pimple['monolog.logger.class'];
+            $log         = new $loggerClass('downloads');
+            $handler     = $pimple['downloads.logfile'] ?
+                new StreamHandler($pimple['downloads.logfile']) :
                 new NullHandler();
-            $formatter = new LineFormatter($container['downloads.log.format'], DATE_RFC3339);
+            $formatter   = new LineFormatter($pimple['downloads.log.format'], DATE_RFC3339);
 
             $handler->setFormatter($formatter);
             $log->pushHandler($handler);

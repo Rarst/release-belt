@@ -21,29 +21,29 @@ class DefaultsProvider implements ServiceProviderInterface
     /**
      * Performs service registrations.
      */
-    public function register(Container $container): void
+    public function register(Container $pimple): void
     {
-        $container['debug'] = false;
+        $pimple['debug'] = false;
         /** @deprecated 0.3:1.0 Deprecated in favor of `users`. */
-        $container['http.users']    = [];
-        $container['users']         = [];
-        $container['release.dir']   = __DIR__.'/../../releases';
-        $container['finder']        = function () use ($container) {
+        $pimple['http.users']    = [];
+        $pimple['users']         = [];
+        $pimple['release.dir']   = __DIR__.'/../../releases';
+        $pimple['finder']        = function () use ($pimple) {
             $finder = new Finder();
-            $finder->files()->in($container['release.dir']);
+            $finder->files()->in($pimple['release.dir']);
 
             return $finder;
         };
-        $container['parser']        = function () use ($container) {
-            return new ReleaseParser($container['finder']);
+        $pimple['parser']        = function () use ($pimple) {
+            return new ReleaseParser($pimple['finder']);
         };
-        $container['url_generator'] = function () use ($container) {
+        $pimple['url_generator'] = function () use ($pimple) {
             /** @var Request $request */
-            $request = $container['request'];
+            $request = $pimple['request'];
 
-            return new UrlGenerator($container['router'], $request->getUri());
+            return new UrlGenerator($pimple['router'], $request->getUri());
         };
-        $container['view']          = function () {
+        $pimple['view']          = function () {
             $view = new Mustache([
                 'loader' => new Mustache_Loader_FilesystemLoader(__DIR__.'/../mustache'),
             ]);

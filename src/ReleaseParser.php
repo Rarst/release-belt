@@ -31,7 +31,6 @@ class ReleaseParser
 
         $this->finder->depth('== 2')->name('*.zip');
 
-        /** @var SplFileInfo $file */
         foreach ($this->finder as $file) {
             $releases[] = new Release($file);
         }

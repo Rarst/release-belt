@@ -17,18 +17,18 @@ class ControllerProvider implements ServiceProviderInterface
     /**
      * Performs service registrations.
      */
-    public function register(Container $container): void
+    public function register(Container $pimple): void
     {
-        $container['controller.index'] = function () use ($container) {
-            return new IndexController($container['view'], $container['model.index']);
+        $pimple['controller.index'] = function () use ($pimple) {
+            return new IndexController($pimple['view'], $pimple['model.index']);
         };
 
-        $container['controller.json'] = function () use ($container) {
-            return new JsonController($container['data'], $container['debug']);
+        $pimple['controller.json'] = function () use ($pimple) {
+            return new JsonController($pimple['data'], $pimple['debug']);
         };
 
-        $container['controller.file'] = function () use ($container) {
-            return new FileController($container['model.file'], $container['downloads.log']);
+        $pimple['controller.file'] = function () use ($pimple) {
+            return new FileController($pimple['model.file'], $pimple['downloads.log']);
         };
     }
 }

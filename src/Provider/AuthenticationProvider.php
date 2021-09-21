@@ -23,7 +23,6 @@ class AuthenticationProvider
      */
     public function boot(Application $app): void
     {
-        /** @var Container $container */
         $container       = $app->getContainer();
         $this->container = $container;
 
@@ -105,12 +104,10 @@ class AuthenticationProvider
      */
     protected function applyPermissions(Finder $finder, array $permissions): Finder
     {
-        /** @var string $path */
         foreach ($permissions['allow'] as $path) {
             $finder->path((string)$path);
         }
 
-        /** @var string $path */
         foreach ($permissions['disallow'] as $path) {
             $finder->notPath((string)$path);
         }
