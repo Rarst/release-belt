@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc2f5a7d9fe7bbd3bf202add4a331305",
+    "content-hash": "d2231549458e230126c5c73a23f67627",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -57,39 +57,11 @@
                 "middleware",
                 "psr7"
             ],
+            "support": {
+                "issues": "https://github.com/akrabat/ip-address-middleware/issues",
+                "source": "https://github.com/akrabat/ip-address-middleware/tree/master"
+            },
             "time": "2018-07-03T06:53:57+00:00"
-        },
-        {
-            "name": "container-interop/container-interop",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/container-interop/container-interop.git",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "shasum": ""
-            },
-            "require": {
-                "psr/container": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Interop\\Container\\": "src/Interop/Container/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "homepage": "https://github.com/container-interop/container-interop",
-            "abandoned": "psr/container",
-            "time": "2017-02-14T19:40:03+00:00"
         },
         {
             "name": "danjam/slim-mustache-view",
@@ -141,24 +113,28 @@
                 "template",
                 "view"
             ],
+            "support": {
+                "issues": "https://github.com/danjam/slim-mustache-view/issues",
+                "source": "https://github.com/danjam/slim-mustache-view/tree/master"
+            },
             "time": "2016-12-19T10:45:09+00:00"
         },
         {
             "name": "frontpack/composer-assets-plugin",
-            "version": "v0.10.2",
+            "version": "v0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/frontpack/composer-assets-plugin.git",
-                "reference": "c3fdc96fecdfff082e1efbd0b038442b38cc6edd"
+                "reference": "94179dbde35f9f30962106044fa5a8b8e0bd6783"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/frontpack/composer-assets-plugin/zipball/c3fdc96fecdfff082e1efbd0b038442b38cc6edd",
-                "reference": "c3fdc96fecdfff082e1efbd0b038442b38cc6edd",
+                "url": "https://api.github.com/repos/frontpack/composer-assets-plugin/zipball/94179dbde35f9f30962106044fa5a8b8e0bd6783",
+                "reference": "94179dbde35f9f30962106044fa5a8b8e0bd6783",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0",
+                "composer-plugin-api": "^1.0 || ^2.0",
                 "php": ">=5.6.0"
             },
             "type": "composer-plugin",
@@ -181,20 +157,30 @@
                 }
             ],
             "description": "Composer plugin for installing of assets.",
-            "time": "2020-08-08T12:55:01+00:00"
+            "support": {
+                "issues": "https://github.com/frontpack/composer-assets-plugin/issues",
+                "source": "https://github.com/frontpack/composer-assets-plugin/tree/v0.11.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=A3VQYFGCF99FU",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-06-02T08:40:11+00:00"
         },
         {
             "name": "league/fractal",
-            "version": "0.18.0",
+            "version": "0.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "4e553dae1a9402adbe11c81430a64675dc97b4fc"
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/4e553dae1a9402adbe11c81430a64675dc97b4fc",
-                "reference": "4e553dae1a9402adbe11c81430a64675dc97b4fc",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/06dc15f6ba38f2dde2f919d3095d13b571190a7c",
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c",
                 "shasum": ""
             },
             "require": {
@@ -206,7 +192,7 @@
                 "mockery/mockery": "~0.9",
                 "pagerfanta/pagerfanta": "~1.0.0",
                 "phpunit/phpunit": "^4.8.35 || ^7.5",
-                "squizlabs/php_codesniffer": "~1.5",
+                "squizlabs/php_codesniffer": "~1.5|~2.0|~3.4",
                 "zendframework/zend-paginator": "~2.3"
             },
             "suggest": {
@@ -245,20 +231,24 @@
                 "league",
                 "rest"
             ],
-            "time": "2019-05-10T02:16:43+00:00"
+            "support": {
+                "issues": "https://github.com/thephpleague/fractal/issues",
+                "source": "https://github.com/thephpleague/fractal/tree/0.19.2"
+            },
+            "time": "2020-01-24T23:17:29+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.25.2",
+            "version": "1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d5e2fb341cb44f7e2ab639d12a1e5901091ec287"
+                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d5e2fb341cb44f7e2ab639d12a1e5901091ec287",
-                "reference": "d5e2fb341cb44f7e2ab639d12a1e5901091ec287",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c6b00f05152ae2c9b04a448f99c7590beb6042f5",
+                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5",
                 "shasum": ""
             },
             "require": {
@@ -272,11 +262,10 @@
                 "aws/aws-sdk-php": "^2.4.9 || ^3.0",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
-                "jakub-onderka/php-parallel-lint": "0.9",
                 "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
+                "phpstan/phpstan": "^0.12.59",
                 "phpunit/phpunit": "~4.5",
-                "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
                 "swiftmailer/swiftmailer": "^5.3|^6.0"
@@ -295,11 +284,6 @@
                 "sentry/sentry": "Allow sending log messages to a Sentry server"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Monolog\\": "src/Monolog"
@@ -323,20 +307,34 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-11-13T10:00:05+00:00"
+            "support": {
+                "issues": "https://github.com/Seldaek/monolog/issues",
+                "source": "https://github.com/Seldaek/monolog/tree/1.26.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-05-28T08:32:12+00:00"
         },
         {
             "name": "mustache/mustache",
-            "version": "v2.12.0",
+            "version": "v2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/mustache.php.git",
-                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e"
+                "reference": "e95c5a008c23d3151d59ea72484d4f72049ab7f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/fe8fe72e9d580591854de404cc59a1b83ca4d19e",
-                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/e95c5a008c23d3151d59ea72484d4f72049ab7f4",
+                "reference": "e95c5a008c23d3151d59ea72484d4f72049ab7f4",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +367,11 @@
                 "mustache",
                 "templating"
             ],
-            "time": "2017-07-11T12:54:05+00:00"
+            "support": {
+                "issues": "https://github.com/bobthecow/mustache.php/issues",
+                "source": "https://github.com/bobthecow/mustache.php/tree/master"
+            },
+            "time": "2019-11-23T21:40:31+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -415,33 +417,37 @@
                 "router",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/nikic/FastRoute/issues",
+                "source": "https://github.com/nikic/FastRoute/tree/master"
+            },
             "time": "2018-02-13T20:26:39+00:00"
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.2.3",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
+                "reference": "86406047271859ffc13424a048541f4531f53601"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/86406047271859ffc13424a048541f4531f53601",
+                "reference": "86406047271859ffc13424a048541f4531f53601",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
-                "psr/container": "^1.0"
+                "php": ">=7.2.5",
+                "psr/container": "^1.1"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^3.2"
+                "symfony/phpunit-bridge": "^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.4.x-dev"
                 }
             },
             "autoload": {
@@ -460,36 +466,34 @@
                 }
             ],
             "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "http://pimple.sensiolabs.org",
+            "homepage": "https://pimple.symfony.com",
             "keywords": [
                 "container",
                 "dependency injection"
             ],
-            "time": "2018-01-21T07:42:36+00:00"
+            "support": {
+                "source": "https://github.com/silexphp/Pimple/tree/v3.4.0"
+            },
+            "time": "2021-03-06T08:28:00+00:00"
         },
         {
             "name": "psr/container",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=7.2.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -502,7 +506,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common Container Interface (PHP FIG PSR-11)",
@@ -514,7 +518,11 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/1.1.1"
+            },
+            "time": "2021-03-05T17:36:06+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -566,6 +574,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-factory/tree/master"
+            },
             "time": "2019-04-30T12:38:16+00:00"
         },
         {
@@ -616,6 +627,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -669,6 +683,10 @@
                 "response",
                 "server"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-server-handler/issues",
+                "source": "https://github.com/php-fig/http-server-handler/tree/master"
+            },
             "time": "2018-10-30T16:46:14+00:00"
         },
         {
@@ -722,20 +740,24 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-server-middleware/issues",
+                "source": "https://github.com/php-fig/http-server-middleware/tree/master"
+            },
             "time": "2018-10-30T17:12:04+00:00"
         },
         {
             "name": "psr/log",
-            "version": "1.1.2",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
@@ -759,7 +781,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for logging libraries",
@@ -769,24 +791,26 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01T11:05:21+00:00"
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
+            },
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "slim/slim",
-            "version": "3.12.2",
+            "version": "3.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "200c6143f15baa477601879b64ab2326847aac0b"
+                "reference": "1c9318a84ffb890900901136d620b4f03a59da38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/200c6143f15baa477601879b64ab2326847aac0b",
-                "reference": "200c6143f15baa477601879b64ab2326847aac0b",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/1c9318a84ffb890900901136d620b4f03a59da38",
+                "reference": "1c9318a84ffb890900901136d620b4f03a59da38",
                 "shasum": ""
             },
             "require": {
-                "container-interop/container-interop": "^1.2",
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "ext-simplexml": "*",
@@ -843,31 +867,31 @@
                 "micro",
                 "router"
             ],
-            "time": "2019-08-20T18:46:05+00:00"
+            "support": {
+                "issues": "https://github.com/slimphp/Slim/issues",
+                "source": "https://github.com/slimphp/Slim/tree/3.x"
+            },
+            "time": "2019-11-28T17:40:33+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.0",
+            "version": "v4.4.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e"
+                "reference": "70362f1e112280d75b30087c7598b837c1b468b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/ce8743441da64c41e2a667b8eb66070444ed911e",
-                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/70362f1e112280d75b30087c7598b837c1b468b6",
+                "reference": "70362f1e112280d75b30087c7598b837c1b468b6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": ">=7.1.3",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Finder\\": ""
@@ -890,32 +914,131 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Finder Component",
+            "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
-            "time": "2019-11-17T21:56:56+00:00"
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/v4.4.30"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-08-04T20:31:23+00:00"
         },
         {
-            "name": "tuupola/callable-handler",
-            "version": "1.0.0",
+            "name": "symfony/polyfill-php80",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tuupola/callable-handler.git",
-                "reference": "8b9d87f88056d4234af317d65612d7b6307a747a"
+                "url": "https://github.com/symfony/polyfill-php80.git",
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/callable-handler/zipball/8b9d87f88056d4234af317d65612d7b6307a747a",
-                "reference": "8b9d87f88056d4234af317d65612d7b6307a747a",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/1100343ed1a92e3a38f9ae122fc0eb21602547be",
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-28T13:41:28+00:00"
+        },
+        {
+            "name": "tuupola/callable-handler",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tuupola/callable-handler.git",
+                "reference": "0bc7b88630ca753de9aba8f411046856f5ca6f8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tuupola/callable-handler/zipball/0bc7b88630ca753de9aba8f411046856f5ca6f8c",
+                "reference": "0bc7b88630ca753de9aba8f411046856f5ca6f8c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0",
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.4.4",
                 "overtrue/phplint": "^1.0",
-                "phpunit/phpunit": "^6.5",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0",
                 "squizlabs/php_codesniffer": "^3.2",
                 "tuupola/http-factory": "^0.4.0|^1.0",
                 "zendframework/zend-diactoros": "^1.6.0|^2.0"
@@ -945,24 +1068,34 @@
                 "psr-15",
                 "psr-7"
             ],
-            "time": "2018-10-12T09:59:35+00:00"
+            "support": {
+                "issues": "https://github.com/tuupola/callable-handler/issues",
+                "source": "https://github.com/tuupola/callable-handler/tree/1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tuupola",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-09T08:31:54+00:00"
         },
         {
             "name": "tuupola/http-factory",
-            "version": "1.1.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tuupola/http-factory.git",
-                "reference": "5fbde4c65a10d09a85652684a6e569542265a749"
+                "reference": "ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/http-factory/zipball/5fbde4c65a10d09a85652684a6e569542265a749",
-                "reference": "5fbde4c65a10d09a85652684a6e569542265a749",
+                "url": "https://api.github.com/repos/tuupola/http-factory/zipball/ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454",
+                "reference": "ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
+                "php": "^7.1|^8.0",
                 "psr/http-factory": "^1.0"
             },
             "conflict": {
@@ -972,9 +1105,9 @@
                 "psr/http-factory-implementation": "^1.0"
             },
             "require-dev": {
-                "http-interop/http-factory-tests": "^0.5.0",
-                "overtrue/phplint": "^1.0",
-                "phpunit/phpunit": "^6.0|^7.0",
+                "http-interop/http-factory-tests": "^0.9.0",
+                "overtrue/phplint": "^3.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -1002,36 +1135,46 @@
                 "psr-17",
                 "psr-7"
             ],
-            "time": "2019-08-07T07:10:58+00:00"
+            "support": {
+                "issues": "https://github.com/tuupola/http-factory/issues",
+                "source": "https://github.com/tuupola/http-factory/tree/1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tuupola",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-09-14T12:46:25+00:00"
         },
         {
             "name": "tuupola/slim-basic-auth",
-            "version": "3.2.1",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tuupola/slim-basic-auth.git",
-                "reference": "40f5efe991ac4e2441ee05b830375c02432ff3f8"
+                "reference": "18e49c18f5648b05bb6169d166ccb6f797f0fbc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/slim-basic-auth/zipball/40f5efe991ac4e2441ee05b830375c02432ff3f8",
-                "reference": "40f5efe991ac4e2441ee05b830375c02432ff3f8",
+                "url": "https://api.github.com/repos/tuupola/slim-basic-auth/zipball/18e49c18f5648b05bb6169d166ccb6f797f0fbc4",
+                "reference": "18e49c18f5648b05bb6169d166ccb6f797f0fbc4",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
+                "php": "^7.1|^8.0",
                 "psr/http-message": "^1.0.1",
                 "psr/http-server-middleware": "^1.0",
                 "tuupola/callable-handler": "^0.3.0|^0.4.0|^1.0",
-                "tuupola/http-factory": "^0.4.0|^1.0"
+                "tuupola/http-factory": "^0.4.0|^1.0.2"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.19.14",
                 "equip/dispatch": "^2.0",
-                "overtrue/phplint": "^1.1",
-                "phpstan/phpstan": "^0.9.2",
-                "phpunit/phpunit": "^7.0",
-                "squizlabs/php_codesniffer": "^3.2",
+                "overtrue/phplint": "^2.0.2",
+                "phpstan/phpstan": "^0.12.43",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0",
+                "squizlabs/php_codesniffer": "^3.3.2",
+                "symfony/process": "^3.3",
                 "zendframework/zend-diactoros": "^1.3|^2.0"
             },
             "type": "library",
@@ -1059,20 +1202,30 @@
                 "psr-15",
                 "psr-7"
             ],
-            "time": "2018-10-15T12:48:00+00:00"
+            "support": {
+                "issues": "https://github.com/tuupola/slim-basic-auth/issues",
+                "source": "https://github.com/tuupola/slim-basic-auth/tree/3.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tuupola",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-10-28T15:22:12+00:00"
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.5.3",
+            "version": "v4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "a716fb03f965dc0846df479e14388b1b4b93d7ce"
+                "reference": "6ffb0b48e455430f8a5359ed689ad64c1143fac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/a716fb03f965dc0846df479e14388b1b4b93d7ce",
-                "reference": "a716fb03f965dc0846df479e14388b1b4b93d7ce",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6ffb0b48e455430f8a5359ed689ad64c1143fac2",
+                "reference": "6ffb0b48e455430f8a5359ed689ad64c1143fac2",
                 "shasum": ""
             },
             "replace": {
@@ -1110,13 +1263,17 @@
                 "sass",
                 "web"
             ],
+            "support": {
+                "issues": "https://github.com/twbs/bootstrap/issues",
+                "source": "https://github.com/twbs/bootstrap/tree/v4.6.0"
+            },
             "funding": [
                 {
                     "url": "https://opencollective.com/bootstrap",
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-10-13T15:38:30+00:00"
+            "time": "2021-01-19T16:16:38+00:00"
         }
     ],
     "packages-dev": [
@@ -1149,6 +1306,10 @@
             ],
             "description": "Standard for PHP package skeletons.",
             "homepage": "https://github.com/php-pds/skeleton",
+            "support": {
+                "issues": "https://github.com/php-pds/skeleton/issues",
+                "source": "https://github.com/php-pds/skeleton/tree/1.x"
+            },
             "time": "2017-01-25T23:30:41+00:00"
         }
     ],
@@ -1161,5 +1322,5 @@
         "php": ">=7.1.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }
