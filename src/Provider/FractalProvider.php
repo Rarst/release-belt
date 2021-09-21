@@ -31,7 +31,10 @@ class FractalProvider implements ServiceProviderInterface
         $pimple['transformer'] = function () use ($pimple) {
             $transformer = new ReleaseTransformer(
                 $pimple['url_generator'],
-                require __DIR__.'/../../config/installerTypes.php'
+                array_merge(
+                    require __DIR__.'/../../config/installerTypes.php',
+                    require __DIR__.'/../../config/installerTypesV2.php'
+                )
             );
 
             return $transformer;

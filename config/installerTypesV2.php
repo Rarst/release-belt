@@ -2,12 +2,12 @@
 declare(strict_types=1);
 
 /**
- * Supported types from https://github.com/composer/installers/tree/1.x
+ * Supported types from https://github.com/composer/installers
  */
 
 return [
-    '1.12.0' => [
-        'aimeos-extension',
+    '2.0.1' => [
+        'akaunting-module',
         'asgard-module',
         'asgard-theme',
         'attogram-module',
@@ -37,7 +37,6 @@ return [
         'concrete5-theme',
         'concrete5-block',
         'concrete5-update',
-        'craft-plugin',
         'croogo-plugin',
         'croogo-theme',
         'decibel-app',
@@ -80,15 +79,7 @@ return [
         'imagecms-module',
         'imagecms-library',
         'itop-extension',
-        'joomla-component',
-        'joomla-module',
-        'joomla-template',
-        'joomla-plugin',
-        'joomla-library',
         'kanboard-plugin',
-        'kirby-plugin',
-        'kirby-field',
-        'kirby-tag',
         'known-plugin',
         'known-theme',
         'known-console',
@@ -195,7 +186,6 @@ return [
         'phpbb-extension',
         'phpbb-style',
         'phpbb-language',
-        'pimcore-plugin',
         'plentymarkets-plugin',
         'ppi-module',
         'prestashop-module',
@@ -230,20 +220,12 @@ return [
         'sydes-module',
         'sydes-theme',
         'sylius-theme',
-        'symfony1-plugin',
         'tao-extension',
         'tastyigniter-extension',
         'tastyigniter-theme',
         'tusk-task',
         'tusk-command',
         'tusk-asset',
-        'typo3-flow-package',
-        'typo3-flow-framework',
-        'typo3-flow-plugin',
-        'typo3-flow-site',
-        'typo3-flow-boilerplate',
-        'typo3-flow-build',
-        'typo3-cms-extension',
         'userfrosting-sprinkle',
         'vanilla-plugin',
         'vanilla-theme',

@@ -38,7 +38,7 @@ class ReleaseTransformerTest extends TestCase
         $releaseMock->version  = $version;
         $releaseMock->filename = $filename;
 
-        $releaseTransformer = new ReleaseTransformer($urlGeneratorMock, [$type]);
+        $releaseTransformer = new ReleaseTransformer($urlGeneratorMock, ['1.12.0' => [$type], '2.0.1' => [$type]]);
 
         $transformResult = $releaseTransformer->transform($releaseMock);
 
@@ -51,7 +51,7 @@ class ReleaseTransformerTest extends TestCase
             ],
             'type'    => $type,
             'require' => [
-                'composer/installers' => '^1.5',
+                'composer/installers' => '^1.12.0 || ^2.0.1',
             ],
         ], $transformResult);
     }

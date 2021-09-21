@@ -15,11 +15,13 @@ class ReleaseTransformer extends TransformerAbstract
     /** @var UrlGeneratorInterface $urlGenerator */
     protected $urlGenerator;
 
-    /** @var array $installerTypes */
+    /** @var array<string, string[]> $installerTypes */
     protected $installerTypes;
 
     /**
      * ReleaseTransformer constructor.
+     *
+     * @param array<string, string[]> $installerTypes
      */
     public function __construct(UrlGeneratorInterface $urlGenerator, array $installerTypes = [])
     {
@@ -47,9 +49,17 @@ class ReleaseTransformer extends TransformerAbstract
             $package['type'] = $release->type;
         }
 
-        if (\in_array($release->type, $this->installerTypes, true)) {
+        $installers = [];
+
+        foreach ($this->installerTypes as $version => $types) {
+            if (\in_array($release->type, $types, true)) {
+                $installers[] = '^'.$version;
+            }
+        }
+
+        if ( ! empty($installers)) {
             $package['require'] = [
-                'composer/installers' => '^1.5',
+                'composer/installers' => implode(' || ', $installers),
             ];
         }
 
