@@ -19,7 +19,7 @@
         "slim/slim"                       : "^3.11",
         "danjam/slim-mustache-view"       : "^1.1",
         "tuupola/slim-basic-auth"         : "^3.2.1",
-        "akrabat/ip-address-middleware"   : "^1.0.1",
+        "akrabat/ip-address-middleware"   : "^2.1",
         "frontpack/composer-assets-plugin": "~0.10",
         "twbs/bootstrap"                  : "^4.0"
     },
@@ -45,6 +45,11 @@
         "assets-dir"  : "public/css",
         "assets-files": {
             "twbs/bootstrap": "dist/css/bootstrap.min.css"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "frontpack/composer-assets-plugin": true
         }
     }
 }
