@@ -38,7 +38,7 @@ class FileModelTest extends TestCase
 
         $iteratorMock->expects($this->once())
             ->method('valid')
-            ->willReturn('true');
+            ->willReturn(true);
 
         $iteratorMock->expects($this->once())
             ->method('current')

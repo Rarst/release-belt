@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+- mock type error in tests
+
 ## 0.6 - 2021-09-21
 
 ### Changed
