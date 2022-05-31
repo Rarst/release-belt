@@ -7,9 +7,6 @@ use Mustache_Loader_FilesystemLoader;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Rarst\ReleaseBelt\ReleaseParser;
-use Rarst\ReleaseBelt\UrlGenerator;
-use Slim\Http\Environment;
-use Slim\Http\Request;
 use Slim\Views\Mustache;
 use Symfony\Component\Finder\Finder;
 
@@ -36,12 +33,6 @@ class DefaultsProvider implements ServiceProviderInterface
         };
         $pimple['parser']        = function () use ($pimple) {
             return new ReleaseParser($pimple['finder']);
-        };
-        $pimple['url_generator'] = function () use ($pimple) {
-            /** @var Request $request */
-            $request = $pimple['request'];
-
-            return new UrlGenerator($pimple['router'], $request->getUri());
         };
         $pimple['view']          = function () {
             $view = new Mustache([

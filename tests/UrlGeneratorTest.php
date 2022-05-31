@@ -6,18 +6,18 @@ namespace Rarst\ReleaseBelt\Tests;
 use Psr\Http\Message\UriInterface;
 use Rarst\ReleaseBelt\UrlGenerator;
 use PHPUnit\Framework\TestCase;
-use Slim\Interfaces\RouterInterface;
+use Slim\Interfaces\RouteParserInterface;
 
 class UrlGeneratorTest extends TestCase
 {
     public function testGetFileUrl(): void
     {
-        $routerMock = $this->getMockBuilder(RouterInterface::class)
+        $routerMock = $this->getMockBuilder(RouteParserInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $routerMock->expects($this->once())
-            ->method('pathFor')
+            ->method('urlFor')
             ->with('file', ['vendor' => 'vendor', 'file' => 'file.zip'])
             ->willReturn('/vendor/file.zip');
 

@@ -5,7 +5,6 @@ namespace Rarst\ReleaseBelt\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Http\Response;
 
 /**
  * Handles packages.json route.
@@ -32,8 +31,12 @@ class JsonController
     /**
      * Returns JSON response with packages data.
      */
-    public function __invoke(ServerRequestInterface $request, Response $response): ResponseInterface
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        return $response->withJson($this->data, null, $this->debug ? JSON_PRETTY_PRINT : 0);
+        $prettyPrint = $this->debug ? JSON_PRETTY_PRINT : 0;
+
+        $response->getBody()->write(json_encode($this->data, JSON_THROW_ON_ERROR | $prettyPrint));
+
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }

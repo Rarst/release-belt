@@ -8,8 +8,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Rarst\ReleaseBelt\Model\FileModel;
 use Rarst\ReleaseBelt\Release;
-use Slim\Exception\NotFoundException;
-use Slim\Http\Stream;
+use Slim\Exception\HttpNotFoundException;
+use Slim\Psr7\Stream;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
@@ -41,7 +41,7 @@ class FileController
     /**
      * Looks up the file and sends download response.
      *
-     * @throws NotFoundException
+     * @throws HttpNotFoundException
      *
      * @param string[] $args Route arguments parsed from the URL.
      */
@@ -57,7 +57,7 @@ class FileController
         $sendFile = $this->model->getFile($args['vendor'], $args['file']);
 
         if (! $sendFile->isReadable()) {
-            throw new NotFoundException($request, $response);
+            throw new HttpNotFoundException($request);
         }
 
         $this->logFile($sendFile);

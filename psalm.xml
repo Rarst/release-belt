@@ -19,19 +19,16 @@
         <MixedAssignment errorLevel="suppress" />
         <MixedArgument>
             <errorLevel type="suppress">
-                <file name="src/Application.php" />
                 <directory name="src/Provider" />
             </errorLevel>
         </MixedArgument>
         <MissingClosureReturnType>
             <errorLevel type="suppress">
-                <file name="src/Application.php" />
                 <directory name="src/Provider" />
             </errorLevel>
         </MissingClosureReturnType>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
-                <file name="src/Application.php" />
                 <file name="src/Fractal/ReleaseTransformer.php" />
                 <file name="src/Provider/AuthenticationProvider.php" />
                 <directory name="src/Controller" />

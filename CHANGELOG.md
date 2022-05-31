@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+- upgraded to Slim v4
+- increased minimum required PHP version to 7.4
+
 ## 0.6.1 - 2022-05-27
 
 ### Changed

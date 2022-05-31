@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
 
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Rarst\ReleaseBelt\Application;
-use Slim\Container;
-use Slim\Http\Environment;
+use Slim\App;
 use Symfony\Component\Finder\Finder;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
@@ -15,23 +14,15 @@ use Tuupola\Middleware\HttpBasicAuthentication;
  */
 class AuthenticationProvider
 {
-    /** @var Container */
-    private $container;
+    private ContainerInterface $container;
 
     /**
      * Does necessary registrations on the app instance.
      */
-    public function boot(Application $app): void
+    public function boot(App $app): void
     {
         $container       = $app->getContainer();
         $this->container = $container;
-
-        $container['username'] = function () use ($container) {
-            /** @var Environment $environment */
-            $environment = $container['environment'];
-
-            return $environment->get('PHP_AUTH_USER', '');
-        };
 
         $userHashes = $this->getUserHashes();
 
@@ -55,12 +46,12 @@ class AuthenticationProvider
     {
         $auth = $this; // We need this because middleware binds the closure to its own object.
 
-        return function (ServerRequestInterface $request, array $arguments) use ($auth) : ServerRequestInterface {
+        return function (ServerRequestInterface $request, array $arguments) use ($auth): ServerRequestInterface {
             $username = $arguments['user'] ?? '';
 
             $auth->applyPermissions(
-                $auth->container['finder'],
-                $auth->getPermissions($auth->container['users'], $username)
+                $auth->container->get('finder'),
+                $auth->getPermissions($auth->container->get('users'), $username)
             );
 
             return $request->withAttribute('username', $username);
@@ -73,13 +64,13 @@ class AuthenticationProvider
     protected function getUserHashes(): array
     {
         /** @var string[] $users */
-        $users = $this->container['http.users'] ?? [];
+        $users = $this->container->has('http.users') ? $this->container->get('http.users') : [];
 
         if ($users) {
             trigger_error('`http.users` option is deprecated in favor of `users`.', E_USER_DEPRECATED);
         }
 
-        foreach ($this->container['users'] as $login => $data) {
+        foreach ($this->container->get('users') as $login => $data) {
             $users[$login] = $data['hash'] ?? '';
         }
 

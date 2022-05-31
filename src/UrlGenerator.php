@@ -4,39 +4,28 @@ declare(strict_types=1);
 namespace Rarst\ReleaseBelt;
 
 use Psr\Http\Message\UriInterface;
-use Slim\Interfaces\RouterInterface;
+use Slim\Interfaces\RouteParserInterface;
 
 /**
  * Concrete implementation for the absolute URL generation.
  */
 class UrlGenerator implements UrlGeneratorInterface
 {
-    /** @var RouterInterface $router */
-    private $router;
+    private RouteParserInterface $routeParser;
 
-    /** @var UriInterface $url */
-    private $url;
+    private UriInterface $uri;
 
-    /**
-     * UrlGenerator constructor.
-     */
-    public function __construct(RouterInterface $router, UriInterface $url)
+    public function __construct(RouteParserInterface $routeParser, UriInterface $uri)
     {
-        $this->router = $router;
-        $this->url    = $url->withUserInfo('');
+        $this->routeParser = $routeParser;
+        $this->uri         = $uri->withUserInfo('');
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getUrl(string $name, array $data = []): string
     {
-        return (string)$this->url->withPath($this->router->pathFor($name, $data));
+        return (string)$this->uri->withPath($this->routeParser->urlFor($name, $data));
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getFileUrl(string $vendor, string $file): string
     {
         return $this->getUrl('file', ['vendor' => $vendor, 'file' => $file]);

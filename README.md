@@ -72,7 +72,7 @@ A `[type]` could be:
 
 The `public/` directory should be used as web root and `index.php` in it as the file to handle requests.
 
-Please refer to [web server configuration](https://www.slimframework.com/docs/v3/start/web-servers.html) in Slim documentation and/or your web hosting’s resources for setup specifics.
+Please refer to [web server configuration](https://www.slimframework.com/docs/v4/start/web-servers.html) in Slim documentation and/or your web hosting’s resources for setup specifics.
 
 Visit home page and `/packages.json` in a web browser to check if it is working.
 
