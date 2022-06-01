@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
+- changed container to PHP-DI
 - upgraded to Slim v4
 - increased minimum required PHP version to 7.4
+
+### Deprecated
+- built-in logging
 
 ## 0.6.1 - 2022-05-27
 

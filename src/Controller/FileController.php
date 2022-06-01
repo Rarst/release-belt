@@ -42,19 +42,18 @@ class FileController
      * Looks up the file and sends download response.
      *
      * @throws HttpNotFoundException
-     *
-     * @param string[] $args Route arguments parsed from the URL.
      */
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,
-        array $args
+        string $vendor,
+        string $file
     ): ResponseInterface {
 
         $this->request  = $request;
         $this->response = $response;
 
-        $sendFile = $this->model->getFile($args['vendor'], $args['file']);
+        $sendFile = $this->model->getFile($vendor, $file);
 
         if (! $sendFile->isReadable()) {
             throw new HttpNotFoundException($request);

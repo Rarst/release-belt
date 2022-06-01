@@ -1,54 +1,37 @@
 <?php
 declare(strict_types=1);
 
-use Pimple\Container;
-use Pimple\Psr11\Container as PsrContainer;
+use DI\Bridge\Slim\Bridge;
+use DI\ContainerBuilder;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Rarst\ReleaseBelt\Controller\FileController;
+use Rarst\ReleaseBelt\Controller\IndexController;
+use Rarst\ReleaseBelt\Controller\JsonController;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
-use Rarst\ReleaseBelt\Provider\ControllerProvider;
-use Rarst\ReleaseBelt\Provider\DefaultsProvider;
-use Rarst\ReleaseBelt\Provider\DownloadsLogProvider;
-use Rarst\ReleaseBelt\Provider\FractalProvider;
-use Rarst\ReleaseBelt\Provider\ModelProvider;
-use Rarst\ReleaseBelt\UrlGenerator;
 use RKA\Middleware\IpAddress;
-use Slim\Factory\AppFactory;
 
 require __DIR__.'/../vendor/autoload.php';
 
 $configPath = __DIR__.'/../config/config.php';
-$config     = file_exists($configPath) ? require $configPath : [];
-$pimple     = new Container();
+$builder    = new ContainerBuilder();
 
-$pimple->register(new DefaultsProvider());
-$pimple->register(new ModelProvider());
-$pimple->register(new ControllerProvider());
-$pimple->register(new FractalProvider());
-$pimple->register(new DownloadsLogProvider());
+$builder->addDefinitions(__DIR__.'/../src/definitions.php');
+$builder->addDefinitions(__DIR__.'/../src/loggerDefinitions.php');
 
-foreach ($config as $key => $value) {
-    $pimple[$key] = $value;
+if (file_exists($configPath)) {
+    $builder->addDefinitions($configPath);
 }
 
-AppFactory::setContainer(new PsrContainer($pimple));
+$container = $builder->build();
+$app       = Bridge::create($container);
 
-$app = AppFactory::create();
+$app->get('/', IndexController::class)->setName('index');
+$app->get('/packages.json', JsonController::class)->setName('json');
+$app->get('/{vendor}/{file}', FileController::class)->setName('file');
 
-$pimple['username'] = function (): string {
-    return (string)($_SERVER['PHP_AUTH_USER'] ?? '');
-};
-
-$pimple['url_generator'] = function () use ($pimple, $app) {
-    return new UrlGenerator($app->getRouteCollector()->getRouteParser(), $pimple['request.uri']);
-};
-
-$app->get('/', 'controller.index')->setName('index');
-$app->get('/packages.json', 'controller.json')->setName('json');
-$app->get('/{vendor}/{file}', 'controller.file')->setName('file');
-
-$app->add(function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($pimple) {
-    $pimple['request.uri'] = $request->getUri();
+$app->add(function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($container) {
+    $container->set('request.uri', $request->getUri());
 
     return $handler->handle($request);
 });
@@ -58,6 +41,6 @@ $app->add(new IpAddress());
 $authentication = new AuthenticationProvider();
 $authentication->boot($app);
 
-$app->addErrorMiddleware($pimple['debug'] ?? false, true, true);
+$app->addErrorMiddleware((bool)$container->get('debug'), true, true);
 
 $app->run();

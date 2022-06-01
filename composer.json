@@ -13,17 +13,17 @@
     },
     "require"             : {
         "php"                             : "^7.4|^8.0",
-        "symfony/finder"                  : "^4.1.6",
+        "akrabat/ip-address-middleware"   : "^2.1",
+        "danjam/slim-mustache-view"       : "^1.1",
+        "frontpack/composer-assets-plugin": "~0.10",
         "league/fractal"                  : "~0.10",
         "monolog/monolog"                 : "^1.23",
+        "php-di/slim-bridge"              : "^3.2",
         "slim/slim"                       : "^4.10",
         "slim/psr7"                       : "^1.5",
-        "danjam/slim-mustache-view"       : "^1.1",
+        "symfony/finder"                  : "^4.1.6",
         "tuupola/slim-basic-auth"         : "^3.2.1",
-        "akrabat/ip-address-middleware"   : "^2.1",
-        "frontpack/composer-assets-plugin": "~0.10",
         "twbs/bootstrap"                  : "^4.0",
-        "pimple/pimple"                   : "^3.5",
         "ext-json"                        : "*"
     },
     "autoload"            : {

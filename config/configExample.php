@@ -14,9 +14,6 @@ return [
     // Customize path to the directory containing release ZIP files.
     // 'release.dir'           => __DIR__.'/../releases',
 
-    // Path to downloads log, defaults to null for disabled.
-    // 'downloads.logfile'    => __DIR__.'/../releases/downloads.log',
-
     //'users'                    => [
           // User login.
     //    'composer' => [

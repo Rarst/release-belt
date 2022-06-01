@@ -50,7 +50,7 @@ class AuthenticationProvider
             $username = $arguments['user'] ?? '';
 
             $auth->applyPermissions(
-                $auth->container->get('finder'),
+                $auth->container->get(Finder::class),
                 $auth->getPermissions($auth->container->get('users'), $username)
             );
 
