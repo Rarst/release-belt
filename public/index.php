@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 use DI\Bridge\Slim\Bridge;
 use DI\ContainerBuilder;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use Rarst\ReleaseBelt\Controller\FileController;
 use Rarst\ReleaseBelt\Controller\IndexController;
 use Rarst\ReleaseBelt\Controller\JsonController;
@@ -29,12 +27,6 @@ $app       = Bridge::create($container);
 $app->get('/', IndexController::class)->setName('index');
 $app->get('/packages.json', JsonController::class)->setName('json');
 $app->get('/{vendor}/{file}', FileController::class)->setName('file');
-
-$app->add(function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($container) {
-    $container->set('request.uri', $request->getUri());
-
-    return $handler->handle($request);
-});
 
 $app->add(new IpAddress());
 
