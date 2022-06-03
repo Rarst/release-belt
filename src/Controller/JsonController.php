@@ -1,25 +1,23 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Http\Response;
 
 /**
  * Handles packages.json route.
  */
 class JsonController
 {
-    /** @var array|array[] */
-    protected $data;
+    /** @var array[] */
+    protected array $data;
 
-    /** @var bool */
-    private $debug;
+    private bool $debug;
 
     /**
-     * JsonController constructor.
-     *
      * @param array[] $data
      */
     public function __construct(array $data, bool $debug = false)
@@ -31,12 +29,10 @@ class JsonController
     /**
      * Returns JSON response with packages data.
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    public function __invoke(ServerRequestInterface $request, Response $response): Response
     {
         $prettyPrint = $this->debug ? JSON_PRETTY_PRINT : 0;
 
-        $response->getBody()->write(json_encode($this->data, JSON_THROW_ON_ERROR | $prettyPrint));
-
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response->withJson($this->data, null, JSON_THROW_ON_ERROR | $prettyPrint);
     }
 }

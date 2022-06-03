@@ -1,40 +1,29 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Controller;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
 use Rarst\ReleaseBelt\Model\FileModel;
 use Rarst\ReleaseBelt\Release;
 use Slim\Exception\HttpNotFoundException;
-use Slim\Psr7\Stream;
+use Slim\Http\Response;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Handles the route for file downloads and log access.
+ * Handles the route for file downloads.
  */
 class FileController
 {
-    /** @var FileModel */
-    protected $model;
+    protected FileModel $model;
 
-    /** @var LoggerInterface */
-    protected $logger;
+    protected LoggerInterface $logger;
 
-    /** @var ServerRequestInterface $request */
-    protected $request;
-
-    /** @var ResponseInterface $response */
-    protected $response;
-
-    /**
-     * FileController constructor.
-     */
     public function __construct(FileModel $model, LoggerInterface $logger)
     {
-        $this->model = $model;
+        $this->model  = $model;
         $this->logger = $logger;
     }
 
@@ -43,62 +32,35 @@ class FileController
      *
      * @throws HttpNotFoundException
      */
-    public function __invoke(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        string $vendor,
-        string $file
-    ): ResponseInterface {
-
-        $this->request  = $request;
-        $this->response = $response;
-
+    public function __invoke(Request $request, Response $response, string $vendor, string $file): Response
+    {
         $sendFile = $this->model->getFile($vendor, $file);
 
         if (! $sendFile->isReadable()) {
             throw new HttpNotFoundException($request);
         }
 
-        $this->logFile($sendFile);
+        $this->logFile($sendFile, $request);
 
-        return $this->sendFile($sendFile);
+        return $response->withFileDownload($sendFile->getRealPath());
     }
 
     /**
-     * Logs the file download.
+     * @deprecated 0.7:0.8
      */
-    protected function logFile(SplFileInfo $file): void
+    protected function logFile(SplFileInfo $file, Request $request): void
     {
         $release = new Release($file);
 
         $package = "{$release->vendor}/{$release->package}";
         $context = [
-            'user'    => $this->request->getAttribute('username') ?: 'anonymous',
-            'ip'      => $this->request->getAttribute('ip_address'),
+            'user'    => $request->getAttribute('username') ?: 'anonymous',
+            'ip'      => $request->getAttribute('ip_address'),
             'vendor'  => $release->vendor,
             'package' => $release->package,
             'version' => $release->version,
         ];
 
         $this->logger->info($package, $context);
-    }
-
-    /**
-     * Returns streamed file download response.
-     */
-    protected function sendFile(SplFileInfo $file): ResponseInterface
-    {
-        $fileStream = fopen($file->getRealPath(), 'rb');
-
-        return $this->response->withHeader('Content-Type', 'application/force-download')
-            ->withHeader('Content-Type', 'application/octet-stream')
-            ->withHeader('Content-Type', 'application/download')
-            ->withHeader('Content-Description', 'File Transfer')
-            ->withHeader('Content-Transfer-Encoding', 'binary')
-            ->withHeader('Content-Disposition', 'attachment; filename="'.$file->getBasename().'"')
-            ->withHeader('Expires', '0')
-            ->withHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
-            ->withHeader('Pragma', 'public')
-            ->withBody(new Stream($fileStream));
     }
 }
