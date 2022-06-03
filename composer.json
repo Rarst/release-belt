@@ -54,6 +54,9 @@
     "config"              : {
         "allow-plugins": {
             "frontpack/composer-assets-plugin": true
+        },
+        "platform": {
+            "PHP": "7.4"
         }
     }
 }
