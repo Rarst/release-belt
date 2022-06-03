@@ -1,5 +1,4 @@
 # Release Belt — Composer repo for ZIPs
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
 [![Tests Status](https://github.com/rarst/release-belt/actions/workflows/tests.yml/badge.svg)](https://github.com/Rarst/release-belt/actions/workflows/tests.yml)
 [![Latest Stable Version](https://poser.pugx.org/rarst/release-belt/version)](https://packagist.org/packages/rarst/release-belt)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rarst/release-belt.svg)](https://packagist.org/packages/rarst/release-belt)
