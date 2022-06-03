@@ -1,7 +1,6 @@
 # Release Belt — Composer repo for ZIPs
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Rarst/release-belt/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Rarst/release-belt/?branch=master)
+[![Tests Status](https://github.com/rarst/release-belt/actions/workflows/tests.yml/badge.svg)](https://github.com/Rarst/release-belt/actions/workflows/tests.yml)
 [![Latest Stable Version](https://poser.pugx.org/rarst/release-belt/version)](https://packagist.org/packages/rarst/release-belt)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rarst/release-belt.svg)](https://packagist.org/packages/rarst/laps)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
