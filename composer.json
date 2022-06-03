@@ -22,7 +22,7 @@
         "slim/http"                       : "^1.2.0",
         "slim/psr7"                       : "^1.5",
         "slim/slim"                       : "^4.10",
-        "symfony/finder"                  : "^4.1.6",
+        "symfony/finder"                  : "^5.4.8",
         "tuupola/slim-basic-auth"         : "^3.2.1",
         "twbs/bootstrap"                  : "^4.0",
         "ext-json"                        : "*"
