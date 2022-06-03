@@ -1,11 +1,12 @@
 <?php
-declare(strict_types=1);
 
 /**
  * This is an annotated example of a configuration file with default settings (or notes what they are).
  *
  * Copy to `config.php` and customize as needed.
  */
+
+declare(strict_types=1);
 
 return [
     // Enable to put the application into the debug mode with extended error messages.

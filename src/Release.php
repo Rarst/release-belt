@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt;
@@ -17,7 +18,7 @@ class Release
     public const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)((?:[.-]?\d+)*+)?)?([.-]?dev)?';
 
     /** @var string */
-    public const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}'.self::MODIFIER_REGEX.')\.zip/';
+    public const VERSION_REGEX = '/(?P<package>.*?)(?P<version>v?(?:\d+\.*){1,4}' . self::MODIFIER_REGEX . ')\.zip/';
 
     /** @var SplFileInfo $file */
     protected $file;
@@ -55,8 +56,8 @@ class Release
         $matches = $this->parseFilename($this->filename);
 
         if (! empty($matches)) {
-            $this->package = (string) $matches['package'];
-            $this->version = (string) $matches['version'];
+            $this->package = (string)$matches['package'];
+            $this->version = (string)$matches['version'];
         }
     }
 

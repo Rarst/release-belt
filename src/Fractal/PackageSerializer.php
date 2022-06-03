@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Fractal;
@@ -15,12 +16,12 @@ class PackageSerializer extends ArraySerializer
      */
     public function collection(?string $resourceKey, array $data): array
     {
-        $packages = [ ];
+        $packages = [];
 
         foreach ($data as $package) {
             $packages[$package['name']][$package['version']] = $package;
         }
 
-        return [ 'packages' => $packages ];
+        return ['packages' => $packages];
     }
 }

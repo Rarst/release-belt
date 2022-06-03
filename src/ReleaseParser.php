@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt;
@@ -27,7 +28,7 @@ class ReleaseParser
      */
     public function getReleases(): array
     {
-        $releases = [ ];
+        $releases = [];
 
         $this->finder->depth('== 2')->name('*.zip');
 

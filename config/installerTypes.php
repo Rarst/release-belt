@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Supported types from https://github.com/composer/installers/tree/1.x
  */
+
+declare(strict_types=1);
 
 return [
     '1.12.0' => [

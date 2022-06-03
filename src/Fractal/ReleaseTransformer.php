@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Fractal;
@@ -53,11 +54,11 @@ class ReleaseTransformer extends TransformerAbstract
 
         foreach ($this->installerTypes as $version => $types) {
             if (\in_array($release->type, $types, true)) {
-                $installers[] = '^'.$version;
+                $installers[] = '^' . $version;
             }
         }
 
-        if ( ! empty($installers)) {
+        if (! empty($installers)) {
             $package['require'] = [
                 'composer/installers' => implode(' || ', $installers),
             ];

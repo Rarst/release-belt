@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use DI\Bridge\Slim\Bridge;
@@ -9,13 +10,13 @@ use Rarst\ReleaseBelt\Controller\JsonController;
 use Rarst\ReleaseBelt\Provider\AuthenticationProvider;
 use RKA\Middleware\IpAddress;
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$configPath = __DIR__.'/../config/config.php';
+$configPath = __DIR__ . '/../config/config.php';
 $builder    = new ContainerBuilder();
 
-$builder->addDefinitions(__DIR__.'/../src/definitions.php');
-$builder->addDefinitions(__DIR__.'/../src/loggerDefinitions.php');
+$builder->addDefinitions(__DIR__ . '/../src/definitions.php');
+$builder->addDefinitions(__DIR__ . '/../src/loggerDefinitions.php');
 
 if (file_exists($configPath)) {
     $builder->addDefinitions($configPath);

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rarst\ReleaseBelt\Provider;
@@ -33,11 +34,13 @@ class AuthenticationProvider
             return;
         }
 
-        $app->add(new HttpBasicAuthentication([
-            'secure' => false,
-            'users'  => $userHashes,
-            'before' => $this->before(),
-        ]));
+        $app->add(
+            new HttpBasicAuthentication([
+                'secure' => false,
+                'users'  => $userHashes,
+                'before' => $this->before(),
+            ])
+        );
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
-declare(strict_types=1);
 
 /** @deprecated 0.7:0.8 */
+
+declare(strict_types=1);
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\NullHandler;
@@ -9,6 +10,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+
 use function DI\get;
 
 return [
@@ -17,8 +19,7 @@ return [
     'downloads.log.format' =>
         "%datetime%\t%context.user%\t%context.ip%\t%context.vendor%\t%context.package%\t%context.version%\n",
     'downloads.log'        => function (ContainerInterface $container) {
-
-        if ( ! is_null($container->get('downloads.logfile'))) {
+        if (! is_null($container->get('downloads.logfile'))) {
             trigger_error(
                 'Built-in logging is deprecated and will be removed in version 0.8',
                 E_USER_DEPRECATED
