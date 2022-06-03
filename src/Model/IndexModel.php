@@ -49,8 +49,6 @@ class IndexModel
 
     /**
      * Processes a set of packages data for display.
-     *
-     * @psalm-suppress PossiblyInvalidArgument,PossiblyNullArrayOffset
      */
     protected function getPackages(): array
     {

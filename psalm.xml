@@ -1,38 +1,15 @@
 <?xml version="1.0"?>
 <psalm
-    totallyTyped="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorLevel="2"
 >
     <projectFiles>
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>
+            <file name="src/loggerDefinitions.php" />
         </ignoreFiles>
     </projectFiles>
-
-    <issueHandlers>
-        <LessSpecificReturnType errorLevel="info"/>
-        <MixedArrayOffset errorLevel="suppress" />
-        <MixedArrayAccess errorLevel="suppress" />
-        <MixedAssignment errorLevel="suppress" />
-        <MixedArgument>
-            <errorLevel type="suppress">
-                <directory name="src/Provider" />
-            </errorLevel>
-        </MixedArgument>
-        <MissingClosureReturnType>
-            <errorLevel type="suppress">
-                <directory name="src/Provider" />
-            </errorLevel>
-        </MissingClosureReturnType>
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <file name="src/Fractal/ReleaseTransformer.php" />
-                <file name="src/Provider/AuthenticationProvider.php" />
-                <directory name="src/Controller" />
-            </errorLevel>
-        </PropertyNotSetInConstructor>
-    </issueHandlers>
 </psalm>

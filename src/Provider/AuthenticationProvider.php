@@ -11,6 +11,8 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 
 /**
  * Implements HTTP authentication.
+ *
+ * @psalm-suppress MissingConstructor
  */
 class AuthenticationProvider
 {
@@ -21,6 +23,7 @@ class AuthenticationProvider
      */
     public function boot(App $app): void
     {
+        /** @var ContainerInterface $container */
         $container       = $app->getContainer();
         $this->container = $container;
 

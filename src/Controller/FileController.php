@@ -40,6 +40,7 @@ class FileController
             throw new HttpNotFoundException($request);
         }
 
+        /** @psalm-suppress DeprecatedMethod */
         $this->logFile($sendFile, $request);
 
         return $response->withFileDownload($sendFile->getRealPath());

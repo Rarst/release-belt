@@ -12,13 +12,8 @@ class PackageSerializer extends ArraySerializer
 {
     /**
      * Serializes the data into the needed array structure.
-     *
-     * @param string $resourceKey
-     * @param array  $data
-     *
-     * @return array
      */
-    public function collection($resourceKey, array $data): array
+    public function collection(?string $resourceKey, array $data): array
     {
         $packages = [ ];
 

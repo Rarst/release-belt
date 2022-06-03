@@ -45,15 +45,17 @@ return [
     Mustache::class              => fn() => new Mustache([
         'loader' => new Mustache_Loader_FilesystemLoader(__DIR__ . '/mustache'),
     ]),
-    'packages'                   => fn(ContainerInterface $container) => $container->get('data')['packages'],
+    'packages'                   => fn(ContainerInterface $container): array => $container->get('data')['packages'],
     'release.dir'                => __DIR__ . '/../releases',
     'releases'                   => fn(ReleaseParser $parser) => $parser->getReleases(),
     ReleaseTransformer::class    => autowire()->constructorParameter('installerTypes', get('installerTypes')),
     RouteParserInterface::class  => fn(App $app) => $app->getRouteCollector()->getRouteParser(),
-    UrlGeneratorInterface::class => fn(RouteParserInterface $routeParser, UriFactory $uriFactory) => new UrlGenerator(
-        $routeParser,
-        $uriFactory->createFromGlobals($_SERVER)
-    ),
+    UrlGeneratorInterface::class => function (RouteParserInterface $routeParser, UriFactory $uriFactory) {
+        /** @psalm-suppress InternalMethod */
+        $requestUri = $uriFactory->createFromGlobals($_SERVER);
+
+        return new UrlGenerator($routeParser, $requestUri);
+    },
     'username'                   => fn(): string => (string)($_SERVER['PHP_AUTH_USER'] ?? ''),
     'users'                      => [],
 ];

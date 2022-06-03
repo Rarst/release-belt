@@ -29,7 +29,6 @@ class FileModel
      */
     public function getFile(string $vendor, string $file): SplFileInfo
     {
-        /** @var \Iterator $iterator */
         $iterator = $this->finder->path($vendor)->name($file)->getIterator();
         $iterator->rewind();
 
