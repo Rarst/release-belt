@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- command line boilerplate for `auth.json`
+
 ### Changed
 - changed container to PHP-DI
 - upgraded to Slim v4

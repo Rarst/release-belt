@@ -26,15 +26,6 @@
                    title="Composer repository documentation"><strong>?</strong></a>
             </div>
             <pre class="bg-light rounded p-3"><code>{{>composer.json}}</code></pre>
-
-            <div class="d-flex justify-content-between">
-                <h3>Command line</h3>
-                <a href="https://getcomposer.org/doc/03-cli.md#config" class="h3 text-info"
-                   aria-label="Composer config command documentation"
-                title="Composer config command documentation"><strong>?</strong></a>
-            </div>
-            <pre class="bg-light rounded p-3"><code>composer config repo.{{host}} composer {{schemeAndHttpHost}}</code></pre>
-
             {{#user}}
                 <div class="d-flex justify-content-between">
                     <h3><code>auth.json</code></h3>
@@ -44,6 +35,18 @@
                 </div>
                 <pre class="bg-light rounded p-3"><code>{{>auth.json}}</code></pre>
             {{/user}}
+
+            <div class="d-flex justify-content-between">
+                <h3>Command line</h3>
+                <a href="https://getcomposer.org/doc/03-cli.md#config" class="h3 text-info"
+                   aria-label="Composer config command documentation"
+                title="Composer config command documentation"><strong>?</strong></a>
+            </div>
+            <pre class="bg-light rounded p-3"><code>composer config repo.{{host}} composer {{schemeAndHttpHost}}</code></pre>
+            {{#user}}
+                <pre class="bg-light rounded p-3"><code>composer config http-basic.{{host}} {{user}} PASSWORD</code></pre>
+            {{/user}}
+
         </div>
 
         <div class="col-md-6">
