@@ -16,7 +16,6 @@ $configPath = __DIR__ . '/../config/config.php';
 $builder    = new ContainerBuilder();
 
 $builder->addDefinitions(__DIR__ . '/../src/definitions.php');
-$builder->addDefinitions(__DIR__ . '/../src/loggerDefinitions.php');
 
 if (file_exists($configPath)) {
     $builder->addDefinitions($configPath);

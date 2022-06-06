@@ -19,12 +19,9 @@ class FileController
 {
     protected FileModel $model;
 
-    protected LoggerInterface $logger;
-
-    public function __construct(FileModel $model, LoggerInterface $logger)
+    public function __construct(FileModel $model)
     {
         $this->model  = $model;
-        $this->logger = $logger;
     }
 
     /**
@@ -40,28 +37,6 @@ class FileController
             throw new HttpNotFoundException($request);
         }
 
-        /** @psalm-suppress DeprecatedMethod */
-        $this->logFile($sendFile, $request);
-
         return $response->withFileDownload($sendFile->getRealPath());
-    }
-
-    /**
-     * @deprecated 0.7:0.8
-     */
-    protected function logFile(SplFileInfo $file, Request $request): void
-    {
-        $release = new Release($file);
-
-        $package = "{$release->vendor}/{$release->package}";
-        $context = [
-            'user'    => $request->getAttribute('username') ?: 'anonymous',
-            'ip'      => $request->getAttribute('ip_address'),
-            'vendor'  => $release->vendor,
-            'package' => $release->package,
-            'version' => $release->version,
-        ];
-
-        $this->logger->info($package, $context);
     }
 }
