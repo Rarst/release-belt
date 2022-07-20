@@ -38,7 +38,7 @@
         "belt-update": [
             "git fetch --tags",
             "@php bin/checkoutLatestTag.php",
-            "@composer install --no-dev --optimize-autoloader"
+            "@composer update --no-dev --optimize-autoloader"
         ]
     },
     "scripts-descriptions": {
@@ -53,9 +53,6 @@
     "config"              : {
         "allow-plugins": {
             "frontpack/composer-assets-plugin": true
-        },
-        "platform": {
-            "PHP": "7.4"
         }
     }
 }

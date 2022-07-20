@@ -9,14 +9,22 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - php: '7.4'
+            tools: phpunit:9
+          - php: '8.0'
+            tools: cs2pr,phpcs,phpunit:9,psalm
+            analyze: true
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
-          tools: cs2pr,phpcs,phpunit:9,psalm
+          php-version: ${{ matrix.php }}
+          tools: ${{ matrix.tools }}
 
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
@@ -29,18 +37,18 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.composercache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-php-${{ matrix.php }}-composer-
 
-      - run: composer install
+      - run: composer install --no-interaction
 
       - name: Psalm
         run: psalm --output-format=github
-        if: always()
+        if: always() && matrix.analyze
 
       - name: PHP CodeSniffer
         run: phpcs --report=checkstyle | cs2pr
-        if: always()
+        if: always() && matrix.analyze
 
       - name: PHPUnit
         run: phpunit --coverage-text
