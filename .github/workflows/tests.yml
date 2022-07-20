@@ -28,6 +28,7 @@ jobs:
 
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+        if: matrix.analyze
 
       - name: Get composer cache directory
         id: composercache
